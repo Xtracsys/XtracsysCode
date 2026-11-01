@@ -1,0 +1,66 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "345b5b119e56093b52af73dafb704a4f",
+  "type": "doc",
+  "slug": "doc-requirements",
+  "title": "BUILD_REQUIREMENTS.md",
+  "version": 1,
+  "updated": "2026-11-01T15:13:55Z",
+  "tags": [
+    "docs",
+    "SPEC",
+    "Markdown"
+  ],
+  "blocks": [
+    {
+      "id": "blk_b76db7a2a4",
+      "type": "heading",
+      "content": "BUILD_REQUIREMENTS.md",
+      "level": 1
+    },
+    {
+      "id": "blk_519f92444c",
+      "type": "paragraph",
+      "content": "The founding stakeholder document (draft 2026-09-11): a local-only LLM desktop app that looks like Codex/ChatGPT, supports multitasking with projects and tabs, runs exclusively on Ollama/llama.cpp, has no call-home behavior, and \u2014 as a hard constraint \u2014 never destroys the hard drive. \u00a74 lists the six core requirement groups (chat/workspace, backends, no-call-home, automation, bounded storage, JSON+MD data model); \u00a78 the license posture that drove the MIT/Apache-only dependency audit."
+    },
+    {
+      "id": "blk_cd4359a70e",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_314a659722",
+      "type": "field",
+      "content": "Bounded logs, bounded sessions, controlled temp, cleanup rules, visible usage, safe defaults, manual override \u2014 every release audit re-checks this section.",
+      "meta": {
+        "name": "\u00a74.5 Storage \u2014 hard requirement"
+      }
+    },
+    {
+      "id": "blk_942e5d8612",
+      "type": "field",
+      "content": "OpenCode/Jan/Cline/Continued/LM Studio evaluated; the app-behavior references shaped the v1 UI.",
+      "meta": {
+        "name": "\u00a77 Reference landscape"
+      }
+    }
+  ],
+  "properties": {
+    "category": "docs",
+    "path": "BUILD_REQUIREMENTS.md",
+    "lines": 219,
+    "lang": "Markdown",
+    "phase": "v0",
+    "status": "SPEC",
+    "spec_refs": "",
+    "related": [
+      "doc-readme",
+      "doc-status"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "f1295cbc8a0422d278644ea1a9078594",
+  "type": "doc",
+  "slug": "cfg-tsconfig-vite",
+  "title": "tsconfig*.json + vite.config.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:55Z",
+  "tags": [
+    "config",
+    "META",
+    "TypeScript/JSON"
+  ],
+  "blocks": [
+    {
+      "id": "blk_5b10dcca0f",
+      "type": "heading",
+      "content": "tsconfig*.json + vite.config.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_7bd731db3e",
+      "type": "paragraph",
+      "content": "Two TypeScript programs: tsconfig.json compiles electron/ + shared/ to CommonJS in dist-electron (Node types, no Electron at type level in shared/); tsconfig.web.json typechecks web/src as a DOM/ESNext program with no emit (vite handles the build). vite.config.ts sets base './' \u2014 REQUIRED, absolute asset URLs blank-screen the packaged app \u2014 root web/, outDir dist-web, target chrome130, strictPort 5173 for dev."
+    },
+    {
+      "id": "blk_d270a57966",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_7a701086bc",
+      "type": "field",
+      "content": "The blank-screen invariant; never revert (recorded in every goal prompt since v2).",
+      "meta": {
+        "name": "base: './'"
+      }
+    }
+  ],
+  "properties": {
+    "category": "config",
+    "path": "vite.config.ts",
+    "lines": 18,
+    "lang": "TypeScript/JSON",
+    "phase": "v1",
+    "status": "META",
+    "spec_refs": "",
+    "related": [
+      "web-support"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

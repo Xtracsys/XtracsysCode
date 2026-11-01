@@ -1,0 +1,57 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "6744c34fcbf3b09b954ae92fc01b983b",
+  "type": "doc",
+  "slug": "cfg-web-shell",
+  "title": "web/index.html + .gitignore",
+  "version": 1,
+  "updated": "2026-11-01T15:13:56Z",
+  "tags": [
+    "config",
+    "META",
+    "HTML"
+  ],
+  "blocks": [
+    {
+      "id": "blk_234e0ba414",
+      "type": "heading",
+      "content": "web/index.html + .gitignore",
+      "level": 1
+    },
+    {
+      "id": "blk_d47c835497",
+      "type": "paragraph",
+      "content": "The HTML shell applies restrictive CSP including connect-src 'none', form-action 'none', and base-uri 'none' (the last two added 2026-10 \u2014 neither falls back to default-src, and both close injection paths like submittable phishing forms and <base> hijacks). This blocks page fetch/WebSocket-style connections, not all navigation or privileged IPC/child-process effects. See OSR-01 before treating CSP as complete isolation. .gitignore excludes dependencies, compiled outputs, releases, and OS metadata; exclusions do not establish clean Git history."
+    },
+    {
+      "id": "blk_2ff0bf9b31",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_e0ec762dd5",
+      "type": "field",
+      "content": "Restricts page connection APIs; does not sandbox the privileged host or its child processes.",
+      "meta": {
+        "name": "connect-src 'none'"
+      }
+    }
+  ],
+  "properties": {
+    "category": "config",
+    "path": "web/index.html",
+    "lines": 16,
+    "lang": "HTML",
+    "phase": "v1",
+    "status": "META",
+    "spec_refs": "",
+    "related": [
+      "web-support"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

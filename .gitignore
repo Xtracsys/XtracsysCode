@@ -1,0 +1,33 @@
+node_modules/
+dist-electron/
+dist-web/
+release/
+*.tsbuildinfo
+.DS_Store
+._*
+
+# Local credentials and signing material. Never rely on ignore rules as a scan.
+.env
+.env.*
+!.env.example
+!.env.sample
+.npmrc
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local logs, coverage, and operator state (not public source).
+*.log
+coverage/
+.xtracsyscode/
+.hermes/
+
+# Do not ignore LICENSE/NOTICE files or provenance-bearing source.
+# These rules do not untrack files, remove Git history, or define a public export.
+
+# Local-only release working copies and operator upload instructions.
+/release-staging/
+.cache/xtracsyscode-sprint/
+
+RELEASE_READINESS_*.md

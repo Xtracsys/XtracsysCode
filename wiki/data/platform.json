@@ -1,0 +1,69 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "d294fcce0cc88587843099d85dd805ae",
+  "type": "doc",
+  "slug": "platform",
+  "title": "electron/platform.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:57Z",
+  "tags": [
+    "host",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_5066d391bd",
+      "type": "heading",
+      "content": "electron/platform.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_79fc03343f",
+      "type": "paragraph",
+      "content": "The single OS seam (cross-platform prep): run_command's shell invocation (zsh on macOS, bash on Linux, cmd /d /s /c on Windows), descendant-safe process-tree kills (POSIX process groups vs Windows taskkill /T /F), best-effort terminal opening (Terminal / start cmd / x-terminal-emulator family), git/tar binary lookup (/usr/bin defaults on macOS, PATH elsewhere \u2014 Windows 10+ ships bsdtar), the per-platform data-root bootstrap file location, and childEnv() \u2014 the minimal allowlist environment (PATH/HOME/SHELL/locale/tmp; no inherited cloud or CI tokens) handed to run_command and MCP/plugin spawns (2026-10 hardening). Everything OS-specific funnels here so platform differences live in exactly one module plus electron-builder.yml."
+    },
+    {
+      "id": "blk_7c4f35e197",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_fcd906d506",
+      "type": "field",
+      "content": "The two seams that actually behave differently per OS.",
+      "meta": {
+        "name": "shellInvocation() / killTree(child)"
+      }
+    },
+    {
+      "id": "blk_fe1ee35186",
+      "type": "field",
+      "content": "AppData Roaming / ~/Library / XDG_CONFIG_HOME conventions.",
+      "meta": {
+        "name": "bootstrapFile(appName)"
+      }
+    }
+  ],
+  "properties": {
+    "category": "host",
+    "path": "electron/platform.ts",
+    "lines": 127,
+    "lang": "TypeScript",
+    "phase": "v5.1",
+    "status": "CORE",
+    "spec_refs": [
+      "cross-platform prep"
+    ],
+    "related": [
+      "host-storage",
+      "agent-tools",
+      "host-main"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

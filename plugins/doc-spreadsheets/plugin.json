@@ -1,0 +1,9 @@
+{
+  "id": "doc-spreadsheets",
+  "name": "Document Kit: Spreadsheets",
+  "version": "1.0.0",
+  "description": "First-party local plugin: creates real Excel workbooks (.xlsx — Office Open XML, hand-rolled ZIP writer in pure Node, inline strings + numbers, multiple sheets) and RFC-4180 CSV files into the project folder. No dependencies, no network.",
+  "entry": { "command": "node", "args": ["server.mjs"] },
+  "tools": ["create_xlsx", "create_csv"],
+  "capabilities": ["writes files inside the project folder only"]
+}

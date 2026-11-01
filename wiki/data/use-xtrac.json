@@ -1,0 +1,97 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "5bc5bbde42ee9996a9a52eb0c00ede46",
+  "type": "doc",
+  "slug": "use-xtrac",
+  "title": "web/src/hooks/useXtrac.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:58Z",
+  "tags": [
+    "renderer",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_156c6bf379",
+      "type": "heading",
+      "content": "web/src/hooks/useXtrac.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_b85c283caf",
+      "type": "paragraph",
+      "content": "The renderer's brain. One hook exposes settings, projects, chats, tasks, usage, the active chat and its live timeline, permission requests, models, and every action (send, queue via sendOrQueue, cancel, retry, archive, delete, move, rename, approve). On mount it refreshes state, probes models, opens the ?chat=<id> boot target, and subscribes to the xtrac:event broadcast."
+    },
+    {
+      "id": "blk_40f03e1097",
+      "type": "heading",
+      "content": "Live event handling",
+      "level": 2
+    },
+    {
+      "id": "blk_46fedd6351",
+      "type": "paragraph",
+      "content": "agent-event payloads are folded by applyEventToTimeline into a per-chat timelines map \u2014 background chats keep streaming while another is on screen. plan events update chat.plan; chat-rewound replaces the timeline wholesale (retry rewind); chat-changed upserts the summary list; permission-request shows the approval card; init-chat (P7 session restore) opens the stored chat on boot."
+    },
+    {
+      "id": "blk_25310f3443",
+      "type": "heading",
+      "content": "Action wrappers",
+      "level": 2
+    },
+    {
+      "id": "blk_15856e8c2a",
+      "type": "paragraph",
+      "content": "sendPrompt (queue-aware), cancel, retryLast, answerPermission (allow/always \u2192 rule save), setChatApproval, setChatModel, archiveChats, deleteChats, moveChat, renameChat, renameProject, deleteProject \u2014 each mutates local state optimistically where safe and refreshes from main otherwise."
+    },
+    {
+      "id": "blk_0f6d31e8d7",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_e675d3d3be",
+      "type": "field",
+      "content": "The single hook every component consumes.",
+      "meta": {
+        "name": "useXtrac(): XtracState"
+      }
+    },
+    {
+      "id": "blk_fe3e792621",
+      "type": "field",
+      "content": "Loads the record, seeds the timeline map, notifies main for session restore.",
+      "meta": {
+        "name": "openChat(id)"
+      }
+    },
+    {
+      "id": "blk_e7b7a53804",
+      "type": "field",
+      "content": "Approve/deny plus optional Always-allow rule capture.",
+      "meta": {
+        "name": "answerPermission(allow, always)"
+      }
+    }
+  ],
+  "properties": {
+    "category": "renderer",
+    "path": "web/src/hooks/useXtrac.ts",
+    "lines": 352,
+    "lang": "TypeScript",
+    "phase": "v1\u2013v4",
+    "status": "CORE",
+    "spec_refs": "",
+    "related": [
+      "web-app",
+      "timeline-model",
+      "web-support"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

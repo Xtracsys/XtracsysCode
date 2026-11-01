@@ -1,0 +1,122 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "3adf23d72f67fd564952590cdb884eda",
+  "type": "doc",
+  "slug": "host-main",
+  "title": "electron/main.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:56Z",
+  "tags": [
+    "host",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_045cb50eb3",
+      "type": "heading",
+      "content": "electron/main.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_9e5bccef1f",
+      "type": "paragraph",
+      "content": "The Electron main process: owns the window registry, central IPC sender/frame validation, navigation restrictions, the slash-command interpreter, scheduler, backups, and headless E2E harness. Renderer calls pass through one wrapper that checks the main frame and exact trusted renderer URL; new windows are denied and untrusted navigations are blocked."
+    },
+    {
+      "id": "blk_780572e233",
+      "type": "heading",
+      "content": "Windows and routing (v3)",
+      "level": 2
+    },
+    {
+      "id": "blk_f123da999e",
+      "type": "paragraph",
+      "content": "createWindow({chatId}) builds the primary or a chat window; the chatWindows map binds webContents.id \u2192 chatId. It denies popups, blocks untrusted navigation/redirects, and opens only HTTP(S) external links through the system browser. Secondary windows use a validated ?chat=<id> query param; closed handlers avoid destroyed webContents."
+    },
+    {
+      "id": "blk_f81860f916",
+      "type": "paragraph",
+      "content": "The ipcMain.handle surface covers state:get, settings:set (with the -1 temperature sentinel that survives IPC), backends:models, project create/rename/delete (optionally with chats), chats:delete (bulk, aborting turns first), chat move/archive/rename/approval/model/send/cancel/retry/approve, rules and MCP config, config file read/write/scaffold, git status/diff/run, storage usage/cleanup, archive list/restore/delete, search:chats, usage:project, data export/import, logs read/export, and windows:new-chat. The 2026-10 hardening passes tightened the boundary: skill ids pass a requireSkillId regex (SkillStore additionally requires a registered id), settings:set validates the merged document against the backup-import schema and bounds caps/session, mcp:set requires a main-process consent dialog for every new or changed server command (fingerprints on the sanitized name form, consent dialog resolves the SENDER window so it works with only chat windows open), rules:set and rules:allow-always share one sanitizer so blanket patterns like '* *' and over-long lists are rejected on both paths, git:run allowlists its flags and scopes the traversal check to pathspecs, open:finder/open:terminal accept project folders or data-root paths in either lexical or realpath spelling, data:import re-hashes the archive between listing and extraction, Chromium permissions are allowlist-deny-all except sanitized clipboard writes, DevTools are removed from the packaged menu, and the restored-chat-record schema + per-project settings schema are validated on import (with chat workspaces re-pinned to their project's cwd)."
+    },
+    {
+      "id": "blk_f4be18d24f",
+      "type": "heading",
+      "content": "Slash commands (v2)",
+      "level": 2
+    },
+    {
+      "id": "blk_e053687499",
+      "type": "paragraph",
+      "content": "handleSlashCommand intercepts leading '/' in chat:send: /compact (await the runner's summarization), /clear (wipe agent memory, keep transcript, reset the pressure flag), /model <name|auto>, /help, and unknown-command notices \u2014 none ever reach the model. pushNotice writes a system timeline item, broadcasts, and persists."
+    },
+    {
+      "id": "blk_aa403fcd76",
+      "type": "heading",
+      "content": "Scheduler and E2E",
+      "level": 2
+    },
+    {
+      "id": "blk_06ff328a93",
+      "type": "paragraph",
+      "content": "startScheduler ticks every 60 s for due interval tasks; a parallel 10-min loop runs storage.cleanup() and scheduledBackup() (P6 daily tar.gz with retention pruning). runE2E() is the mission-grade self-test: it drives a real project through secret-hunt, allowlisted command, edit_file, plan, queue, slash, images, MCP echo, git write ops, archive roundtrip, accent persistence, pressure notice, and session restore \u2014 printing one [e2e] PASS/FAIL line with per-check detail."
+    },
+    {
+      "id": "blk_af3201483f",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_c57180f58b",
+      "type": "field",
+      "content": "Every renderer-callable channel; the allow-list in preload must mirror it.",
+      "meta": {
+        "name": "registerIpc()"
+      }
+    },
+    {
+      "id": "blk_1c7f5f1139",
+      "type": "field",
+      "content": "Local command interpreter; /compact awaits runner.compactChat.",
+      "meta": {
+        "name": "handleSlashCommand(rec, raw)"
+      }
+    },
+    {
+      "id": "blk_4c92cbb6b4",
+      "type": "field",
+      "content": "Headless self-test behind XTRAC_E2E=1 \u2014 must print [e2e] PASS for a release to ship.",
+      "meta": {
+        "name": "runE2E()"
+      }
+    },
+    {
+      "id": "blk_b05551138c",
+      "type": "field",
+      "content": "Per-request approval promises with a 180 s timeout and per-chat attempt counters for the E2E.",
+      "meta": {
+        "name": "approvalUi / pendingApprovals"
+      }
+    }
+  ],
+  "properties": {
+    "category": "host",
+    "path": "electron/main.ts",
+    "lines": 2073,
+    "lang": "TypeScript",
+    "phase": "v1\u2013v4",
+    "status": "CORE",
+    "spec_refs": "",
+    "related": [
+      "host-runner",
+      "host-store",
+      "host-storage",
+      "host-preload"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

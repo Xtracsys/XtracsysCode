@@ -1,0 +1,93 @@
+appId: com.xtracsys.code
+productName: XtracsysCode
+directories:
+  output: release
+  buildResources: build
+files:
+  - dist-electron/**/*
+  - dist-web/**/*
+  - package.json
+  - "!**/*.map"
+  - "!**/._*"
+  - "!**/.DS_Store"
+  - "!**/__MACOSX{,/**/*}"
+  - "!**/.git{,/**/*}"
+  - "!**/.hermes{,/**/*}"
+  - "!**/.cache/xtracsyscode-sprint{,/**/*}"
+  - "!**/.env*"
+  - "!**/*.{pem,key,p12,pfx}"
+  - "!**/{backups,private,coverage,wiki,tests}{,/**/*}"
+asar: true
+compression: maximum
+# exFAT note: macOS writes AppleDouble shadows (._app.asar) next to freshly packed
+# files on this drive, and builder 26's ASAR-integrity step hashes every *.asar in
+# Resources — including the junk shadow — and crashes on it. Integrity data is only
+# consumed when embedding ASAR integrity (which requires code signing), so it is
+# disabled until the build is signed; see scripts/afterPack.js and the security audit.
+disableAsarIntegrity: true
+# Strip exFAT AppleDouble shadows from the packed app before NSIS/AppImage/DMG packaging.
+afterPack: scripts/afterPack.js
+# v5 R4: bundled skills ship with the app and are scaffolded into the data root on launch.
+extraResources:
+  - from: bundled-skills
+    to: bundled-skills
+    filter:
+      - "**/*"
+      - "!**/._*"
+      - "!**/.DS_Store"
+      - "!**/.git{,/**/*}"
+      - "!**/.env*"
+      - "!**/*.{pem,key,p12,pfx}"
+      - "!**/__MACOSX{,/**/*}"
+  - from: LICENSE
+    to: LICENSE
+  - from: THIRD_PARTY_NOTICES.md
+    to: THIRD_PARTY_NOTICES.md
+  - from: node_modules/electron/dist/LICENSE
+    to: LICENSE.electron.txt
+  - from: node_modules/electron/dist/LICENSES.chromium.html
+    to: LICENSES.chromium.html
+mac:
+  artifactName: "${productName}-${version}-${arch}-mac.${ext}"
+  category: public.app-category.developer-tools
+  target:
+    - target: dmg
+      arch:
+        - arm64
+    - target: zip
+      arch:
+        - arm64
+  identity: null
+  hardenedRuntime: false
+  icon: build/icon.icns
+  electronLanguages:
+    - en
+  extendInfo:
+    NSHighResolutionCapable: true
+    NSAppleEventsUsageDescription: "XtracsysCode opens project folders in Finder/Terminal on request."
+dmg:
+  artifactName: "${productName}-${version}-${arch}.${ext}"
+  title: XtracsysCode
+  writeUpdateInfo: false
+# N13: cross-platform targets. Build with `npm run dist:win` / `npm run dist:linux`.
+# Cross-building mac->win/linux requires downloading the platform Electron;
+# code signing is left disabled for all platforms.
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  signAndEditExecutable: false
+  icon: build/icon.ico
+nsis:
+  oneClick: true
+  perMachine: false
+  deleteAppDataOnUninstall: false
+linux:
+  target:
+    - target: AppImage
+      arch:
+        - x64
+  category: Development
+  maintainer: XS03-Tek
+  icon: build/icon.png

@@ -1,0 +1,108 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "a1069eeb2fcffc8a62f5e32058a14809",
+  "type": "doc",
+  "slug": "timeline-model",
+  "title": "shared/timelineModel.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:54Z",
+  "tags": [
+    "agent",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_97098d228c",
+      "type": "heading",
+      "content": "shared/timelineModel.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_cdc21dce06",
+      "type": "paragraph",
+      "content": "The single source of truth for what a chat transcript looks like. TimelineItem is the union the UI renders and main persists; SharedAgentEvent mirrors the agent's event union; applyEventToTimeline() folds an event into a timeline in place. Because both the Electron host (persistence) and the React renderer (live streaming) call the same function, a chat looks identical after a restart and mid-stream \u2014 the v1 design bet that eliminated an entire class of resume bugs. The .md transcript generator HTML-escapes text and tool output and prevents fence breakout, so model content stays inert when the file is opened in external markdown viewers (2026-10)."
+    },
+    {
+      "id": "blk_8e8e8639c4",
+      "type": "heading",
+      "content": "Item kinds",
+      "level": 2
+    },
+    {
+      "id": "blk_37a9b84c02",
+      "type": "paragraph",
+      "content": "user (with imageCount for attachments), assistant (streaming flag), thought (open/collapsed), tool (status running|ok|fail, argsSummary, output live-tail, optional diff for write/edit), error, and system (notices from slash commands, pressure warnings, task summaries)."
+    },
+    {
+      "id": "blk_89871a74a7",
+      "type": "heading",
+      "content": "Event folding rules",
+      "level": 2
+    },
+    {
+      "id": "blk_b7c2b09cf5",
+      "type": "paragraph",
+      "content": "text-delta appends to the trailing streaming assistant item or creates one; thought-delta does the same for thoughts; tool-end pairs by toolCallId and attaches the write/edit diff; tool-output appends a 24 KB-capped live tail while running; notice appends a system item; plan events are ignored here because the plan lives on chat.plan, not the timeline."
+    },
+    {
+      "id": "blk_ace726ab6b",
+      "type": "heading",
+      "content": "Markdown mirror",
+      "level": 2
+    },
+    {
+      "id": "blk_0b9c00a43b",
+      "type": "paragraph",
+      "content": "timelineToMarkdown() renders the persisted .md transcript: headers for user/assistant turns, collapsible thinking blocks, diff-styled tool sections, and blockquote notices \u2014 the human-readable half of the JSON+MD data model."
+    },
+    {
+      "id": "blk_34823d391d",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_a539d673bd",
+      "type": "field",
+      "content": "The fold function \u2014 same input, same timeline, whether the caller is main or the renderer.",
+      "meta": {
+        "name": "applyEventToTimeline(items, ev)"
+      }
+    },
+    {
+      "id": "blk_6e3c10fdb7",
+      "type": "field",
+      "content": "The .md transcript renderer written beside every chats/<id>.json.",
+      "meta": {
+        "name": "timelineToMarkdown(title, items)"
+      }
+    },
+    {
+      "id": "blk_089f31b469",
+      "type": "field",
+      "content": "user | assistant | thought | tool | error | system.",
+      "meta": {
+        "name": "TimelineItem union"
+      }
+    }
+  ],
+  "properties": {
+    "category": "agent",
+    "path": "shared/timelineModel.ts",
+    "lines": 246,
+    "lang": "TypeScript",
+    "phase": "v1\u2013v4",
+    "status": "CORE",
+    "spec_refs": "",
+    "related": [
+      "host-runner",
+      "use-xtrac",
+      "agent-loop"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

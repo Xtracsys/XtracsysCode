@@ -1,0 +1,86 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "02991802701b20697c57d6e77d458814",
+  "type": "doc",
+  "slug": "agent-types",
+  "title": "electron/agent/types.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:53Z",
+  "tags": [
+    "agent",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_d055f76f11",
+      "type": "heading",
+      "content": "electron/agent/types.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_29f4e4d3a3",
+      "type": "paragraph",
+      "content": "The agent's contract surface: ChatMessage (role/content/toolCalls/images), ToolCall, ToolSpec, ToolContext (cwd, resolvePath, scratchDir, updatePlan, onOutput), PlanEntry, ApprovalRequest, and the AgentEvent union the loop emits. The Provider interface defines the streamChat contract both backends implement, including the v2 params ({numCtx, temperature}) pass-through."
+    },
+    {
+      "id": "blk_dfd58bc259",
+      "type": "heading",
+      "content": "Event union",
+      "level": 2
+    },
+    {
+      "id": "blk_cc49fda8f3",
+      "type": "paragraph",
+      "content": "AgentEvent covers the whole turn lifecycle: turn-start (with imageCount), text-delta, thought-delta, tool-start, tool-output (live command streaming), tool-end (with optional diff), plan, turn-end, turn-error, notice (via the shared mirror), and step-start. Every renderer and the persistence layer consume these shapes \u2014 shared/timelineModel.ts mirrors this union structurally to stay import-clean on both sides."
+    },
+    {
+      "id": "blk_5ccccf8d07",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_9a6162efb7",
+      "type": "field",
+      "content": "listModels() + streamChat(opts, callbacks) \u2014 the seam that makes smoke tests backend-agnostic.",
+      "meta": {
+        "name": "interface Provider"
+      }
+    },
+    {
+      "id": "blk_d8f38b363a",
+      "type": "field",
+      "content": "Carries cwd, resolvePath (sandbox), scratchDir, updatePlan, onOutput into every tool execution.",
+      "meta": {
+        "name": "interface ToolContext"
+      }
+    },
+    {
+      "id": "blk_f72635c56c",
+      "type": "field",
+      "content": "messages, stopReason, usage, lastInputTokens (final step's prompt size \u2014 the context meter's numerator), steps.",
+      "meta": {
+        "name": "interface AgentRunResult"
+      }
+    }
+  ],
+  "properties": {
+    "category": "agent",
+    "path": "electron/agent/types.ts",
+    "lines": 182,
+    "lang": "TypeScript",
+    "phase": "v1\u2013v2",
+    "status": "CORE",
+    "spec_refs": "",
+    "related": [
+      "agent-loop",
+      "agent-tools",
+      "timeline-model"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

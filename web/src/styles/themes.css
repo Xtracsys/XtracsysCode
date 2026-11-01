@@ -1,0 +1,237 @@
+/**
+ * XtracsysCode — theme tokens (XtracBox brand)
+ *
+ * Dark: #0a0a0a / #121212 / #d92a2a red accent, zero radius, hairline borders
+ * Light: cream surfaces, same red accent
+ *
+ * Starfield removed. Inter + JetBrains Mono. No CDN.
+ *
+ * Toggle via document.documentElement[data-theme="dark"|"light"]
+ */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* XtracsysCode / XtracBox dark palette (extracted, no guess, no starfield) */
+  --bg: #0a0a0a;
+  --surface: #121212;
+  --terminal: #141414;
+  --text: #f8f5eb;
+  --muted: rgba(248,245,235,0.56);
+  --faint: rgba(248,245,235,0.34);
+  --line: rgba(248,245,235,0.12);
+  --line-2: rgba(248,245,235,0.22);
+  --red: #d92a2a;
+
+  /* Surfaces (mapped) */
+  --bg-elevated: #121212;
+  --bg-hover: #1a1a1a;
+  --bg-sunken: #0a0a0a;
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+
+  /* Text */
+  --text-secondary: #d4d0c8; /* legacy, now use --muted */
+  --muted: rgba(248,245,235,0.56);
+
+  /* Accent = red */
+  --accent: #d92a2a;
+  --accent-strong: #b01f1f;
+  --accent-soft: rgba(217,42,42,0.14);
+  --accent-glow: rgba(217,42,42,0.22);
+  --border: rgba(248,245,235,0.12);
+  --border-strong: rgba(248,245,235,0.22);
+  --frame: rgba(248,245,235,0.35);
+
+  /* Semantic */
+  --danger: #f07178;
+  --danger-bg: #3a1518;
+  --danger-border: #7a2e34;
+  --danger-text: #fecaca;
+  --success: #5ecf8e;
+  --success-bg: #0f2a1c;
+  --success-text: #bbf7d0;
+  --warning: #e6c35c;
+  --info: #8eb4e8;
+  --info-bg: #121a28;
+  --info-text: #c7d9f5;
+
+  /* Status / pills */
+  --status-idle-bg: #1a1a1c;
+  --status-streaming-bg: #3a2e10;
+  --status-streaming-text: #f0e0a0;
+  --status-error-bg: #3a1518;
+  --status-error-text: #fecaca;
+  --status-pending-bg: #222226;
+  --status-pending-text: #c8c4bc;
+  --status-running-bg: #3a2e10;
+  --status-running-text: #f0e0a0;
+  --status-ok-bg: #0f2a1c;
+  --status-ok-text: #bbf7d0;
+  --status-fail-bg: #3a1518;
+  --status-fail-text: #fecaca;
+
+  /* Timeline blocks */
+  --user: #141210;
+  --assistant: #101012;
+  --thought: rgba(28, 24, 18, 0.75);
+  --thought-text: #a39b8c;
+  --thought-label: #b8a46a;
+  --tool: #0c120e;
+  --plan: #14110c;
+  --system: #121214;
+  --code-bg: #0a0a0c;
+  --code-text: #e2ddd2;
+
+  /* Diffs */
+  --diff-add: #86efac;
+  --diff-add-bg: rgba(34, 197, 94, 0.1);
+  --diff-del: #fca5a5;
+  --diff-del-bg: rgba(239, 68, 68, 0.1);
+  --diff-hunk: #d4af37;
+  --diff-meta: #8a8478;
+  --diff-path: #c9a86c;
+
+  /* Chrome - XtracBox: hairline borders, ZERO radius (only pulse dot is rounded) */
+  --panel-shadow: -12px 0 40px rgba(0, 0, 0, 0.55);
+  --focus-ring: 0 0 0 2px rgba(217,42,42,0.3);
+  --composer-fade: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.35));
+  --project-active-bg: rgba(217,42,42,0.06);
+  --busy-badge-bg: #1a1a1a;
+  --busy-badge-text: #f8f5eb;
+  --live-pill-bg: #1a1a1a;
+  --live-pill-text: #f8f5eb;
+  --tab-badge-bg: #1a1a1a;
+  --tab-badge-text: #f8f5eb;
+  --pulse: #d92a2a;
+  --online: #5ecf8e;
+  --connecting: #e6c35c;
+
+  /* Zero radius per brand DNA */
+  --radius: 0;
+  --radius-pill: 0;
+
+  /* Starfield deleted per brand - no texture */
+  --stellar-opacity: 0;
+  --stellar-base: none;
+
+  /* Buttons - XtracBox red accent, sharp */
+  --btn-bg: #121212;
+  --btn-border: rgba(248,245,235,0.12);
+  --btn-text: #f8f5eb;
+  --btn-primary-bg: #d92a2a;
+  --btn-primary-text: #f8f5eb;
+  --btn-primary-hover: #b01f1f;
+  --btn-danger-bg: #3a1518;
+  --btn-danger-border: #7a2e34;
+  --btn-danger-text: #fecaca;
+
+  --radius: 0;
+  --radius-pill: 0;
+  --font: "SF Pro Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "SF Mono", ui-monospace, Menlo, monospace;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Surfaces — clean private-tech (xtracbox-like) */
+  --bg: #f6f5f2;
+  --bg-elevated: #ffffff;
+  --bg-hover: #efece6;
+  --bg-sunken: #ebe8e1;
+  --bg-overlay: rgba(20, 18, 14, 0.35);
+
+  /* Text */
+  --text: #141210;
+  --text-secondary: #3a3630;
+  --muted: #6b6560;
+
+  /* Restrained gold + charcoal accents */
+  --accent: #9a7b2f;
+  --accent-strong: #8a6c24;
+  --accent-soft: rgba(154, 123, 47, 0.1);
+  --accent-glow: rgba(154, 123, 47, 0.16);
+  --border: #ddd6c8;
+  --border-strong: #c4b8a0;
+  --frame: #d4c9b4;
+
+  /* Semantic */
+  --danger: #c23b3b;
+  --danger-bg: #fdecec;
+  --danger-border: #f0b4b4;
+  --danger-text: #8b1e1e;
+  --success: #1f8a4c;
+  --success-bg: #e8f7ee;
+  --success-text: #145c34;
+  --warning: #b38600;
+  --info: #2f5f9e;
+  --info-bg: #eaf1fa;
+  --info-text: #1e3a5f;
+
+  /* Status / pills */
+  --status-idle-bg: #ebe8e1;
+  --status-streaming-bg: #f3ead0;
+  --status-streaming-text: #6b5210;
+  --status-error-bg: #fdecec;
+  --status-error-text: #8b1e1e;
+  --status-pending-bg: #ebe8e1;
+  --status-pending-text: #5a554e;
+  --status-running-bg: #f3ead0;
+  --status-running-text: #6b5210;
+  --status-ok-bg: #e8f7ee;
+  --status-ok-text: #145c34;
+  --status-fail-bg: #fdecec;
+  --status-fail-text: #8b1e1e;
+
+  /* Timeline blocks */
+  --user: #f0ebe0;
+  --assistant: #ffffff;
+  --thought: #f3f1ec;
+  --thought-text: #6b6560;
+  --thought-label: #8a7a4a;
+  --tool: #f4faf6;
+  --plan: #faf6ee;
+  --system: #f0eeea;
+  --code-bg: #f3f1ec;
+  --code-text: #2a2620;
+
+  /* Diffs */
+  --diff-add: #157a3c;
+  --diff-add-bg: rgba(34, 160, 80, 0.08);
+  --diff-del: #b83030;
+  --diff-del-bg: rgba(200, 50, 50, 0.08);
+  --diff-hunk: #8a6c24;
+  --diff-meta: #8a8478;
+  --diff-path: #8a6c24;
+
+  /* Chrome */
+  --panel-shadow: -8px 0 28px rgba(20, 18, 14, 0.1);
+  --focus-ring: 0 0 0 3px rgba(154, 123, 47, 0.2);
+  --composer-fade: linear-gradient(180deg, transparent, rgba(246, 245, 242, 0.9));
+  --project-active-bg: rgba(154, 123, 47, 0.08);
+  --busy-badge-bg: #f3ead0;
+  --busy-badge-text: #6b5210;
+  --live-pill-bg: #f3ead0;
+  --live-pill-text: #6b5210;
+  --tab-badge-bg: #efe8d4;
+  --tab-badge-text: #6b5210;
+  --pulse: #9a7b2f;
+  --online: #1f8a4c;
+  --connecting: #b38600;
+
+  /* Buttons */
+  --btn-bg: #ffffff;
+  --btn-border: #d4c9b4;
+  --btn-text: #141210;
+  --btn-primary-bg: #141210;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover: #2a2620;
+  --btn-danger-bg: #fdecec;
+  --btn-danger-border: #f0b4b4;
+  --btn-danger-text: #8b1e1e;
+
+  /* No stellar field (brand rule) */
+  --stellar-opacity: 0;
+  --stellar-base: none;
+}

@@ -1,0 +1,85 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "92cd10e6b8b068a931196d1d73a03254",
+  "type": "doc",
+  "slug": "plugins",
+  "title": "electron/plugins.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:57Z",
+  "tags": [
+    "host",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_65b08501fc",
+      "type": "heading",
+      "content": "electron/plugins.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_ebabf5a63a",
+      "type": "paragraph",
+      "content": "Local plugins v1 (v5 Phase D): an app-managed manifest/configuration for a LOCAL stdio tool process, riding the existing MCP transport. A plugin is NOT code injected into Electron: import copies only plugin.json into <root>/plugins/<id>/ and records the original source folder. Test and runtime use that same resolved folder and source-bound consent."
+    },
+    {
+      "id": "blk_5d5a1b19e2",
+      "type": "paragraph",
+      "content": "Plugins import DISABLED and unreviewed. Enabling/testing requires native-dialog consent tied to launch details and a bounded source-tree hash; changed source requires review again. Test and runtime use the same resolved source cwd. Review rejects links/special files and caps entries/depth/bytes. External runtimes/environment/dependencies and final-check-to-spawn races remain unpinned. Enabled in-scope configs join project MCP configs; these are ordinary unsandboxed processes and tool approvals do not gate startup side effects."
+    },
+    {
+      "id": "blk_f4a0cfa4d3",
+      "type": "heading",
+      "content": "Validation",
+      "level": 2
+    },
+    {
+      "id": "blk_7472f0bbdb",
+      "type": "paragraph",
+      "content": "Strict manifest rules: id pattern, name/description required, entry.command must be local (no URLs, no .. climbs), args capped at 32, declared tools/capabilities capped. Import never executes anything; remote-source and malformed manifests are rejected with actionable errors."
+    },
+    {
+      "id": "blk_4c4054d8de",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_4eefabdf71",
+      "type": "field",
+      "content": "The safe lifecycle: import inert \u2192 review \u2192 enable \u2192 scoped contribution.",
+      "meta": {
+        "name": "PluginStore.importFrom / setEnabled(reviewed) / mcpConfigsFor"
+      }
+    },
+    {
+      "id": "blk_8b55f22418",
+      "type": "field",
+      "content": "Test connection uses sourcePath, falling back to data root. Real turns currently discard this directory and use chat.cwd: unresolved publication blocker.",
+      "meta": {
+        "name": "cwdFor(rec)"
+      }
+    }
+  ],
+  "properties": {
+    "category": "host",
+    "path": "electron/plugins.ts",
+    "lines": 325,
+    "lang": "TypeScript",
+    "phase": "v5",
+    "status": "CORE",
+    "spec_refs": [
+      "v5 Phase D"
+    ],
+    "related": [
+      "skills",
+      "host-runner",
+      "agent-mcp"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

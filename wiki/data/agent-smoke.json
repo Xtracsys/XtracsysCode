@@ -1,0 +1,70 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "0bb7dc975cf702bd1c9b276608cf42f3",
+  "type": "doc",
+  "slug": "agent-smoke",
+  "title": "electron/agent/smoke.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:54Z",
+  "tags": [
+    "agent",
+    "TEST",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_38213b48f8",
+      "type": "heading",
+      "content": "electron/agent/smoke.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_63d4e456aa",
+      "type": "paragraph",
+      "content": "The plain-Node verification harness: picks the first reachable backend (preferring coder/qwen/llama/granite models), plants a scratch project with notes.txt containing 'The secret word is: ANVIL-7', and asks the agent to find it and write answer.txt. Pass requires the file to contain ANVIL-7 with stopReason end_turn. It exercises discovery, tool use, file write, and the multi-step loop with zero Electron involvement."
+    },
+    {
+      "id": "blk_c762b166ad",
+      "type": "heading",
+      "content": "Known flakiness",
+      "level": 2
+    },
+    {
+      "id": "blk_ba591b23e7",
+      "type": "paragraph",
+      "content": "The 3B test model occasionally ignores instructions on a given seed. The in-app E2E wraps turns with retry nudges; smoke deliberately stays retry-free so it remains a raw model-quality signal \u2014 one failed smoke against a passing E2E is a model roll, not a regression."
+    },
+    {
+      "id": "blk_8436366985",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_b53fbaa110",
+      "type": "field",
+      "content": "Backend auto-pick \u2192 scratch project \u2192 runAgentTurn \u2192 file assertion \u2192 PASS/FAIL exit code.",
+      "meta": {
+        "name": "main()"
+      }
+    }
+  ],
+  "properties": {
+    "category": "agent",
+    "path": "electron/agent/smoke.ts",
+    "lines": 118,
+    "lang": "TypeScript",
+    "phase": "v1",
+    "status": "TEST",
+    "spec_refs": "",
+    "related": [
+      "agent-loop",
+      "agent-tools"
+    ],
+    "tested_by": "npm run smoke"
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

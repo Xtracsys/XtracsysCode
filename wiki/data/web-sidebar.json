@@ -1,0 +1,90 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "4479d016686731a1202c29bf77c68295",
+  "type": "doc",
+  "slug": "web-sidebar",
+  "title": "web/src/components/Sidebar.tsx",
+  "version": 1,
+  "updated": "2026-11-01T15:13:58Z",
+  "tags": [
+    "renderer",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_886c4647b4",
+      "type": "heading",
+      "content": "web/src/components/Sidebar.tsx",
+      "level": 1
+    },
+    {
+      "id": "blk_f023c62521",
+      "type": "paragraph",
+      "content": "Project/chat navigator with three v3+ layers: a global transcript SearchBox (debounced, hits open the chat), per-project \u22ef popover menus (new chat, Finder, rename, delete with chats), and a Select mode for bulk operations with a sticky action bar (Delete N with confirm preview, Archive N, Move to project via the chat:move picker). Chat rows show ask-mode \ud83d\udd12 badges, busy pulses, and per-row delete/archive."
+    },
+    {
+      "id": "blk_88fff35dcc",
+      "type": "heading",
+      "content": "v4.4 project-menu fixes",
+      "level": 2
+    },
+    {
+      "id": "blk_162c2205f7",
+      "type": "paragraph",
+      "content": "The \u22ef menu button used to live INSIDE the ellipsis-clamped .project-name div, so a long project name hid it and project deletion became unreachable. The name now ellipsizes in a dedicated .project-name-text span while the button keeps a fixed flex slot."
+    },
+    {
+      "id": "blk_cc81815aeb",
+      "type": "paragraph",
+      "content": "The menu itself is position:fixed at the button's rect (top clamped to the viewport, left clamped to stay on screen), so the .project-sessions scroll container can no longer clip it. It closes on Esc, outside click, and window resize; the opening click calls stopPropagation so the window-level closer can't consume it, and clicks inside the menu stop propagation the same way."
+    },
+    {
+      "id": "blk_f5b3775335",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_6e97c0ae0f",
+      "type": "field",
+      "content": "Checkbox multi-select \u2192 Delete/Archive/Move with confirmation showing truncated titles.",
+      "meta": {
+        "name": "Select mode + bulk-bar"
+      }
+    },
+    {
+      "id": "blk_5ba556d2ca",
+      "type": "field",
+      "content": "Fixed-position menu; two-step delete confirm with 'also delete its N chats' default-checked.",
+      "meta": {
+        "name": "project-menu popover"
+      }
+    },
+    {
+      "id": "blk_5be826202b",
+      "type": "field",
+      "content": "api.searchChats with 250 ms debounce; results render with matching snippets.",
+      "meta": {
+        "name": "SearchBox"
+      }
+    }
+  ],
+  "properties": {
+    "category": "renderer",
+    "path": "web/src/components/Sidebar.tsx",
+    "lines": 503,
+    "lang": "TypeScript",
+    "phase": "v1\u2013v4",
+    "status": "CORE",
+    "spec_refs": "",
+    "related": [
+      "web-app",
+      "host-main"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

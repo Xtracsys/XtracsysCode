@@ -1,0 +1,69 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "fcd45c5b9c8bc853991ce91258fa44df",
+  "type": "doc",
+  "slug": "doc-windows-install",
+  "title": "INSTALL_WINDOWS.md",
+  "version": 1,
+  "updated": "2026-11-01T15:13:56Z",
+  "tags": [
+    "docs",
+    "SPEC",
+    "Markdown"
+  ],
+  "blocks": [
+    {
+      "id": "blk_5a7c600a9a",
+      "type": "heading",
+      "content": "INSTALL_WINDOWS.md",
+      "level": 1
+    },
+    {
+      "id": "blk_6cced1ec0c",
+      "type": "paragraph",
+      "content": "Windows install guide (x64 NSIS build): installer walkthrough including the unsigned-build SmartScreen step, the %USERPROFILE%\\XtracsysCode data root, Ollama/llama.cpp backend setup with loopback-only URLs, extras (git on PATH, cmd as the agent shell), Windows-specific behavior (taskkill /T tree kill, built-in bsdtar for backups, compound-command approval policy), build-from-source, and the VERIFY_PLATFORM.md per-box checklist. Carries the honest status note: the Windows build is cross-compiled and structurally tested, with on-hardware verification pending (R12)."
+    },
+    {
+      "id": "blk_44b4ed3ef4",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_de2f6e79d6",
+      "type": "field",
+      "content": "Builds are unsigned. Current bypass guidance needs artifact-authentication checks and explicit risk framing before public distribution.",
+      "meta": {
+        "name": "SmartScreen"
+      }
+    },
+    {
+      "id": "blk_1d710733a3",
+      "type": "field",
+      "content": "%USERPROFILE%\\XtracsysCode \u2014 plain files, survives app removal.",
+      "meta": {
+        "name": "Data root"
+      }
+    }
+  ],
+  "properties": {
+    "category": "docs",
+    "path": "INSTALL_WINDOWS.md",
+    "lines": 80,
+    "lang": "Markdown",
+    "phase": "v5.1 (R12)",
+    "status": "SPEC",
+    "spec_refs": [
+      "cross-platform"
+    ],
+    "related": [
+      "doc-readme",
+      "platform",
+      "doc-linux-install"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

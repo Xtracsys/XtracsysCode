@@ -1,0 +1,57 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "01ed028e2a5681a0417747d527fe5953",
+  "type": "doc",
+  "slug": "cfg-icon",
+  "title": "scripts/icon.js + build/icon.icns",
+  "version": 1,
+  "updated": "2026-11-01T15:13:56Z",
+  "tags": [
+    "config",
+    "META",
+    "JavaScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_8c96a6f707",
+      "type": "heading",
+      "content": "scripts/icon.js + build/icon.icns",
+      "level": 1
+    },
+    {
+      "id": "blk_b73ca35732",
+      "type": "paragraph",
+      "content": "A dependency-free app icon generator: draws a 1024px RGBA buffer in pure Node (dark rounded square, ember X strokes, terminal-cursor block), hand-writes the PNG chunks with a CRC32 table, then macOS sips + iconutil convert it into build/icon.icns for electron-builder."
+    },
+    {
+      "id": "blk_39de154285",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_a685c0f4a3",
+      "type": "field",
+      "content": "IHDR/IDAT/IEND assembly with zlib.deflateSync \u2014 no image library.",
+      "meta": {
+        "name": "pngFromRgba()"
+      }
+    }
+  ],
+  "properties": {
+    "category": "config",
+    "path": "scripts/icon.js",
+    "lines": 187,
+    "lang": "JavaScript",
+    "phase": "v1",
+    "status": "META",
+    "spec_refs": "",
+    "related": [
+      "cfg-package"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

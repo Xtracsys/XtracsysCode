@@ -1,0 +1,99 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "d7b9a0791f1e1304f611d56f15bc50e7",
+  "type": "doc",
+  "slug": "host-storage",
+  "title": "electron/storage.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:57Z",
+  "tags": [
+    "host",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_501141e049",
+      "type": "heading",
+      "content": "electron/storage.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_5c2949dd6a",
+      "type": "paragraph",
+      "content": "The hard-constraint module. Everything user-visible lives in one root \u2014 default ~/XtracsysCode \u2014 with chats/, archive/, logs/, tmp/, and JSON docs at the top. cleanup() enforces the three bounds (chat total cap with oldest-first pruning, age retention, log rotation); it runs at launch and every 10 minutes, and never touches archive/."
+    },
+    {
+      "id": "blk_70c44e0ea7",
+      "type": "heading",
+      "content": "Settings surface (v1\u2013v4 growth)",
+      "level": 2
+    },
+    {
+      "id": "blk_5ef9a93373",
+      "type": "paragraph",
+      "content": "Settings carries Ollama, llama.cpp, and OpenAI-compatible local-server URLs plus provider/model, approval defaults, maxSteps, historyCharBudget, systemPromptExtra, numCtx/temperature, notifications, backups, session, layout, and storage caps. New backends are migrated from defaults; settings:set rejects non-loopback URLs and unknown provider IDs, and (2026-10) validates the merged document against the same strict schema used for backup imports, bounding storage caps (1 KiB\u20131 TB, keepChatDays \u2265 1) and session.openChats (\u226410 strings) before anything is saved. Per-project settings get the same schema treatment (approval enum, maxSteps 1\u2013200, systemPromptExtra \u2264 8 KB), and backup restore re-validates chat-record shapes (timeline kinds, string fields) and re-pins chat workspaces to their project's cwd."
+    },
+    {
+      "id": "blk_5ad3b07367",
+      "type": "heading",
+      "content": "Durability details",
+      "level": 2
+    },
+    {
+      "id": "blk_1751f0e9b3",
+      "type": "paragraph",
+      "content": "writeJsonAtomic writes to a unique temp name (pid + timestamp + random \u2014 the v4 fix for a real concurrent-write collision) with mode 0600 and renames; the data root and subdirectories are created 0700 and the root is chmod'ed on launch (2026-10 hardening). Logs rotate at logMaxBytes keeping one .1 file. cleanup() prunes chats by total size (oldest mtime first), deletes past-keepChatDays records, wipes tmp entries older than 24 h or past tmpMaxBytes, and sweeps crash-orphaned .*.tmp files in the root after 24 h. usage() walks the tree for the storage meter."
+    },
+    {
+      "id": "blk_ce31783429",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_6865eab821",
+      "type": "field",
+      "content": "The enforcement arm \u2014 tmp wiped, aged chats deleted, total pruned oldest-first.",
+      "meta": {
+        "name": "cleanup(): CleanupReport"
+      }
+    },
+    {
+      "id": "blk_f017975b08",
+      "type": "field",
+      "content": "Per-folder breakdown + chat count for the meter and dashboards.",
+      "meta": {
+        "name": "usage(): StorageUsage"
+      }
+    },
+    {
+      "id": "blk_65540b9c4d",
+      "type": "field",
+      "content": "Rotated app log; also receives renderer console errors (did-fail-load included).",
+      "meta": {
+        "name": "logFile() / log(line)"
+      }
+    }
+  ],
+  "properties": {
+    "category": "host",
+    "path": "electron/storage.ts",
+    "lines": 867,
+    "lang": "TypeScript",
+    "phase": "v1\u2013v4",
+    "status": "CORE",
+    "spec_refs": [
+      "\u00a74.5 Storage",
+      "\u00a74.6 Data model"
+    ],
+    "related": [
+      "host-store",
+      "host-main"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

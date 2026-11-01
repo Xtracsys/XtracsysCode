@@ -1,0 +1,116 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "c676a9fadc2f8c3ed40982eaf3c7164a",
+  "type": "doc",
+  "slug": "web-settings",
+  "title": "web/src/components/Settings.tsx",
+  "version": 1,
+  "updated": "2026-11-01T15:13:59Z",
+  "tags": [
+    "renderer",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_b7cd7d2e0f",
+      "type": "heading",
+      "content": "web/src/components/Settings.tsx",
+      "level": 1
+    },
+    {
+      "id": "blk_76eafbdbb3",
+      "type": "paragraph",
+      "content": "The Settings modal (v4.4) \u2014 the former docked Inspector panel, rebuilt as a centered dialog with a grouped section navigator like a proper settings app. Left rail: Application (General, Backends, Skills, Plugins, Tasks, Storage, Logs) and Project (Project, Git, Usage, Plan); v5 adds the Skills catalog (import/create/enable/scope/edit/export/remove + \u2728 Create with Skill Builder) and the Plugins review/test/enable UI with the plain-language trust notice; right pane: a section header plus the same panels the Inspector hosted. Opens from the \u2699 Settings header button, \u2318,, or the command palette; closes on Esc, backdrop click, or \u2715. The component stays mounted while closed so the last-visited section is remembered."
+    },
+    {
+      "id": "blk_3394fc15de",
+      "type": "heading",
+      "content": "Section map",
+      "level": 2
+    },
+    {
+      "id": "blk_c7ae71665a",
+      "type": "paragraph",
+      "content": "General (new): accent swatches and reduce-motion (applied immediately via useAppearance) plus the notifications toggle \u2014 moved out of Backends, which keeps provider/URL/model, num_ctx/temperature, default approvals, max steps, extra system instructions, Save/Probe/Test-connection. Project is the v3/v4 control center: per-project overrides form, AGENTS.md/.xtracsys.md editor, allowlist rule editors, MCP servers \u2014 and since v4.4 a Danger zone. Storage owns the meter, caps, cleanup, backup schedule, and archive browser; Tasks the saved-prompt automations; Logs the filtered viewer; Git the branch/staged/unstaged lists with stage/unstage/discard/commit; Usage the per-project token rollup; Plan the active chat's set_plan entries."
+    },
+    {
+      "id": "blk_a9b4b9ef36",
+      "type": "heading",
+      "content": "Danger zone (project deletion)",
+      "level": 2
+    },
+    {
+      "id": "blk_e480cb5d66",
+      "type": "paragraph",
+      "content": "DeleteProjectPanel lists the projects in a select with an 'also delete this project's chats' checkbox and a confirm-guarded Delete project\u2026 button wired to the existing project:delete IPC \u2014 the guaranteed-visible deletion path alongside the sidebar's \u22ef menu. The selection self-corrects when the chosen project disappears."
+    },
+    {
+      "id": "blk_1fbf2ddbb7",
+      "type": "heading",
+      "content": "Data flow",
+      "level": 2
+    },
+    {
+      "id": "blk_9b496e7e61",
+      "type": "paragraph",
+      "content": "Models are probed when the Backends or Project section opens (ProjectSettingsPanel's model picker consumes them). Settings edits use the draft pattern in Backends (explicit Save settings) while General applies immediately; storage actions refresh usage through onRefreshUsage, and structural changes call onSettingsChanged (a full useXtrac refresh)."
+    },
+    {
+      "id": "blk_cb90e39e51",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_4bba493245",
+      "type": "field",
+      "content": "The two-group navigator and per-section titles/blurbs rendered in the right-pane header.",
+      "meta": {
+        "name": "NAV_GROUPS / SECTION_META"
+      }
+    },
+    {
+      "id": "blk_2f9aa6f6ea",
+      "type": "field",
+      "content": "M4's override form and config editor (config:read/write, 256 KB cap).",
+      "meta": {
+        "name": "ProjectSettingsPanel / ConfigFilesPanel"
+      }
+    },
+    {
+      "id": "blk_a90a911d09",
+      "type": "field",
+      "content": "Allowlist editor, MCP server config, and the v4.4 delete-project danger zone.",
+      "meta": {
+        "name": "RulesPanel / McpPanel / DeleteProjectPanel"
+      }
+    },
+    {
+      "id": "blk_d341cd7c68",
+      "type": "field",
+      "content": "M6/M8/P9 panels, plan viewer, and saved-prompt tasks with interval + history.",
+      "meta": {
+        "name": "GitPanel / UsagePanel / LogViewer / PlanPanel / TaskEditor"
+      }
+    }
+  ],
+  "properties": {
+    "category": "renderer",
+    "path": "web/src/components/Settings.tsx",
+    "lines": 1879,
+    "lang": "TypeScript",
+    "phase": "v4.4",
+    "status": "CORE",
+    "spec_refs": "",
+    "related": [
+      "web-support",
+      "host-main",
+      "web-app"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

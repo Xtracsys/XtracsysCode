@@ -1,0 +1,12 @@
+# Electron Host
+*main process*
+
+- **[electron/main.ts](../docs/host-main.html)** — `electron/main.ts` (2073 lines): The Electron main process: owns the window registry, central IPC sender/frame validation, navigation restrictions, the slash-command interpreter, scheduler, backups, and headless E
+- **[electron/preload.ts](../docs/host-preload.html)** — `electron/preload.ts` (96 lines): The context-isolated bridge exposes window.xtrac with invoke(channel, payload) and onEvent(cb), rejects channels outside a hardcoded allow-list, and provides no renderer Node acces
+- **[electron/runner.ts](../docs/host-runner.html)** — `electron/runner.ts` (450 lines): The orchestration layer between UI requests and the agent core. AgentRunner turns a chat record into a live turn: it resolves per-project settings overrides (chat → project → globa
+- **[electron/storage.ts](../docs/host-storage.html)** — `electron/storage.ts` (867 lines): The hard-constraint module. Everything user-visible lives in one root — default ~/XtracsysCode — with chats/, archive/, logs/, tmp/, and JSON docs at the top. cleanup() enforces th
+- **[electron/store.ts](../docs/host-store.html)** — `electron/store.ts` (415 lines): The domain store on top of Storage: projects (with approval rules, MCP configs, per-project settings), chats (in-memory cache over chats/<id>.json), and tasks (with run history). A
+- **[electron/skills.ts](../docs/skills.html)** — `electron/skills.ts` (506 lines): The local skills system (v5 Phase B). A skill is reusable instructions plus inert reference/template files — never executable code, never permissions. App-managed copies live under
+- **[electron/plugins.ts](../docs/plugins.html)** — `electron/plugins.ts` (325 lines): Local plugins v1 (v5 Phase D): an app-managed manifest/configuration for a LOCAL stdio tool process, riding the existing MCP transport. A plugin is NOT code injected into Electron:
+- **[electron/platform.ts](../docs/platform.html)** — `electron/platform.ts` (127 lines): The single OS seam (cross-platform prep): run_command's shell invocation (zsh on macOS, bash on Linux, cmd /d /s /c on Windows), descendant-safe process-tree kills (POSIX process g
+- **[plugins/doc-*](../docs/doc-kit.html)** — `plugins/` (1412 lines): The Document Kit: five self-contained, importable first-party plugins for document creation, each a plugin.json manifest plus a dependency-free stdio MCP server following the examp

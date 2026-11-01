@@ -1,0 +1,121 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "27223aa4784532346dab3bdf7a7f1f8a",
+  "type": "doc",
+  "slug": "agent-loop",
+  "title": "electron/agent/loop.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:53Z",
+  "tags": [
+    "agent",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_c7bfc422e2",
+      "type": "heading",
+      "content": "electron/agent/loop.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_b2e662b8f4",
+      "type": "paragraph",
+      "content": "The agent turn engine. runAgentTurn() is the heart of XtracsysCode: it takes a conversation history plus a system prompt, streams a model completion, executes any tool calls the model requests, feeds results back, and repeats \u2014 up to maxSteps or until the model produces a final answer with no tool calls."
+    },
+    {
+      "id": "blk_31d6ad4cf9",
+      "type": "paragraph",
+      "content": "It is deliberately Electron-free: the loop only knows about the Provider, ToolDefinition, and emit-callback interfaces declared in agent/types.ts. That is why npm run smoke can exercise the full loop in plain Node against a live Ollama server."
+    },
+    {
+      "id": "blk_059dc79630",
+      "type": "heading",
+      "content": "The step loop",
+      "level": 2
+    },
+    {
+      "id": "blk_d39f20e389",
+      "type": "paragraph",
+      "content": "Each step streams one provider call. Text deltas and thought deltas are forwarded to the caller through emit() as they arrive; tool calls are collected until the stream finishes. If the model requested tools, each executes in order and every result is appended as a tool-role message, then the loop continues."
+    },
+    {
+      "id": "blk_44e82e92a1",
+      "type": "paragraph",
+      "content": "Context is bounded twice: trimHistory() drops whole turns (never splitting an assistant-toolCalls/tool-result pair) to stay under maxHistoryChars, and every tool output is truncated to maxToolOutputChars before it enters history. The final step's input token count is surfaced as lastInputTokens so the UI context meter reflects the true window pressure."
+    },
+    {
+      "id": "blk_e78d5964bf",
+      "type": "heading",
+      "content": "Aborting and limits",
+      "level": 2
+    },
+    {
+      "id": "blk_eaeb11dd2d",
+      "type": "paragraph",
+      "content": "The caller supplies an AbortSignal; abort checks happen before each step and between tool executions. maxSteps (default 24) caps tool iterations and is clamped to 1\u2013200 inside the loop, so a corrupt settings.json cannot produce an unbounded autonomous run; a 'length' finish reason is surfaced as an error so the UI can prompt for /compact instead of silently truncating."
+    },
+    {
+      "id": "blk_d895ca56e3",
+      "type": "heading",
+      "content": "v4 hardening",
+      "level": 2
+    },
+    {
+      "id": "blk_cd21a2a892",
+      "type": "paragraph",
+      "content": "Tool-call retries in the E2E exposed a 3B-model failure mode: emitting the tool call as plain-text JSON instead of using the tools API. The loop itself is agnostic \u2014 the E2E simply re-prompts \u2014 but this is why askChat assertions in runE2E count tool messages, not assistant claims."
+    },
+    {
+      "id": "blk_927046de70",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_2f40752bf7",
+      "type": "field",
+      "content": "Runs one full agent turn; returns messages, stopReason (end_turn|aborted|max_steps|error), token usage, lastInputTokens, and step count.",
+      "meta": {
+        "name": "runAgentTurn(opts: AgentRunOptions): Promise<AgentRunResult>"
+      }
+    },
+    {
+      "id": "blk_f150b22b80",
+      "type": "field",
+      "content": "Turn-granular context trimming \u2014 keeps the first user turn and as many recent whole turns as fit the char budget; never orphans a tool result.",
+      "meta": {
+        "name": "trimHistory(history, budget): ChatMessage[]"
+      }
+    },
+    {
+      "id": "blk_c6777fe884",
+      "type": "field",
+      "content": "Forwards text-delta, thought-delta, tool-start, tool-output, tool-end, plan, and turn events to the runner, which both broadcasts to renderer windows and applies them to the persisted timeline.",
+      "meta": {
+        "name": "emit callback"
+      }
+    }
+  ],
+  "properties": {
+    "category": "agent",
+    "path": "electron/agent/loop.ts",
+    "lines": 265,
+    "lang": "TypeScript",
+    "phase": "v1",
+    "status": "CORE",
+    "spec_refs": [
+      "\u00a74.1 Agent loop"
+    ],
+    "related": [
+      "agent-types",
+      "agent-tools",
+      "agent-prompt",
+      "host-runner"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "2322ba501e50295cf61bdf3d3dd89313",
+  "type": "doc",
+  "slug": "doc-status",
+  "title": "STATUS.md",
+  "version": 1,
+  "updated": "2026-11-01T15:13:55Z",
+  "tags": [
+    "docs",
+    "META",
+    "Markdown"
+  ],
+  "blocks": [
+    {
+      "id": "blk_20d9c844f7",
+      "type": "heading",
+      "content": "STATUS.md",
+      "level": 1
+    },
+    {
+      "id": "blk_32e1bf139f",
+      "type": "paragraph",
+      "content": "The historical mission ledger preserves N/M/P/Q checklists and the v5 R1\u2013R14 registry. R12 native Windows/Linux acceptance remains in progress; later entries cover Document Kit and skill import. Historical verified labels are not a current security certification: OPEN_SOURCE_READINESS.md records newly identified gaps and current test results without rewriting old receipts."
+    },
+    {
+      "id": "blk_6e9af0cfda",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_250769ced9",
+      "type": "field",
+      "content": "A fresh session reads STATUS.md, skips done items, continues at the first pending one.",
+      "meta": {
+        "name": "Resume protocol"
+      }
+    },
+    {
+      "id": "blk_d35e0be639",
+      "type": "field",
+      "content": "The why behind non-obvious implementations \u2014 required by the unattended working rules.",
+      "meta": {
+        "name": "Decisions log"
+      }
+    }
+  ],
+  "properties": {
+    "category": "docs",
+    "path": "STATUS.md",
+    "lines": 110,
+    "lang": "Markdown",
+    "phase": "v2\u2013v4",
+    "status": "META",
+    "spec_refs": "",
+    "related": [
+      "doc-goals"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

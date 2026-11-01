@@ -1,0 +1,78 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "f60800154463885ad8154c6089268dc1",
+  "type": "doc",
+  "slug": "sec-audit-2026-10",
+  "title": "Security audit & remediation",
+  "version": 1,
+  "updated": "2026-11-01T15:13:58Z",
+  "tags": [
+    "docs",
+    "REVIEW",
+    "Markdown"
+  ],
+  "blocks": [
+    {
+      "id": "blk_036ce1de1a",
+      "type": "heading",
+      "content": "Security audit & remediation",
+      "level": 1
+    },
+    {
+      "id": "blk_8c54efcdb7",
+      "type": "paragraph",
+      "content": "Two full adversarial audits of the v5 tree (same day, 2026-10-28): an initial five-track audit (Electron core, agent runtime, plugin/supply chain, renderer, build/test) and a round-2 re-review of the fixes themselves. Every finding was verified against source and dispositioned in the report; the remediation is covered by an expanded security test suite."
+    },
+    {
+      "id": "blk_66d9b84618",
+      "type": "paragraph",
+      "content": "Round-1 headline fixes: skill-ID IPC validation (arbitrary file read/write path closed), markdown link-label HTML injection (now routed through parseInline/escaping), the allowlist redirect bypass, provider stream bounds for ollama/llamacpp, grep ReDoS caps, 0700/0600 data-root permissions, SHA-pinned CI actions, Electron security fuses + ad-hoc re-seal in afterPack, and the electron 45 / electron-builder 26 upgrade (npm audit fully clean)."
+    },
+    {
+      "id": "blk_533fe69308",
+      "type": "paragraph",
+      "content": "Round-2 headline fixes (found by reviewing the new code adversarially): a linear wildcard matcher + worker-bounded regex for grep (two empirically proven main-process freezes), the shared rules sanitizer closing an allow-always blanket-rule bypass, storage-cap floors so a crafted backup cannot wipe all chats, permission handler inverted to an allowlist, sender-resolved consent dialogs, restored-chat-record schema validation plus an app-level ErrorBoundary (backup-to-crash-loop path closed), and HTML-escaped markdown transcripts."
+    },
+    {
+      "id": "blk_b34bb346c0",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_37489bb3a2",
+      "type": "field",
+      "content": "357/357 tests (security suite 164), typecheck clean, npm audit 0 vulnerabilities incl. dev deps, packaged-app smoke passed on Electron 45 with fuses verified on the binary.",
+      "meta": {
+        "name": "Verification"
+      }
+    },
+    {
+      "id": "blk_1adb183f0f",
+      "type": "field",
+      "content": "Code signing, notarization and the ASAR-integrity fuse (needs a Developer ID); marked enablement points live in scripts/afterPack.js and electron-builder.yml.",
+      "meta": {
+        "name": "Deferred by owner decision"
+      }
+    }
+  ],
+  "properties": {
+    "category": "docs",
+    "path": "SECURITY_AUDIT_2026-10-28.md",
+    "lines": 214,
+    "lang": "Markdown",
+    "phase": "2026-10",
+    "status": "REVIEW",
+    "spec_refs": "",
+    "related": [
+      "open-source-readiness",
+      "host-main",
+      "agent-tools",
+      "host-storage"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

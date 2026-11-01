@@ -1,0 +1,11 @@
+# Renderer
+*React UI*
+
+- **[web/src/App.tsx](../docs/web-app.html)** — `web/src/App.tsx` (529 lines): The layout root and top-level state composition. Since v4.4 the window is a two-column grid — sidebar | main (header, tab strip, permission card, chat) — with the former right-hand
+- **[web/src/hooks/useXtrac.ts](../docs/use-xtrac.html)** — `web/src/hooks/useXtrac.ts` (352 lines): The renderer's brain. One hook exposes settings, projects, chats, tasks, usage, the active chat and its live timeline, permission requests, models, and every action (send, queue vi
+- **[web/src/components/Sidebar.tsx](../docs/web-sidebar.html)** — `web/src/components/Sidebar.tsx` (503 lines): Project/chat navigator with three v3+ layers: a global transcript SearchBox (debounced, hits open the chat), per-project ⋯ popover menus (new chat, Finder, rename, delete with chat
+- **[web/src/components/Chat.tsx](../docs/web-chat.html)** — `web/src/components/Chat.tsx` (404 lines): The conversation surface: scroll-anchored timeline, status strip (approvals toggle, per-chat model picker, plan progress, context meter, turn count), the composer with image attach
+- **[web/src/components/Settings.tsx](../docs/web-settings.html)** — `web/src/components/Settings.tsx` (1879 lines): The Settings modal (v4.4) — the former docked Inspector panel, rebuilt as a centered dialog with a grouped section navigator like a proper settings app. Left rail: Application (Gen
+- **[web/src/components/Modals.tsx + WelcomeWizard.tsx](../docs/web-modals-wizard.html)** — `web/src/components/` (365 lines): Two modal families. Modals.tsx holds NewProjectModal (folder browse/up/Choose…/new-folder creation, optional project name — M4 scaffolds AGENTS.md/.xtracsys.md into new projects) a
+- **[web/src/components/timeline/*](../docs/web-timeline.html)** — `web/src/components/timeline/` (210 lines): The row renderers. TimelineRow dispatches on item kind: user bubbles (with 📎 image counts and hover-copy), assistant bubbles (markdown via renderMarkdown with hover-copy), ThoughtB
+- **[web/src/{api.ts, hooks, lib, types, main.tsx}](../docs/web-support.html)** — `web/src/` (416 lines): Support layer (354 TS lines, plus the stylesheets app.css (~2.8k, incl. the v4.4 settings-modal and project-menu rules) and themes.css (~240)). api.ts is the typed facade over wind

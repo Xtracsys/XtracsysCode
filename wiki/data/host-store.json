@@ -1,0 +1,97 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "df19a241e9a94f9fe93f5fc6ee3e26bd",
+  "type": "doc",
+  "slug": "host-store",
+  "title": "electron/store.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:57Z",
+  "tags": [
+    "host",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_c66240b8a5",
+      "type": "heading",
+      "content": "electron/store.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_b0f93970cd",
+      "type": "paragraph",
+      "content": "The domain store on top of Storage: projects (with approval rules, MCP configs, per-project settings), chats (in-memory cache over chats/<id>.json), and tasks (with run history). All writes go through Storage.writeJsonAtomic; all ids are UUIDs; projects.json/tasks.json are whole-doc rewrites."
+    },
+    {
+      "id": "blk_aacef72fac",
+      "type": "heading",
+      "content": "Project capabilities",
+      "level": 2
+    },
+    {
+      "id": "blk_5770d80204",
+      "type": "paragraph",
+      "content": "A Project carries rules (command globs + write scopes), mcps (stdio server configs), and settings (model/numCtx/temperature/approvalMode/maxSteps/systemPromptExtra overrides). setProjectRules, setProjectMcps, and saveProjectSettings sanitize and persist each. scaffoldConfigFiles creates AGENTS.md/.xtracsys.md templates, never overwriting existing files."
+    },
+    {
+      "id": "blk_611e4ac588",
+      "type": "heading",
+      "content": "Chat capabilities",
+      "level": 2
+    },
+    {
+      "id": "blk_823f5adecc",
+      "type": "paragraph",
+      "content": "Chats cache in memory and persist via persistChat (messageCount, updatedAt maintained). renameChat, deleteChat (json+md), and writeTranscript (Markdown mirror via the shared model) round it out. commandMatchesPattern and pathInWriteScopes \u2014 the pure allowlist matchers shared by runner and E2E \u2014 live here too."
+    },
+    {
+      "id": "blk_e431c68807",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_1b36c5cdcd",
+      "type": "field",
+      "content": "The chat lifecycle; the cache invalidates on delete/archive.",
+      "meta": {
+        "name": "Store.createChat / getChat / persistChat"
+      }
+    },
+    {
+      "id": "blk_8e95fb53e6",
+      "type": "field",
+      "content": "Sanitized per-project configuration writers.",
+      "meta": {
+        "name": "setProjectRules / setProjectMcps / saveProjectSettings"
+      }
+    },
+    {
+      "id": "blk_d909cfd2ad",
+      "type": "field",
+      "content": "The approval matcher primitives, unit-asserted in the E2E.",
+      "meta": {
+        "name": "commandMatchesPattern / pathInWriteScopes"
+      }
+    }
+  ],
+  "properties": {
+    "category": "host",
+    "path": "electron/store.ts",
+    "lines": 415,
+    "lang": "TypeScript",
+    "phase": "v1\u2013v4",
+    "status": "CORE",
+    "spec_refs": "",
+    "related": [
+      "host-storage",
+      "host-main",
+      "host-runner"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "example-text-formatter",
+  "name": "Text Formatter (example)",
+  "version": "1.0.0",
+  "description": "First-party example plugin: a local stdio MCP server with two harmless text tools (slugify, upper). No network, no file access — demonstrates the import, review, enable, and tool-call roundtrip.",
+  "entry": { "command": "node", "args": ["server.mjs"] },
+  "tools": ["slugify", "upper"],
+  "capabilities": []
+}

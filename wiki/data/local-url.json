@@ -1,0 +1,68 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "0c49c3b10f616ab031fdbdc336d68643",
+  "type": "doc",
+  "slug": "local-url",
+  "title": "electron/agent/providers/localUrl.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:54Z",
+  "tags": [
+    "agent",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_21246e5ec9",
+      "type": "heading",
+      "content": "electron/agent/providers/localUrl.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_0ef8cb3287",
+      "type": "paragraph",
+      "content": "The single validation point for every built-in backend URL. Provider constructors and settings:set IPC enforce http/https only, no URL credentials, and loopback hosts only \u2014 localhost, 127.0.0.0/8, and ::1. IPv6 unspecified ::, 0.0.0.0, and lookalike DNS names are rejected; redirects are refused, so built-in model requests cannot be redirected off loopback."
+    },
+    {
+      "id": "blk_8fc03c9899",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_2afb15e0ab",
+      "type": "field",
+      "content": "Validates + normalizes a backend base URL, throwing actionable errors.",
+      "meta": {
+        "name": "loopbackBase(raw, label)"
+      }
+    },
+    {
+      "id": "blk_848993b1b9",
+      "type": "field",
+      "content": "fetch option (redirect: \"error\") both providers pass so a redirect can never bounce model traffic off the loopback.",
+      "meta": {
+        "name": "NO_REDIRECT"
+      }
+    }
+  ],
+  "properties": {
+    "category": "agent",
+    "path": "electron/agent/providers/localUrl.ts",
+    "lines": 47,
+    "lang": "TypeScript",
+    "phase": "v5",
+    "status": "CORE",
+    "spec_refs": [
+      "v5 Phase E (R9)"
+    ],
+    "related": [
+      "agent-providers",
+      "host-main"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

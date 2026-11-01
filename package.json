@@ -1,0 +1,47 @@
+{
+  "name": "xtracsyscode",
+  "version": "0.5.0",
+  "license": "Apache-2.0",
+  "private": true,
+  "description": "XtracsysCode — local-model agent desktop app for macOS. Built-in model requests use loopback servers; shell commands and plugins are not sandboxed.",
+  "author": "Xtracsys LLC",
+  "main": "dist-electron/electron/main.js",
+  "scripts": {
+    "dev": "concurrently -n web,electron -c cyan,magenta \"npm:dev:web\" \"npm:dev:electron\"",
+    "dev:web": "vite",
+    "dev:electron": "npm run build:main && XTRAC_DEV=1 electron dist-electron/electron/main.js",
+    "build": "npm run build:main && npm run build:web",
+    "build:main": "tsc -p tsconfig.json",
+    "build:web": "vite build",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.web.json --noEmit",
+    "start": "electron dist-electron/electron/main.js",
+    "smoke": "node dist-electron/electron/agent/smoke.js",
+    "test": "npm run build:main && node tests/skills.test.mjs && node tests/plugins.test.mjs && node tests/security.test.mjs && node tests/doc-plugins.test.mjs && node tests/release-provider-mcp.test.mjs && node tests/release-plugin-restore.test.mjs && node tests/release-zip.test.mjs",
+    "dist:dir": "npm run build && electron-builder --mac dir",
+    "dist": "npm run build && electron-builder --mac dmg zip",
+    "dist:win": "npm run build && electron-builder --win nsis --x64",
+    "dist:linux": "npm run build && electron-builder --linux AppImage --x64"
+  },
+  "dependencies": {
+    "marked": "^15.0.7"
+  },
+  "devDependencies": {
+    "@electron/asar": "4.3.1",
+    "@electron/fuses": "2.1.3",
+    "@types/node": "^22.15.30",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.5",
+    "@vitejs/plugin-react": "^4.5.2",
+    "concurrently": "^9.2.0",
+    "electron": "^45.1.0",
+    "electron-builder": "^26.18.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "yauzl": "3.4.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

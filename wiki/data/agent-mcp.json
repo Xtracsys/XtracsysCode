@@ -1,0 +1,101 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "a3d97584050fd3619be9b3f9af66777e",
+  "type": "doc",
+  "slug": "agent-mcp",
+  "title": "electron/agent/mcp.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:53Z",
+  "tags": [
+    "agent",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_cb6a8d377c",
+      "type": "heading",
+      "content": "electron/agent/mcp.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_5ad5e70199",
+      "type": "paragraph",
+      "content": "A minimal Model Context Protocol client for local stdio servers. It spawns each configured server, speaks newline-delimited JSON-RPC 2.0 (initialize \u2192 notifications/initialized \u2192 tools/list \u2192 tools/call), and exposes discovered tools to the agent loop namespaced as mcp__<server>__<tool>."
+    },
+    {
+      "id": "blk_5670a5f389",
+      "type": "heading",
+      "content": "Lifecycle and safety",
+      "level": 2
+    },
+    {
+      "id": "blk_a8743dd0bd",
+      "type": "paragraph",
+      "content": "Servers are spawned per agent turn from the project's config (Settings \u2192 Project \u2192 MCP servers) with the project folder as cwd, and killed in the run's finally block. Requests carry a 30 s timeout; initialize gets 15 s; a crashed server rejects all pending calls so the model sees a clean failure instead of a hang."
+    },
+    {
+      "id": "blk_3b45ef5277",
+      "type": "paragraph",
+      "content": "The client is deliberately tiny: no network, no capabilities beyond tools, no resources/prompts. Anything the server writes to stderr is discarded rather than logged, keeping transcripts clean. Servers spawn with the minimal platform.childEnv() allowlist \u2014 no inherited cloud/CI tokens (2026-10 hardening)."
+    },
+    {
+      "id": "blk_41b311839a",
+      "type": "heading",
+      "content": "Integration",
+      "level": 2
+    },
+    {
+      "id": "blk_993d95c260",
+      "type": "paragraph",
+      "content": "The runner converts each McpTool into a ToolDefinition whose execute() calls McpManager.callTool and joins text content parts. MCP tools are readOnly:false, so they ride the approval allowlist like run_command \u2014 a per-project rule of 'mcp__echo__*' style globs (first-token derivation) covers them."
+    },
+    {
+      "id": "blk_62557aa08b",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_e37f12d54b",
+      "type": "field",
+      "content": "Spawn+initialize all servers; returns per-server error strings instead of throwing.",
+      "meta": {
+        "name": "McpManager.start(configs, cwd): Promise<string[]>"
+      }
+    },
+    {
+      "id": "blk_53d6e1dce0",
+      "type": "field",
+      "content": "Flattened tool inventory across servers.",
+      "meta": {
+        "name": "McpManager.listTools(): McpTool[]"
+      }
+    },
+    {
+      "id": "blk_198bb427da",
+      "type": "field",
+      "content": "tools/call with text-content joining and isError propagation.",
+      "meta": {
+        "name": "McpManager.callTool(server, tool, args)"
+      }
+    }
+  ],
+  "properties": {
+    "category": "agent",
+    "path": "electron/agent/mcp.ts",
+    "lines": 455,
+    "lang": "TypeScript",
+    "phase": "v2 N12",
+    "status": "CORE",
+    "spec_refs": "",
+    "related": [
+      "host-runner",
+      "agent-tools"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "3b5173681e267294fdcdeb14c3becc14",
+  "type": "doc",
+  "slug": "host-preload",
+  "title": "electron/preload.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:57Z",
+  "tags": [
+    "host",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_4ec48a5630",
+      "type": "heading",
+      "content": "electron/preload.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_d7beae724b",
+      "type": "paragraph",
+      "content": "The context-isolated bridge exposes window.xtrac with invoke(channel, payload) and onEvent(cb), rejects channels outside a hardcoded allow-list, and provides no renderer Node access. The main process separately validates the sending frame and renderer URL before any privileged handler runs."
+    },
+    {
+      "id": "blk_b6d0e97f22",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_533cc741a4",
+      "type": "field",
+      "content": "The definitive list of renderer capabilities \u2014 reviewed each release to keep the no-call-home posture demonstrable.",
+      "meta": {
+        "name": "allowed channel set"
+      }
+    },
+    {
+      "id": "blk_7efebf059f",
+      "type": "field",
+      "content": "Subscribes to the single xtrac:event broadcast channel and returns an unsubscribe function.",
+      "meta": {
+        "name": "onEvent(cb)"
+      }
+    }
+  ],
+  "properties": {
+    "category": "host",
+    "path": "electron/preload.ts",
+    "lines": 96,
+    "lang": "TypeScript",
+    "phase": "v1\u2013v4",
+    "status": "CORE",
+    "spec_refs": "",
+    "related": [
+      "host-main"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "bbfac16dc40c403b10b24edd0217912e",
+  "type": "doc",
+  "slug": "host-runner",
+  "title": "electron/runner.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:57Z",
+  "tags": [
+    "host",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_d4e9a7d517",
+      "type": "heading",
+      "content": "electron/runner.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_2b491e458a",
+      "type": "paragraph",
+      "content": "The orchestration layer between UI requests and the agent core. AgentRunner turns a chat record into a live turn: it resolves per-project settings overrides (chat \u2192 project \u2192 global), starts the project's MCP servers, builds the system prompt, wraps the approval callback with the allowlist gate, streams events to all windows, and persists the chat + transcript when the turn settles."
+    },
+    {
+      "id": "blk_8586a8fc63",
+      "type": "heading",
+      "content": "Approvals and allowlists (v2)",
+      "level": 2
+    },
+    {
+      "id": "blk_b581372a19",
+      "type": "paragraph",
+      "content": "approvalGate(chat) consults project.rules before asking the user: command globs match via commandMatchesPattern, write paths via pathInWriteScopes. 'Always allow' in the UI derives patterns from the invocation (first 1\u20132 tokens for commands, directory prefix for writes) and saves them into projects.json. commandHasShellControl treats ANY '>' (unspaced, appended, or fd-prefixed like 2>), bare $VAR interpolation, and approved-tool shell escapes (find -exec, xargs, awk system(), git -c alias) as control syntax, so a glob like 'echo *' can never silently auto-run 'echo x>$HOME/.zshenv' or 'find . -exec \u2026 +' (2026-10). rules:set and rules:allow-always share sanitizeRulesPatterns \u2014 100 entries \u00d7 500 chars, and allow-everything patterns like '* *' are rejected on both paths."
+    },
+    {
+      "id": "blk_e31152661b",
+      "type": "heading",
+      "content": "Queue, retry, compact (v2)",
+      "level": 2
+    },
+    {
+      "id": "blk_5bc9fe622c",
+      "type": "paragraph",
+      "content": "sendOrQueue starts a turn or parks the prompt (max 5) with a notice; the runTurn finally block dequeues automatically. retryLast rolls the message list AND timeline back to just before the last user message \u2014 no duplicate appears \u2014 then re-runs. compactChat summarizes the conversation with the current model and replaces LLM-visible history with a single summary message, resetting the pressure flag."
+    },
+    {
+      "id": "blk_368b7637ba",
+      "type": "heading",
+      "content": "MCP and pressure notices",
+      "level": 2
+    },
+    {
+      "id": "blk_339f60b2b8",
+      "type": "paragraph",
+      "content": "Per-turn MCP lifecycle: McpManager.start for configured servers, discovered tools merged into the tool list, stopAll in finally. maybePressureNotice (public, P5) fires the 90% context warning once per chat; /compact and /clear reset chat.pressureNoticed. Task summaries land as system notices after scheduled and manual task runs."
+    },
+    {
+      "id": "blk_0f5b6367a5",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_5970520d71",
+      "type": "field",
+      "content": "done|busy|error \u2014 the single entry point every send path funnels into.",
+      "meta": {
+        "name": "AgentRunner.runTurn(chat, text, images?)"
+      }
+    },
+    {
+      "id": "blk_17c5d2d4bb",
+      "type": "field",
+      "content": "The three user-facing turn operations beyond plain sending.",
+      "meta": {
+        "name": "sendOrQueue / retryLast / compactChat"
+      }
+    },
+    {
+      "id": "blk_9f8ac14586",
+      "type": "field",
+      "content": "Rules-first approval resolution feeding the agent loop.",
+      "meta": {
+        "name": "approvalGate(chat)"
+      }
+    }
+  ],
+  "properties": {
+    "category": "host",
+    "path": "electron/runner.ts",
+    "lines": 450,
+    "lang": "TypeScript",
+    "phase": "v1\u2013v4",
+    "status": "CORE",
+    "spec_refs": "",
+    "related": [
+      "agent-loop",
+      "host-store",
+      "host-storage",
+      "host-main"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

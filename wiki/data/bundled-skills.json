@@ -1,0 +1,68 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "74e83d83b7865d1c0be608e8560fad37",
+  "type": "doc",
+  "slug": "bundled-skills",
+  "title": "bundled-skills/ + plugins/example-text-formatter",
+  "version": 1,
+  "updated": "2026-11-01T15:13:56Z",
+  "tags": [
+    "config",
+    "SPEC",
+    "Markdown/JS"
+  ],
+  "blocks": [
+    {
+      "id": "blk_59d994cc5d",
+      "type": "heading",
+      "content": "bundled-skills/ + plugins/example-text-formatter",
+      "level": 1
+    },
+    {
+      "id": "blk_e1f597a438",
+      "type": "paragraph",
+      "content": "bundled-skills/ ships via electron-builder extraResources and contains six starter skills scaffolded without overwriting user copies: skill-builder, project-orientation, systematic-debugging, test-first-development, completion-review, wiki-maintenance. Plugin examples, including example-text-formatter and Document Kit, live in the repository for import and are NOT included by the current extraResources config. The formatter exposes slugify/upper and supplies a real MCP test fixture. Skill Builder's draft workflow needs reconciliation with project confinement: create in the selected project, then use UI import/validation/enable."
+    },
+    {
+      "id": "blk_d46078b1bf",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_1d37c35a0d",
+      "type": "field",
+      "content": "Uses only the app's real tools; cannot self-approve writes or execute anything.",
+      "meta": {
+        "name": "skill-builder SKILL.md"
+      }
+    },
+    {
+      "id": "blk_c0719087fa",
+      "type": "field",
+      "content": "~100 lines of pure Node NDJSON JSON-RPC: initialize, tools/list, tools/call. No network, no fs.",
+      "meta": {
+        "name": "server.mjs"
+      }
+    }
+  ],
+  "properties": {
+    "category": "config",
+    "path": "bundled-skills/",
+    "lines": 338,
+    "lang": "Markdown/JS",
+    "phase": "v5",
+    "status": "SPEC",
+    "spec_refs": [
+      "v5 Phase C/D"
+    ],
+    "related": [
+      "skills",
+      "plugins"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

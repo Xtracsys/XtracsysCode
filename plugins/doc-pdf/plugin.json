@@ -1,0 +1,9 @@
+{
+  "id": "doc-pdf",
+  "name": "Document Kit: PDF",
+  "version": "1.0.0",
+  "description": "First-party local plugin: generates real PDF documents (Letter, Helvetica, headings/paragraphs/bullets, automatic pagination) into the project folder. The PDF writer is hand-rolled in pure Node — no dependencies, no network, no external binaries.",
+  "entry": { "command": "node", "args": ["server.mjs"] },
+  "tools": ["create_pdf"],
+  "capabilities": ["writes files inside the project folder only"]
+}

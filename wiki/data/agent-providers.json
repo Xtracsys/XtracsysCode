@@ -1,0 +1,126 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "dbf7fb03de50776e2f7d828fd37d2c8f",
+  "type": "doc",
+  "slug": "agent-providers",
+  "title": "electron/agent/providers/*",
+  "version": 1,
+  "updated": "2026-11-01T15:13:53Z",
+  "tags": [
+    "agent",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_fe20e89733",
+      "type": "heading",
+      "content": "electron/agent/providers/*",
+      "level": 1
+    },
+    {
+      "id": "blk_ee9e6a3b71",
+      "type": "paragraph",
+      "content": "The app's Ollama provider uses native /api/chat (NDJSON); its dedicated llama.cpp provider uses OpenAI-compatible /v1/chat/completions (SSE). openaiCompatible.ts adds a generic Chat Completions/SSE adapter wired to the GMLX and MLX LM server settings; its LM Studio protocol preset is not exposed in the current UI. Live GMLX/MLX LM engines were not tested here."
+    },
+    {
+      "id": "blk_8fd3b03dbb",
+      "type": "heading",
+      "content": "Ollama specifics",
+      "level": 2
+    },
+    {
+      "id": "blk_00a6652a18",
+      "type": "paragraph",
+      "content": "Streaming lines are NDJSON: {message:{content, thinking, tool_calls}, done, prompt_eval_count, eval_count}. Tool arguments arrive pre-parsed as objects. Options pass through when set: options.num_ctx (P5's context meter denominator) and options.temperature. Vision (P11/N11) rides as message.images: [base64]. The stream is bounded like the OpenAI-compatible adapter \u2014 16 MB total, 256 KB per line, 128 tool calls, 10-minute deadline (2026-10 hardening)."
+    },
+    {
+      "id": "blk_145c30c278",
+      "type": "heading",
+      "content": "llama.cpp specifics",
+      "level": 2
+    },
+    {
+      "id": "blk_2f9c6ac4e5",
+      "type": "paragraph",
+      "content": "SSE data: lines with delta.content / delta.reasoning_content; streamed tool_call argument fragments are accumulated by index and flushed once at finish, under the same stream/line/tool-byte/tool-call-count/timeout bounds as the shared adapter (2026-10 hardening). temperature passes at request level; context size is fixed by llama-server's --ctx-size, which the Backends UI states explicitly. Images convert to OpenAI image_url content parts with data: URLs."
+    },
+    {
+      "id": "blk_a17f6f2f8c",
+      "type": "heading",
+      "content": "Generic OpenAI-compatible server",
+      "level": 2
+    },
+    {
+      "id": "blk_d45886eac0",
+      "type": "paragraph",
+      "content": "GMLX and MLX LM server use the shared SSE adapter with loopback-only destination URLs and optional /v1/models discovery. The transport was tested with local API fixtures, not live engines. The app cannot verify which interfaces the backend server listens on; operators must keep it bound to localhost. Upstream warns that MLX LM server is not recommended for production because it implements only basic security checks. Tool calls/images vary by server/model, and usage is omitted when unreported."
+    },
+    {
+      "id": "blk_7535493571",
+      "type": "heading",
+      "content": "Shared contract",
+      "level": 2
+    },
+    {
+      "id": "blk_1672ea9612",
+      "type": "paragraph",
+      "content": "Both normalize to the same callbacks \u2014 onText/onThought/onToolCall/onUsage \u2014 and return a finishReason of stop|tool_calls|length|error, so the loop and context meter never care which backend is selected."
+    },
+    {
+      "id": "blk_90140b044b",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_fa5ca5d1b5",
+      "type": "field",
+      "content": "Native chat streaming, tools in Ollama function format, NDJSON parse loop.",
+      "meta": {
+        "name": "createOllamaProvider(baseUrl): Provider"
+      }
+    },
+    {
+      "id": "blk_b129dbadcb",
+      "type": "field",
+      "content": "OpenAI-compatible SSE, tool_choice auto, usage via stream_options.include_usage.",
+      "meta": {
+        "name": "createLlamaCppProvider(baseUrl): Provider"
+      }
+    },
+    {
+      "id": "blk_52ca436782",
+      "type": "field",
+      "content": "Shared Chat Completions/SSE transport for GMLX and MLX LM; local fixture tests only.",
+      "meta": {
+        "name": "createOpenAICompatibleProvider(baseUrl, preset): Provider"
+      }
+    },
+    {
+      "id": "blk_82d030e258",
+      "type": "field",
+      "content": "GET /api/tags or /v1/models \u2014 powers the Backends dropdown, model auto-pick, and Test-connection latency.",
+      "meta": {
+        "name": "listModels()"
+      }
+    }
+  ],
+  "properties": {
+    "category": "agent",
+    "path": "electron/agent/providers/",
+    "lines": 375,
+    "lang": "TypeScript",
+    "phase": "v1",
+    "status": "CORE",
+    "spec_refs": "",
+    "related": [
+      "agent-types",
+      "agent-loop"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

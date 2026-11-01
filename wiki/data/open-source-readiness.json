@@ -1,0 +1,173 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "1d3ad12f7597449cba212051697ac9d7",
+  "type": "doc",
+  "slug": "open-source-readiness",
+  "title": "Open-source readiness",
+  "version": 1,
+  "updated": "2026-11-01T15:13:58Z",
+  "tags": [
+    "docs",
+    "REVIEW",
+    "Markdown"
+  ],
+  "blocks": [
+    {
+      "id": "blk_a5597b75f6",
+      "type": "heading",
+      "content": "Open-source readiness",
+      "level": 1
+    },
+    {
+      "id": "blk_06de41e3fb",
+      "type": "paragraph",
+      "content": "Apache-2.0 is applied locally for Xtracsys LLC. The release sprint adds source-bound plugin consent, imported-rule removal, native-tar restore tests, provider response limits and awaited MCP cleanup diagnostics. No commit, push or publication has occurred."
+    },
+    {
+      "id": "blk_01502b85f6",
+      "type": "paragraph",
+      "content": "Mac arm64 DMG/ZIP integrity, architecture, notices/resources, unpacked/ZIP/read-only-DMG payload equality and isolated actual UI/preload/init/startup/quit checks passed. The app emitted XTRAC_PACKAGE_SMOKE_OK and exited 0. These are local-test artifacts: code-signature verification and Gatekeeper both returned 1; no Developer ID/notarization or trusted public release is established."
+    },
+    {
+      "id": "blk_715c8f0d3a",
+      "type": "heading",
+      "content": "Observed application checks",
+      "level": 2
+    },
+    {
+      "id": "blk_30f4f2d797",
+      "type": "paragraph",
+      "content": "The integrated test run passed skills 36, plugins 29, security 133, document plugins 57, provider/MCP release regressions 24, plugin/restore release regressions 27 and ZIP teardown regressions 20, plus compatible-provider fixtures. Typecheck and production packaging build passed (45 renderer modules). Final source changes are reflected in the verified artifacts; later edits are tests/docs only."
+    },
+    {
+      "id": "blk_2931cb4ce0",
+      "type": "paragraph",
+      "content": "Tests include actual loopback response fixtures, process cleanup, and native tar creation/listing/extraction/staging/sanitization/swap/rollback. They do not prove live GMLX/MLX LM compatibility, hostile Electron IPC behavior, Windows tree termination or comprehensive security."
+    },
+    {
+      "id": "blk_043bf07405",
+      "type": "heading",
+      "content": "Implemented release protections",
+      "level": 2
+    },
+    {
+      "id": "blk_2bf99e6e69",
+      "type": "paragraph",
+      "content": "OSR-02/03: consent binds launch details and the original source tree, including hidden files/local dependencies; changes require re-review. Review caps are 2,048 entries, depth 24, 8 MiB/file and 32 MiB total; links/special files fail closed. Plugin testing revalidates the dialog token and obtains a checked descriptor before spawning."
+    },
+    {
+      "id": "blk_9a39395fb9",
+      "type": "paragraph",
+      "content": "OSR-04/18: staged restore validates documents and disables/unreviews plugins, pauses schedules, removes project MCP commands and imported allow-always rules, and resets global/project/chat/archive approvals to Ask. Native-tar staged restore and rollback regressions pass; Electron IPC/relaunch and concurrent filesystem attacks remain distinct acceptance gaps."
+    },
+    {
+      "id": "blk_08a3880d53",
+      "type": "paragraph",
+      "content": "The restore barrier rejects active/detached persistence, turns/queues/shutdown, tasks, cleanup/backups and concurrent imports before admission. Successful swap stays frozen through restart; failures resume only after confirmed rollback. Production-function tests exercise IPC, session/window writes, scheduled work and failure recovery; real Electron restore/relaunch remains untested."
+    },
+    {
+      "id": "blk_b93e352c9a",
+      "type": "paragraph",
+      "content": "OSR-12: MCP cleanup tracks startup/abort children, awaits bounded termination, clears pending calls/timers/listeners and surfaces shutdown diagnostics. External group escape/OS termination failures remain possible; Windows tests are simulations on macOS."
+    },
+    {
+      "id": "blk_5a4c3a98ac",
+      "type": "paragraph",
+      "content": "OSR-17: compatible responses are bounded before retention/parsing: models 1 MiB, HTTP errors 16 KiB, SSE line 256 KiB, event 1 MiB/256 lines, stream 16 MiB, tool fragments 1 MiB/128 calls. Timeout/cancellation and oversized fixtures are covered."
+    },
+    {
+      "id": "blk_085a6ecb64",
+      "type": "heading",
+      "content": "Residual boundaries",
+      "level": 2
+    },
+    {
+      "id": "blk_0a0223f08c",
+      "type": "paragraph",
+      "content": "Commands, MCP and plugins remain ordinary unsandboxed user processes. Plugin source hashing does not pin external interpreters, environment or libraries, revoke running code, or eliminate final-check-to-spawn mutation races."
+    },
+    {
+      "id": "blk_b3a416ea64",
+      "type": "paragraph",
+      "content": "Backup selection is still a mutable path used separately for tar listing/extraction. Private snapshotting would narrow that race. Staged validations and test success are not a filesystem sandbox or security certification."
+    },
+    {
+      "id": "blk_2a9e3e6e6a",
+      "type": "paragraph",
+      "content": "Loopback destination validation cannot establish the server's bind interface. Keep backends bound to localhost; live model/server acceptance remains unverified."
+    },
+    {
+      "id": "blk_389ac6d8a1",
+      "type": "heading",
+      "content": "Source and licensing hygiene",
+      "level": 2
+    },
+    {
+      "id": "blk_7087f92118",
+      "type": "paragraph",
+      "content": "LICENSE, README and package metadata identify Apache-2.0. Sole human authorship and company-formation context are owner-reported and are not an independent chain-of-title audit. THIRD_PARTY_NOTICES.md retains inspected upstream notices; bundled asset/content provenance and full dependency clearance remain bounded rather than certified."
+    },
+    {
+      "id": "blk_ed5a6569a5",
+      "type": "paragraph",
+      "content": "Coordinator history audit completed with review-required: 40 commit message bodies and 343 historical text blobs scanned; internal-material hits require public-file selection. The scanner's single candidate was independently verified as the public AWS example fixture, not a private credential. No selected secret-pattern candidate was found in scanned history; binaries/excluded surfaces remain unscanned. Keep raw private audit metadata out of the public export."
+    },
+    {
+      "id": "blk_0b588ad674",
+      "type": "paragraph",
+      "content": "CONTRIBUTING, SECURITY and issue/PR templates now exist. A private vulnerability-reporting destination has not yet been verified. Hosted CI and native Windows/Linux acceptance were not run."
+    },
+    {
+      "id": "blk_f683ddbe34",
+      "type": "heading",
+      "content": "Mac installer acceptance",
+      "level": 2
+    },
+    {
+      "id": "blk_125ec35fde",
+      "type": "paragraph",
+      "content": "Packaging includes project and Electron/Chromium notices, Marked license, bundled skills and existing branding. The final verifier passed DMG/ZIP integrity and unpacked/ZIP/read-only-DMG byte equivalence, plus actual isolated packaged UI/preload/init/normal quit. SHA256SUMS.txt and mac-verification.json describe the exact artifacts. Client installation and internet-quarantined Gatekeeper acceptance were not tested."
+    },
+    {
+      "id": "blk_b01e119111",
+      "type": "paragraph",
+      "content": "The build remains unsigned/unnotarized. Current signature/Gatekeeper diagnostics must be recorded, not hidden by removing quarantine or disabling protections. Existing installed builder contains an AppleDouble ASAR-integrity fix; a clean exFAT dependency install has not been verified."
+    },
+    {
+      "id": "blk_377a3baaed",
+      "type": "paragraph",
+      "content": "Screenshots/demos are deferred to the owner. ZIP cancellation guards/disposes late callbacks and awaits bounded stream/archive teardown; legacy-yauzl close semantics have regression coverage. Focused independent follow-up source review supports the restore and ZIP fixes, with no concrete introduced regression; it did not execute runtime checks. Public files/history, reporting/provenance/signing and publication remain separate decisions."
+    },
+    {
+      "id": "blk_867d4dc2d7",
+      "type": "heading",
+      "content": "Wiki source of truth",
+      "level": 2
+    },
+    {
+      "id": "blk_da4ced3b6a",
+      "type": "paragraph",
+      "content": "Edit wiki/content/content_*.py, then regenerate JSON/HTML/Markdown through the existing generator. Direct-file metrics refresh at generation; grouped counts and prior verified labels are historical unless remeasured. A new generation timestamp is not runtime certification."
+    }
+  ],
+  "properties": {
+    "category": "docs",
+    "path": "OPEN_SOURCE_READINESS.md",
+    "lines": 106,
+    "lang": "Markdown",
+    "phase": "pre-publication",
+    "status": "REVIEW",
+    "spec_refs": "",
+    "related": [
+      "doc-readme",
+      "agent-tests",
+      "plugins",
+      "host-main",
+      "local-url"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "f858bb942aa8d776ea318f81dab39f8c",
+  "type": "doc",
+  "slug": "release-readiness",
+  "title": "Release readiness 2026-10-31",
+  "version": 1,
+  "updated": "2026-11-01T15:13:58Z",
+  "tags": [
+    "docs",
+    "REVIEW",
+    "Markdown"
+  ],
+  "blocks": [
+    {
+      "id": "blk_1532b8680a",
+      "type": "heading",
+      "content": "Release readiness 2026-10-31",
+      "level": 1
+    },
+    {
+      "id": "blk_54e854dba1",
+      "type": "paragraph",
+      "content": "Report-only release-readiness pass (1/1) over the public export artifact (single fresh-history commit, 205 files) using a structured checklist: baseline (secrets, dependencies, real build/tests, clean-copy, docs, UX states), a general security review, a debug review, and the Data/recovery, Operations, AI/agents and Privacy/legal profiles."
+    },
+    {
+      "id": "blk_2a71bffce3",
+      "type": "paragraph",
+      "content": "Fresh evidence on 2026-10-31: typecheck clean, build clean, 357/357 tests, npm audit 0 vulnerabilities (both views), secret scanner 0 candidates, private-string sweep clean, dist:dir packaging with fuses flipped + ad-hoc re-seal, packaged smoke XTRAC_PACKAGE_SMOKE_OK exit 0, fuse wire verified on the binary, git history exactly one commit."
+    },
+    {
+      "id": "blk_6b99b0ef12",
+      "type": "paragraph",
+      "content": "Verdict: initially NOT READY on two owner gates (RR-001 bundled asset/skill provenance, RR-002 private vulnerability-reporting channel); RESOLVED same day by owner statements recorded in THIRD_PARTY_NOTICES.md and a designated reporting channel in SECURITY.md \u2014 final verdict READY. Ten further findings are low/informational with dispositions. The full report stays in the private tree (operator context); this article summarizes it."
+    },
+    {
+      "id": "blk_ef95cdb6da",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_e57822ef9f",
+      "type": "field",
+      "content": "RR-001 origin statements for bundled skills/logo assets; RR-002 enable GitHub private vulnerability reporting and finalize SECURITY.md.",
+      "meta": {
+        "name": "Open owner gates"
+      }
+    },
+    {
+      "id": "blk_38b082ac06",
+      "type": "field",
+      "content": "Live-model E2E (needs a local model server), real-user restore/relaunch on hardware, Windows/Linux on-hardware acceptance (R12).",
+      "meta": {
+        "name": "Untested scope"
+      }
+    },
+    {
+      "id": "blk_a2aeb514b1",
+      "type": "field",
+      "content": "Four requested corrective passes completed, all CLEAN (28 battery checks each: secrets, deps, build, full 357-test suite, packaging, docs, security-fix presence, debug sweep, git hygiene), packaging + packaged smoke + fuse wire verified fresh every pass; no application-code changes required. One new finding RR-013 (low, dev-chain-only): glob GHSA-3g3m-2fjr-6pw4 via electron-builder/@electron/asar, moderate, prod tree stays at 0 vulnerabilities; no non-breaking fix upstream \u2014 monitored. Final verdict READY.",
+      "meta": {
+        "name": "Corrective loop 2026-11-01"
+      }
+    }
+  ],
+  "properties": {
+    "category": "docs",
+    "path": "RELEASE_READINESS_2026-10-31.md",
+    "lines": 112,
+    "lang": "Markdown",
+    "phase": "pre-publication",
+    "status": "REVIEW",
+    "spec_refs": "",
+    "related": [
+      "sec-audit-2026-10",
+      "open-source-readiness",
+      "cfg-package"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

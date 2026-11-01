@@ -1,0 +1,58 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "627a51e57a849a2f73641f95fb9f95e5",
+  "type": "doc",
+  "slug": "feature-proposals",
+  "title": "Feature proposals",
+  "version": 1,
+  "updated": "2026-11-01T15:13:58Z",
+  "tags": [
+    "docs",
+    "META",
+    "Markdown"
+  ],
+  "blocks": [
+    {
+      "id": "blk_433b81f305",
+      "type": "heading",
+      "content": "Feature proposals",
+      "level": 1
+    },
+    {
+      "id": "blk_7029da78dc",
+      "type": "paragraph",
+      "content": "Post-audit feature backlog, ordered by value-to-effort within four tracks: Security & robustness (macOS Seatbelt sandbox for run_command, worker-thread tools, approval-card risk annotations, orphaned-backup recovery), Agent capability (Ollama model manager, per-turn snapshot & rollback, per-server MCP env vars, project-defined slash commands), UX (drag-drop file context, timeline virtualization, chat branching, PDF export via the bundled doc-pdf plugin), and Platform (R12 native Windows/Linux verification, signed auto-update channel later)."
+    },
+    {
+      "id": "blk_06e8b6d6e1",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_e112644632",
+      "type": "field",
+      "content": "Quick wins first, then the sandboxing and snapshot tracks in parallel with model management and platform verification.",
+      "meta": {
+        "name": "Sequencing"
+      }
+    }
+  ],
+  "properties": {
+    "category": "docs",
+    "path": "FEATURE_PROPOSALS.md",
+    "lines": 53,
+    "lang": "Markdown",
+    "phase": "2026-10",
+    "status": "META",
+    "spec_refs": "",
+    "related": [
+      "sec-audit-2026-10",
+      "doc-readme"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

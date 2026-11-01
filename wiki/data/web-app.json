@@ -1,0 +1,98 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "a7a1d1b1b26d8785d3cae7a3b8b137b8",
+  "type": "doc",
+  "slug": "web-app",
+  "title": "web/src/App.tsx",
+  "version": 1,
+  "updated": "2026-11-01T15:13:58Z",
+  "tags": [
+    "renderer",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_082d9c0500",
+      "type": "heading",
+      "content": "web/src/App.tsx",
+      "level": 1
+    },
+    {
+      "id": "blk_d63d18b042",
+      "type": "paragraph",
+      "content": "The layout root and top-level state composition. Since v4.4 the window is a two-column grid \u2014 sidebar | main (header, tab strip, permission card, chat) \u2014 with the former right-hand Inspector panel replaced by the Settings modal (\u2699 Settings header button, \u2318,, or the command palette). Still owns the sidebar/composer drag-resize machinery (M2), the command palette (\u2318K), new-chat shortcut (\u2318T), the settings shortcut (\u2318,), the shortcut cheatsheet (? or \u2318/), the tab-strip context menu (right-click \u2192 open in new window). The tab X and middle-click now remove only the tab from the tab strip; chat records remain in the project list and are not archived or deleted."
+    },
+    {
+      "id": "blk_230bf646d0",
+      "type": "heading",
+      "content": "Drag-resize machinery",
+      "level": 2
+    },
+    {
+      "id": "blk_16321938e8",
+      "type": "paragraph",
+      "content": "startDrag installs window-level pointermove/pointerup listeners; each handle maps pointer position through clamp() to a Layout patch (sidebar 180\u2013480, composer 80\u2013300). applyLayout debounces settings persistence to one write per 400 ms and applies immediately for zero-lag feedback. The sidebar collapse renders a 44px rail with an expand button; the inspector column, its resize handle, and its collapsed flag are retired from the UI (v4.4) \u2014 settings.json layout keys of the old shape are still tolerated on read."
+    },
+    {
+      "id": "blk_bdd14ba9b0",
+      "type": "heading",
+      "content": "Settings modal wiring",
+      "level": 2
+    },
+    {
+      "id": "blk_1dfed7828b",
+      "type": "paragraph",
+      "content": "settingsOpen state renders <Settings> with the same data props the Inspector received plus onDeleteProject (wired to useXtrac.deleteProject) for the Project \u2192 Danger zone. The modal component stays mounted while closed so the last-visited section is remembered."
+    },
+    {
+      "id": "blk_1b1477d8f0",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_3013dd4eb8",
+      "type": "field",
+      "content": "Everything below comes from this hook \u2014 see its own article.",
+      "meta": {
+        "name": "useXtrac()"
+      }
+    },
+    {
+      "id": "blk_85e231c753",
+      "type": "field",
+      "content": "The M2 resize system; layout persists in settings.json under `layout`.",
+      "meta": {
+        "name": "startDrag / applyLayout"
+      }
+    },
+    {
+      "id": "blk_5fc398c562",
+      "type": "field",
+      "content": "\u2318K entries: new project, open folder, Settings (\u2318,), new chat, shortcuts, and chat switching.",
+      "meta": {
+        "name": "paletteItems"
+      }
+    }
+  ],
+  "properties": {
+    "category": "renderer",
+    "path": "web/src/App.tsx",
+    "lines": 529,
+    "lang": "TypeScript",
+    "phase": "v1\u2013v4",
+    "status": "CORE",
+    "spec_refs": "",
+    "related": [
+      "use-xtrac",
+      "web-sidebar",
+      "web-chat",
+      "web-settings"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

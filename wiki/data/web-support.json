@@ -1,0 +1,77 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "7a3900b6287930415085399b5db4c9f4",
+  "type": "doc",
+  "slug": "web-support",
+  "title": "web/src/{api.ts, hooks, lib, types, main.tsx}",
+  "version": 1,
+  "updated": "2026-11-01T15:13:59Z",
+  "tags": [
+    "renderer",
+    "CLIENT",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_8a231d0951",
+      "type": "heading",
+      "content": "web/src/{api.ts, hooks, lib, types, main.tsx}",
+      "level": 1
+    },
+    {
+      "id": "blk_3b88fcee64",
+      "type": "paragraph",
+      "content": "Support layer (354 TS lines, plus the stylesheets app.css (~2.8k, incl. the v4.4 settings-modal and project-menu rules) and themes.css (~240)). api.ts is the typed facade over window.xtrac (one method per IPC channel, ~40 of them). types.ts mirrors host shapes (Settings, ChatRecord, Project, Task, StorageUsage\u2026) and re-exports the shared timeline model. lib/format.ts has the markdown sanitizer \u2014 raw HTML escaped, links restricted to credential-free http(s), and link labels routed through parseInline/escaping so untrusted label text can never inject markup (2026-10 fix) \u2014 plus byte/time formatting and basename. main.tsx mounts React inside an app-level ErrorBoundary (a malformed restored chat record degrades to a recoverable message instead of crash-looping the app), and the rules editor surfaces IPC errors instead of failing silently (2026-10). index.html carries the connect-src 'none' CSP, now also pinning form-action 'none' and base-uri 'none' (2026-10)."
+    },
+    {
+      "id": "blk_a17a05e653",
+      "type": "heading",
+      "content": "Appearance and theme hooks",
+      "level": 2
+    },
+    {
+      "id": "blk_1b306a69da",
+      "type": "paragraph",
+      "content": "useTheme persists dark/light in localStorage and sets data-theme; useAppearance (P4) applies the accent preset as a --accent custom property plus data-reduce-motion, persisting both to settings.json."
+    },
+    {
+      "id": "blk_939425b76c",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_3edb899cae",
+      "type": "field",
+      "content": "Every channel the renderer may call, typed end-to-end.",
+      "meta": {
+        "name": "api facade"
+      }
+    },
+    {
+      "id": "blk_bf093e80fa",
+      "type": "field",
+      "content": "Escape-first markdown with sanitizer pass \u2014 model output is untrusted.",
+      "meta": {
+        "name": "renderMarkdown(text)"
+      }
+    }
+  ],
+  "properties": {
+    "category": "renderer",
+    "path": "web/src/",
+    "lines": 416,
+    "lang": "TypeScript",
+    "phase": "v1\u2013v4",
+    "status": "CLIENT",
+    "spec_refs": "",
+    "related": [
+      "use-xtrac",
+      "host-preload"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

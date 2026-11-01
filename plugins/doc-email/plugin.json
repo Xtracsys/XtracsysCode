@@ -1,0 +1,9 @@
+{
+  "id": "doc-email",
+  "name": "Document Kit: Email",
+  "version": "1.0.0",
+  "description": "First-party local plugin: creates reusable email templates (Markdown with {{variables}}) and renders them into standards-compliant .eml files (plain-text + HTML alternative parts) saved in the project folder. No network — nothing is ever sent; the user opens the .eml in their own mail client.",
+  "entry": { "command": "node", "args": ["server.mjs"] },
+  "tools": ["create_email_template", "create_eml"],
+  "capabilities": ["writes files inside the project folder only"]
+}

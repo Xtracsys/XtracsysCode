@@ -1,0 +1,51 @@
+# Build, test, and package each supported OS for PRs and branch pushes.
+# Workflow artifacts are CI outputs; this workflow does not publish releases.
+name: build
+
+on:
+  pull_request:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            args: "--mac dmg zip"
+          - os: ubuntu-latest
+            args: "--linux AppImage"
+          - os: windows-latest
+            args: "--win nsis"
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Actions are pinned to full commit SHAs (not mutable tags) so a compromised or
+      # tag-rewritten upstream action cannot run code in CI. v4 as of 2026-10.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npx electron-builder ${{ matrix.args }}
+        env:
+          # unsigned by design (personal/local builds)
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: XtracsysCode-${{ matrix.os }}
+          path: |
+            release/*.dmg
+            release/*.zip
+            release/*.exe
+            release/*.AppImage
+          if-no-files-found: error

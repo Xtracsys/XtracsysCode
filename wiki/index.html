@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home</title>
+<style>
+:root{--bg:#0A0A0A;--panel:#131313;--panel2:#1A1A1A;--bd:#262626;
+--bd2:#333333;--tx:#E6E6E6;--mut:#8B8B8B;--fnt:#5C5C5C;
+--ac:#E0784F;--red:#FF5252;--amb:#FFB000;--code:#101010;--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--ac);text-decoration:none} a:hover{text-decoration:underline}
+code{font-family:var(--mono);font-size:.86em;background:var(--code);border:1px solid var(--bd);padding:.08em .35em;border-radius:3px;color:#d7f7e4}
+pre{font-family:var(--mono);font-size:.8rem;background:var(--code);border:1px solid var(--bd);border-radius:4px;padding:.9rem 1rem;overflow-x:auto;line-height:1.5;color:#cfe9d8}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+header.top{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.93);backdrop-filter:blur(6px);border-bottom:1px solid var(--bd)}
+.topbar{display:flex;align-items:center;gap:1.4rem;height:56px}
+.brand{font-family:var(--mono);font-weight:700;letter-spacing:.12em;color:var(--tx);font-size:.95rem}
+.brand b{color:var(--ac)}
+.topbar nav{display:flex;gap:1.1rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em}
+.topbar nav a{color:var(--mut)} .topbar nav a:hover{color:var(--ac);text-decoration:none}
+.status{margin-left:auto;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--mut)}
+.status .dot{color:var(--ac)}
+.eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:var(--mut);text-transform:uppercase;margin-bottom:.6rem}
+h1{font-size:1.9rem;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+h2.sec{font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;margin:2.6rem 0 1rem;border-bottom:1px solid var(--bd);padding-bottom:.5rem}
+.hero{padding:3.4rem 0 2.6rem}
+.hero p.sub{color:var(--mut);max-width:62ch;margin-top:.9rem}
+.btn{display:inline-block;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;padding:.6rem 1.1rem;border:1px solid var(--ac);border-radius:3px;color:var(--ac);text-transform:uppercase}
+.btn.solid{background:var(--ac);color:#06130b;font-weight:700}
+.btn:hover{text-decoration:none;filter:brightness(1.1)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:6px;overflow:hidden;margin:2rem 0}
+.stat{background:var(--panel);padding:1rem 1.1rem}
+.stat .n{font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--ac)}
+.stat .l{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:6px;overflow:hidden}
+.card{background:var(--panel);padding:1rem 1.1rem;display:block;color:var(--tx)}
+.card:hover{background:var(--panel2);text-decoration:none}
+.card .f{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--fnt);text-transform:uppercase}
+.card .t{font-weight:600;font-size:.92rem;margin:.3rem 0 .25rem}
+.card .d{color:var(--mut);font-size:.8rem;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+footer.bottom{border-top:1px solid var(--bd);margin-top:4rem;padding:1.6rem 0 2.4rem}
+footer .foot{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;color:var(--faint);display:flex;gap:1.6rem;flex-wrap:wrap}
+footer .foot b{color:var(--mut);font-weight:500}
+.artgrid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:2.4rem;padding:2.2rem 0}
+@media(max-width:880px){.artgrid{grid-template-columns:1fr}.infobox{order:-1}}
+.article h1{font-size:1.75rem}
+.lede{font-size:1.05rem}
+.article p{margin:.8rem 0;color:#cfcfcf}
+.article h3{font-size:1.05rem;margin:1.6rem 0 .2rem}
+.infobox{background:var(--panel);border:1px solid var(--bd);border-radius:6px;font-family:var(--mono);font-size:.72rem;align-self:start;position:sticky;top:76px}
+.infobox .ih{padding:.7rem .9rem;border-bottom:1px solid var(--bd);letter-spacing:.16em;color:var(--ac);text-transform:uppercase;font-size:.64rem}
+.infobox .ir{display:flex;justify-content:space-between;gap:1rem;padding:.42rem .9rem;border-bottom:1px solid var(--bd)}
+.infobox .ir:last-child{border-bottom:0}
+.infobox .k{color:var(--fnt);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.infobox .v{color:var(--tx);text-align:right;word-break:break-all}
+.infobox .v a{display:block}
+table.ki{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.84rem}
+table.ki th{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--bd2)}
+table.ki td{padding:.5rem .6rem;border-bottom:1px solid var(--bd);vertical-align:top;color:#cfcfcf}
+table.ki td:first-child{font-family:var(--mono);font-size:.76rem;color:var(--ac);white-space:nowrap}
+.badge{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--bd2);border-radius:3px;padding:.14rem .45rem;color:var(--mut)}
+.badge.core{border-color:var(--ac);color:var(--ac)}
+.badge.test{border-color:var(--amb);color:var(--amb)}
+.badge.spec{border-color:#6da9ff;color:#6da9ff}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--bd2);margin:1.8rem 0 1.4rem}
+.tab{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);padding:.6rem 1.1rem;cursor:pointer;border:1px solid transparent;border-bottom:0;position:relative;top:1px;user-select:none}
+.tab.on{color:var(--ac);border-color:var(--bd2);background:var(--panel);border-top:2px solid var(--ac)}
+.panel{display:none} .panel.on{display:block}
+.master-index h4{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;margin:1.2rem 0 .4rem}
+.master-index ul{list-style:none}
+.master-index li{padding:.22rem 0;border-bottom:1px dashed var(--bd)}
+.master-index li a{font-size:.86rem}
+.master-index li span{font-family:var(--mono);font-size:.68rem;color:var(--fnt)}
+</style></head>
+<body>
+<header class="top"><div class="wrap topbar">
+<div class="brand">XTRACSYS<b>WIKI</b></div>
+<nav><a href="index.html#cat-docs">DOCUMENTS</a><a href="index.html#cat-agent">AGENT</a><a href="index.html#cat-host">ELECTRON</a><a href="index.html#cat-renderer">RENDERER</a><a href="index.html#cat-config">CONFIG</a></nav>
+<div class="status"><span class="dot">&#9679;</span> PRE-RELEASE REVIEW &nbsp;/&nbsp; BASE HEAD@85e2a30ae9ac &nbsp;·&nbsp; WORKING TREE MAY DIFFER</div>
+</div></header>
+<div class="wrap" style="padding-top:1rem"><strong>Publication on hold.</strong> See <a href="docs/open-source-readiness.html">open-source readiness</a> for current verification and unresolved security findings. Generated timestamps do not recertify historical claims.</div>
+<section class="hero"><div class="wrap">
+<div class="eyebrow">FILE / 00 &nbsp;·&nbsp; INTERNAL WIKI &nbsp;·&nbsp; 42 ARTICLES</div>
+<h1>Xtracsys Wiki — the codebase, documented file by file</h1>
+<p class="sub">Every article documents one file: purpose, key functions, interactions, and the
+decisions it implements. Tabbed HTML with an embedded canonical JSON payload per page,
+mirrored as JSON data files, indexed in Markdown.</p>
+<p style="margin-top:1.2rem"><a class="btn solid" href="#cat-docs">BEGIN READING</a>
+<a class="btn" href="INDEX.md" style="margin-left:.6rem">INDEX.MD</a></p>
+<div class="stats">
+<div class="stat"><div class="n">42</div><div class="l">articles</div></div>
+<div class="stat"><div class="n">14,574</div><div class="l">source lines covered</div></div>
+</div></div></section><section id="cat-docs" class="wrap" style="padding-bottom:2rem">
+<h2 class="sec">Documents <span style="color:var(--fnt);text-transform:none;letter-spacing:.04em">&nbsp;// requirements and goals · 10 articles</span></h2>
+<div class="cards"><a class="card" href="docs/doc-requirements.html">
+<div class="f">FILE / 01 · BUILD_REQUIREMENTS.md · 219 LN</div>
+<div class="t">BUILD_REQUIREMENTS.md <span class="badge spec">SPEC</span></div>
+<div class="d">The founding stakeholder document (draft 2026-09-11): a local-only LLM desktop app that looks like Codex/ChatGPT, supports multitasking with projects and tabs, </div></a><a class="card" href="docs/doc-goals.html">
+<div class="f">FILE / 02 · GOAL_PROMPT_V2.md (+V3, V4) · 377 LN</div>
+<div class="t">GOAL_PROMPT_V2/V3/V4.md <span class="badge spec">SPEC</span></div>
+<div class="d">The self-contained unattended build prompts that drove versions 0.2–0.4. Each is a complete mission brief: hard constraints (local-only, bounded storage, archit</div></a><a class="card" href="docs/doc-readme.html">
+<div class="f">FILE / 03 · README.md · 195 LN</div>
+<div class="t">README.md <span class="badge ">META</span></div>
+<div class="d">The user-facing entry point describes the macOS desktop app, its Ollama/llama.cpp/GMLX/MLX LM server options, project and data behavior, security boundaries, an</div></a><a class="card" href="docs/doc-status.html">
+<div class="f">FILE / 04 · STATUS.md · 110 LN</div>
+<div class="t">STATUS.md <span class="badge ">META</span></div>
+<div class="d">The historical mission ledger preserves N/M/P/Q checklists and the v5 R1–R14 registry. R12 native Windows/Linux acceptance remains in progress; later entries co</div></a><a class="card" href="docs/doc-windows-install.html">
+<div class="f">FILE / 05 · INSTALL_WINDOWS.md · 80 LN</div>
+<div class="t">INSTALL_WINDOWS.md <span class="badge spec">SPEC</span></div>
+<div class="d">Windows install guide (x64 NSIS build): installer walkthrough including the unsigned-build SmartScreen step, the %USERPROFILE%\XtracsysCode data root, Ollama/ll</div></a><a class="card" href="docs/doc-linux-install.html">
+<div class="f">FILE / 06 · INSTALL_LINUX.md · 95 LN</div>
+<div class="t">INSTALL_LINUX.md <span class="badge spec">SPEC</span></div>
+<div class="d">Linux install guide (x64 AppImage): chmod + run, the libfuse2 / --appimage-extract-and-run fallback, the ~/XtracsysCode data root, Ollama (install script) and l</div></a><a class="card" href="docs/open-source-readiness.html">
+<div class="f">FILE / 07 · OPEN_SOURCE_READINESS.md · 106 LN</div>
+<div class="t">Open-source readiness <span class="badge ">REVIEW</span></div>
+<div class="d">Apache-2.0 is applied locally for Xtracsys LLC. The release sprint adds source-bound plugin consent, imported-rule removal, native-tar restore tests, provider r</div></a><a class="card" href="docs/sec-audit-2026-10.html">
+<div class="f">FILE / 08 · SECURITY_AUDIT_2026-10-28.md · 214 LN</div>
+<div class="t">Security audit &amp; remediation <span class="badge ">REVIEW</span></div>
+<div class="d">Two full adversarial audits of the v5 tree (same day, 2026-10-28): an initial five-track audit (Electron core, agent runtime, plugin/supply chain, renderer, bui</div></a><a class="card" href="docs/feature-proposals.html">
+<div class="f">FILE / 09 · FEATURE_PROPOSALS.md · 53 LN</div>
+<div class="t">Feature proposals <span class="badge ">META</span></div>
+<div class="d">Post-audit feature backlog, ordered by value-to-effort within four tracks: Security &amp; robustness (macOS Seatbelt sandbox for run_command, worker-thread tools, a</div></a><a class="card" href="docs/release-readiness.html">
+<div class="f">FILE / 10 · RELEASE_READINESS_2026-10-31.md · 112 LN</div>
+<div class="t">Release readiness 2026-10-31 <span class="badge ">REVIEW</span></div>
+<div class="d">Report-only release-readiness pass (1/1) over the public export artifact (single fresh-history commit, 205 files) using a structured checklist: baseline (secret</div></a></div></section><section id="cat-agent" class="wrap" style="padding-bottom:2rem">
+<h2 class="sec">Agent Core <span style="color:var(--fnt);text-transform:none;letter-spacing:.04em">&nbsp;// the loop and its tools · 10 articles</span></h2>
+<div class="cards"><a class="card" href="docs/agent-loop.html">
+<div class="f">FILE / 01 · electron/agent/loop.ts · 265 LN</div>
+<div class="t">electron/agent/loop.ts <span class="badge core">CORE</span></div>
+<div class="d">The agent turn engine. runAgentTurn() is the heart of XtracsysCode: it takes a conversation history plus a system prompt, streams a model completion, executes a</div></a><a class="card" href="docs/agent-tools.html">
+<div class="f">FILE / 02 · electron/agent/tools.ts · 643 LN</div>
+<div class="t">electron/agent/tools.ts <span class="badge core">CORE</span></div>
+<div class="d">The agent&#x27;s hands. Seven tools are registered by defaultTools(): list_dir, read_file, write_file, edit_file, run_command, grep, and set_plan. Built-in file tool</div></a><a class="card" href="docs/agent-providers.html">
+<div class="f">FILE / 03 · electron/agent/providers/ · 375 LN</div>
+<div class="t">electron/agent/providers/* <span class="badge core">CORE</span></div>
+<div class="d">The app&#x27;s Ollama provider uses native /api/chat (NDJSON); its dedicated llama.cpp provider uses OpenAI-compatible /v1/chat/completions (SSE). openaiCompatible.t</div></a><a class="card" href="docs/agent-mcp.html">
+<div class="f">FILE / 04 · electron/agent/mcp.ts · 455 LN</div>
+<div class="t">electron/agent/mcp.ts <span class="badge core">CORE</span></div>
+<div class="d">A minimal Model Context Protocol client for local stdio servers. It spawns each configured server, speaks newline-delimited JSON-RPC 2.0 (initialize → notificat</div></a><a class="card" href="docs/agent-types.html">
+<div class="f">FILE / 05 · electron/agent/types.ts · 182 LN</div>
+<div class="t">electron/agent/types.ts <span class="badge core">CORE</span></div>
+<div class="d">The agent&#x27;s contract surface: ChatMessage (role/content/toolCalls/images), ToolCall, ToolSpec, ToolContext (cwd, resolvePath, scratchDir, updatePlan, onOutput),</div></a><a class="card" href="docs/agent-prompt.html">
+<div class="f">FILE / 06 · electron/agent/prompt.ts · 42 LN</div>
+<div class="t">electron/agent/prompt.ts <span class="badge core">CORE</span></div>
+<div class="d">Builds the system prompt: identity, environment (project root, OS), the tool inventory, eight behavioral rules, optional project instructions from .xtracsys.md/</div></a><a class="card" href="docs/agent-smoke.html">
+<div class="f">FILE / 07 · electron/agent/smoke.ts · 118 LN</div>
+<div class="t">electron/agent/smoke.ts <span class="badge test">TEST</span></div>
+<div class="d">The plain-Node verification harness: picks the first reachable backend (preferring coder/qwen/llama/granite models), plants a scratch project with notes.txt con</div></a><a class="card" href="docs/timeline-model.html">
+<div class="f">FILE / 08 · shared/timelineModel.ts · 246 LN</div>
+<div class="t">shared/timelineModel.ts <span class="badge core">CORE</span></div>
+<div class="d">The single source of truth for what a chat transcript looks like. TimelineItem is the union the UI renders and main persists; SharedAgentEvent mirrors the agent</div></a><a class="card" href="docs/local-url.html">
+<div class="f">FILE / 09 · electron/agent/providers/localUrl.ts · 47 LN</div>
+<div class="t">electron/agent/providers/localUrl.ts <span class="badge core">CORE</span></div>
+<div class="d">The single validation point for every built-in backend URL. Provider constructors and settings:set IPC enforce http/https only, no URL credentials, and loopback</div></a><a class="card" href="docs/agent-tests.html">
+<div class="f">FILE / 10 · tests/ · 666 LN</div>
+<div class="t">tests/* <span class="badge test">TEST</span></div>
+<div class="d">Four deterministic plain-Node suites use disposable test roots. Current review execution: skills.test.mjs 36 passed; plugins.test.mjs 21 passed (including real </div></a></div></section><section id="cat-host" class="wrap" style="padding-bottom:2rem">
+<h2 class="sec">Electron Host <span style="color:var(--fnt);text-transform:none;letter-spacing:.04em">&nbsp;// main process · 9 articles</span></h2>
+<div class="cards"><a class="card" href="docs/host-main.html">
+<div class="f">FILE / 01 · electron/main.ts · 2073 LN</div>
+<div class="t">electron/main.ts <span class="badge core">CORE</span></div>
+<div class="d">The Electron main process: owns the window registry, central IPC sender/frame validation, navigation restrictions, the slash-command interpreter, scheduler, bac</div></a><a class="card" href="docs/host-preload.html">
+<div class="f">FILE / 02 · electron/preload.ts · 96 LN</div>
+<div class="t">electron/preload.ts <span class="badge core">CORE</span></div>
+<div class="d">The context-isolated bridge exposes window.xtrac with invoke(channel, payload) and onEvent(cb), rejects channels outside a hardcoded allow-list, and provides no</div></a><a class="card" href="docs/host-runner.html">
+<div class="f">FILE / 03 · electron/runner.ts · 450 LN</div>
+<div class="t">electron/runner.ts <span class="badge core">CORE</span></div>
+<div class="d">The orchestration layer between UI requests and the agent core. AgentRunner turns a chat record into a live turn: it resolves per-project settings overrides (ch</div></a><a class="card" href="docs/host-storage.html">
+<div class="f">FILE / 04 · electron/storage.ts · 867 LN</div>
+<div class="t">electron/storage.ts <span class="badge core">CORE</span></div>
+<div class="d">The hard-constraint module. Everything user-visible lives in one root — default ~/XtracsysCode — with chats/, archive/, logs/, tmp/, and JSON docs at the top. c</div></a><a class="card" href="docs/host-store.html">
+<div class="f">FILE / 05 · electron/store.ts · 415 LN</div>
+<div class="t">electron/store.ts <span class="badge core">CORE</span></div>
+<div class="d">The domain store on top of Storage: projects (with approval rules, MCP configs, per-project settings), chats (in-memory cache over chats/&lt;id&gt;.json), and tasks (</div></a><a class="card" href="docs/skills.html">
+<div class="f">FILE / 06 · electron/skills.ts · 506 LN</div>
+<div class="t">electron/skills.ts <span class="badge core">CORE</span></div>
+<div class="d">The local skills system (v5 Phase B). A skill is reusable instructions plus inert reference/template files — never executable code, never permissions. App-manag</div></a><a class="card" href="docs/plugins.html">
+<div class="f">FILE / 07 · electron/plugins.ts · 325 LN</div>
+<div class="t">electron/plugins.ts <span class="badge core">CORE</span></div>
+<div class="d">Local plugins v1 (v5 Phase D): an app-managed manifest/configuration for a LOCAL stdio tool process, riding the existing MCP transport. A plugin is NOT code inj</div></a><a class="card" href="docs/platform.html">
+<div class="f">FILE / 08 · electron/platform.ts · 127 LN</div>
+<div class="t">electron/platform.ts <span class="badge core">CORE</span></div>
+<div class="d">The single OS seam (cross-platform prep): run_command&#x27;s shell invocation (zsh on macOS, bash on Linux, cmd /d /s /c on Windows), descendant-safe process-tree ki</div></a><a class="card" href="docs/doc-kit.html">
+<div class="f">FILE / 09 · plugins/ · 1412 LN</div>
+<div class="t">plugins/doc-* <span class="badge core">CORE</span></div>
+<div class="d">The Document Kit: five self-contained, importable first-party plugins for document creation, each a plugin.json manifest plus a dependency-free stdio MCP server</div></a></div></section><section id="cat-renderer" class="wrap" style="padding-bottom:2rem">
+<h2 class="sec">Renderer <span style="color:var(--fnt);text-transform:none;letter-spacing:.04em">&nbsp;// React UI · 8 articles</span></h2>
+<div class="cards"><a class="card" href="docs/web-app.html">
+<div class="f">FILE / 01 · web/src/App.tsx · 529 LN</div>
+<div class="t">web/src/App.tsx <span class="badge core">CORE</span></div>
+<div class="d">The layout root and top-level state composition. Since v4.4 the window is a two-column grid — sidebar | main (header, tab strip, permission card, chat) — with t</div></a><a class="card" href="docs/use-xtrac.html">
+<div class="f">FILE / 02 · web/src/hooks/useXtrac.ts · 352 LN</div>
+<div class="t">web/src/hooks/useXtrac.ts <span class="badge core">CORE</span></div>
+<div class="d">The renderer&#x27;s brain. One hook exposes settings, projects, chats, tasks, usage, the active chat and its live timeline, permission requests, models, and every ac</div></a><a class="card" href="docs/web-sidebar.html">
+<div class="f">FILE / 03 · web/src/components/Sidebar.tsx · 503 LN</div>
+<div class="t">web/src/components/Sidebar.tsx <span class="badge core">CORE</span></div>
+<div class="d">Project/chat navigator with three v3+ layers: a global transcript SearchBox (debounced, hits open the chat), per-project ⋯ popover menus (new chat, Finder, rena</div></a><a class="card" href="docs/web-chat.html">
+<div class="f">FILE / 04 · web/src/components/Chat.tsx · 404 LN</div>
+<div class="t">web/src/components/Chat.tsx <span class="badge core">CORE</span></div>
+<div class="d">The conversation surface: scroll-anchored timeline, status strip (approvals toggle, per-chat model picker, plan progress, context meter, turn count), the compos</div></a><a class="card" href="docs/web-settings.html">
+<div class="f">FILE / 05 · web/src/components/Settings.tsx · 1879 LN</div>
+<div class="t">web/src/components/Settings.tsx <span class="badge core">CORE</span></div>
+<div class="d">The Settings modal (v4.4) — the former docked Inspector panel, rebuilt as a centered dialog with a grouped section navigator like a proper settings app. Left ra</div></a><a class="card" href="docs/web-modals-wizard.html">
+<div class="f">FILE / 06 · web/src/components/ · 365 LN</div>
+<div class="t">web/src/components/Modals.tsx + WelcomeWizard.tsx <span class="badge ">CLIENT</span></div>
+<div class="d">Two modal families. Modals.tsx holds NewProjectModal (folder browse/up/Choose…/new-folder creation, optional project name — M4 scaffolds AGENTS.md/.xtracsys.md </div></a><a class="card" href="docs/web-timeline.html">
+<div class="f">FILE / 07 · web/src/components/timeline/ · 210 LN</div>
+<div class="t">web/src/components/timeline/* <span class="badge ">CLIENT</span></div>
+<div class="d">The row renderers. TimelineRow dispatches on item kind: user bubbles (with 📎 image counts and hover-copy), assistant bubbles (markdown via renderMarkdown with h</div></a><a class="card" href="docs/web-support.html">
+<div class="f">FILE / 08 · web/src/ · 416 LN</div>
+<div class="t">web/src/{api.ts, hooks, lib, types, main.tsx} <span class="badge ">CLIENT</span></div>
+<div class="d">Support layer (354 TS lines, plus the stylesheets app.css (~2.8k, incl. the v4.4 settings-modal and project-menu rules) and themes.css (~240)). api.ts is the ty</div></a></div></section><section id="cat-config" class="wrap" style="padding-bottom:2rem">
+<h2 class="sec">Config &amp; Meta <span style="color:var(--fnt);text-transform:none;letter-spacing:.04em">&nbsp;// repo plumbing · 5 articles</span></h2>
+<div class="cards"><a class="card" href="docs/cfg-package.html">
+<div class="f">FILE / 01 · package.json · 47 LN</div>
+<div class="t">package.json + electron-builder.yml <span class="badge ">META</span></div>
+<div class="d">Build and dependency plumbing. Runtime dependency is marked only (for transcript rendering) — everything else is dev tooling. Scripts: dev (vite + electron conc</div></a><a class="card" href="docs/cfg-tsconfig-vite.html">
+<div class="f">FILE / 02 · vite.config.ts · 18 LN</div>
+<div class="t">tsconfig*.json + vite.config.ts <span class="badge ">META</span></div>
+<div class="d">Two TypeScript programs: tsconfig.json compiles electron/ + shared/ to CommonJS in dist-electron (Node types, no Electron at type level in shared/); tsconfig.we</div></a><a class="card" href="docs/cfg-icon.html">
+<div class="f">FILE / 03 · scripts/icon.js · 187 LN</div>
+<div class="t">scripts/icon.js + build/icon.icns <span class="badge ">META</span></div>
+<div class="d">A dependency-free app icon generator: draws a 1024px RGBA buffer in pure Node (dark rounded square, ember X strokes, terminal-cursor block), hand-writes the PNG</div></a><a class="card" href="docs/cfg-web-shell.html">
+<div class="f">FILE / 04 · web/index.html · 16 LN</div>
+<div class="t">web/index.html + .gitignore <span class="badge ">META</span></div>
+<div class="d">The HTML shell applies restrictive CSP including connect-src &#x27;none&#x27;, form-action &#x27;none&#x27;, and base-uri &#x27;none&#x27; (the last two added 2026-10 — neither falls back to</div></a><a class="card" href="docs/bundled-skills.html">
+<div class="f">FILE / 05 · bundled-skills/ · 338 LN</div>
+<div class="t">bundled-skills/ + plugins/example-text-formatter <span class="badge spec">SPEC</span></div>
+<div class="d">bundled-skills/ ships via electron-builder extraResources and contains six starter skills scaffolded without overwriting user copies: skill-builder, project-ori</div></a></div></section>
+<footer class="bottom"><div class="wrap foot">
+<span><b>NODE 001 / ACTIVE</b></span>
+<span>GENERATED 2026-11-01 15:13 UTC</span>
+</div></footer>
+<script>
+document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
+ document.querySelectorAll('.tab').forEach(function(x){x.classList.toggle('on',x===t)});
+ document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.id==='p-'+t.dataset.tab)});
+ window.scrollTo({top:0});
+});});
+</script>
+</body></html>

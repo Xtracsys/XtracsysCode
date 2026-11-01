@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>electron/plugins.ts</title>
+<style>
+:root{--bg:#0A0A0A;--panel:#131313;--panel2:#1A1A1A;--bd:#262626;
+--bd2:#333333;--tx:#E6E6E6;--mut:#8B8B8B;--fnt:#5C5C5C;
+--ac:#E0784F;--red:#FF5252;--amb:#FFB000;--code:#101010;--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--ac);text-decoration:none} a:hover{text-decoration:underline}
+code{font-family:var(--mono);font-size:.86em;background:var(--code);border:1px solid var(--bd);padding:.08em .35em;border-radius:3px;color:#d7f7e4}
+pre{font-family:var(--mono);font-size:.8rem;background:var(--code);border:1px solid var(--bd);border-radius:4px;padding:.9rem 1rem;overflow-x:auto;line-height:1.5;color:#cfe9d8}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+header.top{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.93);backdrop-filter:blur(6px);border-bottom:1px solid var(--bd)}
+.topbar{display:flex;align-items:center;gap:1.4rem;height:56px}
+.brand{font-family:var(--mono);font-weight:700;letter-spacing:.12em;color:var(--tx);font-size:.95rem}
+.brand b{color:var(--ac)}
+.topbar nav{display:flex;gap:1.1rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em}
+.topbar nav a{color:var(--mut)} .topbar nav a:hover{color:var(--ac);text-decoration:none}
+.status{margin-left:auto;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--mut)}
+.status .dot{color:var(--ac)}
+.eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:var(--mut);text-transform:uppercase;margin-bottom:.6rem}
+h1{font-size:1.9rem;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+h2.sec{font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;margin:2.6rem 0 1rem;border-bottom:1px solid var(--bd);padding-bottom:.5rem}
+.hero{padding:3.4rem 0 2.6rem}
+.hero p.sub{color:var(--mut);max-width:62ch;margin-top:.9rem}
+.btn{display:inline-block;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;padding:.6rem 1.1rem;border:1px solid var(--ac);border-radius:3px;color:var(--ac);text-transform:uppercase}
+.btn.solid{background:var(--ac);color:#06130b;font-weight:700}
+.btn:hover{text-decoration:none;filter:brightness(1.1)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:6px;overflow:hidden;margin:2rem 0}
+.stat{background:var(--panel);padding:1rem 1.1rem}
+.stat .n{font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--ac)}
+.stat .l{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:6px;overflow:hidden}
+.card{background:var(--panel);padding:1rem 1.1rem;display:block;color:var(--tx)}
+.card:hover{background:var(--panel2);text-decoration:none}
+.card .f{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--fnt);text-transform:uppercase}
+.card .t{font-weight:600;font-size:.92rem;margin:.3rem 0 .25rem}
+.card .d{color:var(--mut);font-size:.8rem;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+footer.bottom{border-top:1px solid var(--bd);margin-top:4rem;padding:1.6rem 0 2.4rem}
+footer .foot{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;color:var(--faint);display:flex;gap:1.6rem;flex-wrap:wrap}
+footer .foot b{color:var(--mut);font-weight:500}
+.artgrid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:2.4rem;padding:2.2rem 0}
+@media(max-width:880px){.artgrid{grid-template-columns:1fr}.infobox{order:-1}}
+.article h1{font-size:1.75rem}
+.lede{font-size:1.05rem}
+.article p{margin:.8rem 0;color:#cfcfcf}
+.article h3{font-size:1.05rem;margin:1.6rem 0 .2rem}
+.infobox{background:var(--panel);border:1px solid var(--bd);border-radius:6px;font-family:var(--mono);font-size:.72rem;align-self:start;position:sticky;top:76px}
+.infobox .ih{padding:.7rem .9rem;border-bottom:1px solid var(--bd);letter-spacing:.16em;color:var(--ac);text-transform:uppercase;font-size:.64rem}
+.infobox .ir{display:flex;justify-content:space-between;gap:1rem;padding:.42rem .9rem;border-bottom:1px solid var(--bd)}
+.infobox .ir:last-child{border-bottom:0}
+.infobox .k{color:var(--fnt);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.infobox .v{color:var(--tx);text-align:right;word-break:break-all}
+.infobox .v a{display:block}
+table.ki{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.84rem}
+table.ki th{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--bd2)}
+table.ki td{padding:.5rem .6rem;border-bottom:1px solid var(--bd);vertical-align:top;color:#cfcfcf}
+table.ki td:first-child{font-family:var(--mono);font-size:.76rem;color:var(--ac);white-space:nowrap}
+.badge{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--bd2);border-radius:3px;padding:.14rem .45rem;color:var(--mut)}
+.badge.core{border-color:var(--ac);color:var(--ac)}
+.badge.test{border-color:var(--amb);color:var(--amb)}
+.badge.spec{border-color:#6da9ff;color:#6da9ff}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--bd2);margin:1.8rem 0 1.4rem}
+.tab{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);padding:.6rem 1.1rem;cursor:pointer;border:1px solid transparent;border-bottom:0;position:relative;top:1px;user-select:none}
+.tab.on{color:var(--ac);border-color:var(--bd2);background:var(--panel);border-top:2px solid var(--ac)}
+.panel{display:none} .panel.on{display:block}
+.master-index h4{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;margin:1.2rem 0 .4rem}
+.master-index ul{list-style:none}
+.master-index li{padding:.22rem 0;border-bottom:1px dashed var(--bd)}
+.master-index li a{font-size:.86rem}
+.master-index li span{font-family:var(--mono);font-size:.68rem;color:var(--fnt)}
+</style></head>
+<body>
+<header class="top"><div class="wrap topbar">
+<div class="brand">XTRACSYS<b>WIKI</b></div>
+<nav><a href="../index.html#cat-docs">DOCUMENTS</a><a href="../index.html#cat-agent">AGENT</a><a href="../index.html#cat-host">ELECTRON</a><a href="../index.html#cat-renderer">RENDERER</a><a href="../index.html#cat-config">CONFIG</a></nav>
+<div class="status"><span class="dot">&#9679;</span> PRE-RELEASE REVIEW &nbsp;/&nbsp; BASE HEAD@85e2a30ae9ac &nbsp;·&nbsp; WORKING TREE MAY DIFFER</div>
+</div></header>
+<div class="wrap" style="padding-top:1rem"><strong>Publication on hold.</strong> See <a href="../docs/open-source-readiness.html">open-source readiness</a> for current verification and unresolved security findings. Generated timestamps do not recertify historical claims.</div>
+<div class="wrap artgrid">
+<article class="article panel on" id="p-article">
+<div class="eyebrow">FILE / 07 &nbsp;·&nbsp; electron/plugins.ts &nbsp;·&nbsp; 325 LINES</div>
+<h1>electron/plugins.ts</h1>
+<p class="lede">Local plugins v1 (v5 Phase D): an app-managed manifest/configuration for a LOCAL stdio tool process, riding the existing MCP transport. A plugin is NOT code injected into Electron: import copies only plugin.json into &lt;root&gt;/plugins/&lt;id&gt;/ and records the original source folder. Test and runtime use that same resolved folder and source-bound consent.</p><p class="lede">Plugins import DISABLED and unreviewed. Enabling/testing requires native-dialog consent tied to launch details and a bounded source-tree hash; changed source requires review again. Test and runtime use the same resolved source cwd. Review rejects links/special files and caps entries/depth/bytes. External runtimes/environment/dependencies and final-check-to-spawn races remain unpinned. Enabled in-scope configs join project MCP configs; these are ordinary unsandboxed processes and tool approvals do not gate startup side effects.</p><h3>Validation</h3><p>Strict manifest rules: id pattern, name/description required, entry.command must be local (no URLs, no .. climbs), args capped at 32, declared tools/capabilities capped. Import never executes anything; remote-source and malformed manifests are rejected with actionable errors.</p><h3>Key items</h3><table class='ki'><tr><th>item</th><th>what it does</th></tr><tr><td>PluginStore.importFrom / setEnabled(reviewed) / mcpConfigsFor</td><td>The safe lifecycle: import inert → review → enable → scoped contribution.</td></tr><tr><td>cwdFor(rec)</td><td>Test connection uses sourcePath, falling back to data root. Real turns currently discard this directory and use chat.cwd: unresolved publication blocker.</td></tr></table>
+</article>
+<aside class="panel" id="p-data"><div style="width:100%">
+<div class="eyebrow">// CANONICAL PAYLOAD — EMBEDDED JSON</div>
+<pre>{
+  &quot;$schema&quot;: &quot;https://code-wiki.local/schema/article.json&quot;,
+  &quot;id&quot;: &quot;92cd10e6b8b068a931196d1d73a03254&quot;,
+  &quot;type&quot;: &quot;doc&quot;,
+  &quot;slug&quot;: &quot;plugins&quot;,
+  &quot;title&quot;: &quot;electron/plugins.ts&quot;,
+  &quot;version&quot;: 1,
+  &quot;updated&quot;: &quot;2026-11-01T15:13:57Z&quot;,
+  &quot;tags&quot;: [
+    &quot;host&quot;,
+    &quot;CORE&quot;,
+    &quot;TypeScript&quot;
+  ],
+  &quot;blocks&quot;: [
+    {
+      &quot;id&quot;: &quot;blk_65b08501fc&quot;,
+      &quot;type&quot;: &quot;heading&quot;,
+      &quot;content&quot;: &quot;electron/plugins.ts&quot;,
+      &quot;level&quot;: 1
+    },
+    {
+      &quot;id&quot;: &quot;blk_ebabf5a63a&quot;,
+      &quot;type&quot;: &quot;paragraph&quot;,
+      &quot;content&quot;: &quot;Local plugins v1 (v5 Phase D): an app-managed manifest/configuration for a LOCAL stdio tool process, riding the existing MCP transport. A plugin is NOT code injected into Electron: import copies only plugin.json into &lt;root&gt;/plugins/&lt;id&gt;/ and records the original source folder. Test and runtime use that same resolved folder and source-bound consent.&quot;
+    },
+    {
+      &quot;id&quot;: &quot;blk_5d5a1b19e2&quot;,
+      &quot;type&quot;: &quot;paragraph&quot;,
+      &quot;content&quot;: &quot;Plugins import DISABLED and unreviewed. Enabling/testing requires native-dialog consent tied to launch details and a bounded source-tree hash; changed source requires review again. Test and runtime use the same resolved source cwd. Review rejects links/special files and caps entries/depth/bytes. External runtimes/environment/dependencies and final-check-to-spawn races remain unpinned. Enabled in-scope configs join project MCP configs; these are ordinary unsandboxed processes and tool approvals do not gate startup side effects.&quot;
+    },
+    {
+      &quot;id&quot;: &quot;blk_f4a0cfa4d3&quot;,
+      &quot;type&quot;: &quot;heading&quot;,
+      &quot;content&quot;: &quot;Validation&quot;,
+      &quot;level&quot;: 2
+    },
+    {
+      &quot;id&quot;: &quot;blk_7472f0bbdb&quot;,
+      &quot;type&quot;: &quot;paragraph&quot;,
+      &quot;content&quot;: &quot;Strict manifest rules: id pattern, name/description required, entry.command must be local (no URLs, no .. climbs), args capped at 32, declared tools/capabilities capped. Import never executes anything; remote-source and malformed manifests are rejected with actionable errors.&quot;
+    },
+    {
+      &quot;id&quot;: &quot;blk_4c4054d8de&quot;,
+      &quot;type&quot;: &quot;heading&quot;,
+      &quot;content&quot;: &quot;Key items&quot;,
+      &quot;level&quot;: 2
+    },
+    {
+      &quot;id&quot;: &quot;blk_4eefabdf71&quot;,
+      &quot;type&quot;: &quot;field&quot;,
+      &quot;content&quot;: &quot;The safe lifecycle: import inert \u2192 review \u2192 enable \u2192 scoped contribution.&quot;,
+      &quot;meta&quot;: {
+        &quot;name&quot;: &quot;PluginStore.importFrom / setEnabled(reviewed) / mcpConfigsFor&quot;
+      }
+    },
+    {
+      &quot;id&quot;: &quot;blk_8b55f22418&quot;,
+      &quot;type&quot;: &quot;field&quot;,
+      &quot;content&quot;: &quot;Test connection uses sourcePath, falling back to data root. Real turns currently discard this directory and use chat.cwd: unresolved publication blocker.&quot;,
+      &quot;meta&quot;: {
+        &quot;name&quot;: &quot;cwdFor(rec)&quot;
+      }
+    }
+  ],
+  &quot;properties&quot;: {
+    &quot;category&quot;: &quot;host&quot;,
+    &quot;path&quot;: &quot;electron/plugins.ts&quot;,
+    &quot;lines&quot;: 325,
+    &quot;lang&quot;: &quot;TypeScript&quot;,
+    &quot;phase&quot;: &quot;v5&quot;,
+    &quot;status&quot;: &quot;CORE&quot;,
+    &quot;spec_refs&quot;: [
+      &quot;v5 Phase D&quot;
+    ],
+    &quot;related&quot;: [
+      &quot;skills&quot;,
+      &quot;host-runner&quot;,
+      &quot;agent-mcp&quot;
+    ]
+  },
+  &quot;audit&quot;: {
+    &quot;last_editor&quot;: &quot;human:wiki-generator&quot;,
+    &quot;last_commit&quot;: &quot;85e2a30ae9ac&quot;
+  }
+}</pre></div></aside>
+<aside class="panel master-index" id="p-index"><div class="master-index"><h4>// Documents</h4><ul><li><a href="doc-requirements.html">BUILD_REQUIREMENTS.md</a><span> BUILD_REQUIREMENTS.md</span></li><li><a href="doc-goals.html">GOAL_PROMPT_V2/V3/V4.md</a><span> GOAL_PROMPT_V2.md (+V3, V4)</span></li><li><a href="doc-readme.html">README.md</a><span> README.md</span></li><li><a href="doc-status.html">STATUS.md</a><span> STATUS.md</span></li><li><a href="doc-windows-install.html">INSTALL_WINDOWS.md</a><span> INSTALL_WINDOWS.md</span></li><li><a href="doc-linux-install.html">INSTALL_LINUX.md</a><span> INSTALL_LINUX.md</span></li><li><a href="open-source-readiness.html">Open-source readiness</a><span> OPEN_SOURCE_READINESS.md</span></li><li><a href="sec-audit-2026-10.html">Security audit &amp; remediation</a><span> SECURITY_AUDIT_2026-10-28.md</span></li><li><a href="feature-proposals.html">Feature proposals</a><span> FEATURE_PROPOSALS.md</span></li><li><a href="release-readiness.html">Release readiness 2026-10-31</a><span> RELEASE_READINESS_2026-10-31.md</span></li></ul><h4>// Agent Core</h4><ul><li><a href="agent-loop.html">electron/agent/loop.ts</a><span> electron/agent/loop.ts</span></li><li><a href="agent-tools.html">electron/agent/tools.ts</a><span> electron/agent/tools.ts</span></li><li><a href="agent-providers.html">electron/agent/providers/*</a><span> electron/agent/providers/</span></li><li><a href="agent-mcp.html">electron/agent/mcp.ts</a><span> electron/agent/mcp.ts</span></li><li><a href="agent-types.html">electron/agent/types.ts</a><span> electron/agent/types.ts</span></li><li><a href="agent-prompt.html">electron/agent/prompt.ts</a><span> electron/agent/prompt.ts</span></li><li><a href="agent-smoke.html">electron/agent/smoke.ts</a><span> electron/agent/smoke.ts</span></li><li><a href="timeline-model.html">shared/timelineModel.ts</a><span> shared/timelineModel.ts</span></li><li><a href="local-url.html">electron/agent/providers/localUrl.ts</a><span> electron/agent/providers/localUrl.ts</span></li><li><a href="agent-tests.html">tests/*</a><span> tests/</span></li></ul><h4>// Electron Host</h4><ul><li><a href="host-main.html">electron/main.ts</a><span> electron/main.ts</span></li><li><a href="host-preload.html">electron/preload.ts</a><span> electron/preload.ts</span></li><li><a href="host-runner.html">electron/runner.ts</a><span> electron/runner.ts</span></li><li><a href="host-storage.html">electron/storage.ts</a><span> electron/storage.ts</span></li><li><a href="host-store.html">electron/store.ts</a><span> electron/store.ts</span></li><li><a href="skills.html">electron/skills.ts</a><span> electron/skills.ts</span></li><li><a href="plugins.html">electron/plugins.ts</a><span> electron/plugins.ts <span>&#9656; CURRENT</span></span></li><li><a href="platform.html">electron/platform.ts</a><span> electron/platform.ts</span></li><li><a href="doc-kit.html">plugins/doc-*</a><span> plugins/</span></li></ul><h4>// Renderer</h4><ul><li><a href="web-app.html">web/src/App.tsx</a><span> web/src/App.tsx</span></li><li><a href="use-xtrac.html">web/src/hooks/useXtrac.ts</a><span> web/src/hooks/useXtrac.ts</span></li><li><a href="web-sidebar.html">web/src/components/Sidebar.tsx</a><span> web/src/components/Sidebar.tsx</span></li><li><a href="web-chat.html">web/src/components/Chat.tsx</a><span> web/src/components/Chat.tsx</span></li><li><a href="web-settings.html">web/src/components/Settings.tsx</a><span> web/src/components/Settings.tsx</span></li><li><a href="web-modals-wizard.html">web/src/components/Modals.tsx + WelcomeWizard.tsx</a><span> web/src/components/</span></li><li><a href="web-timeline.html">web/src/components/timeline/*</a><span> web/src/components/timeline/</span></li><li><a href="web-support.html">web/src/{api.ts, hooks, lib, types, main.tsx}</a><span> web/src/</span></li></ul><h4>// Config &amp; Meta</h4><ul><li><a href="cfg-package.html">package.json + electron-builder.yml</a><span> package.json</span></li><li><a href="cfg-tsconfig-vite.html">tsconfig*.json + vite.config.ts</a><span> vite.config.ts</span></li><li><a href="cfg-icon.html">scripts/icon.js + build/icon.icns</a><span> scripts/icon.js</span></li><li><a href="cfg-web-shell.html">web/index.html + .gitignore</a><span> web/index.html</span></li><li><a href="bundled-skills.html">bundled-skills/ + plugins/example-text-formatter</a><span> bundled-skills/</span></li></ul></div><p style="margin-top:1rem"><a class="btn" href="../index.html">&#8592; WIKI HOME</a></p></aside>
+<aside class="infobox"><div class="ih">&#9635; DOSSIER — CORE</div><div class="ir"><span class="k">Path</span><span class="v"><code>electron/plugins.ts</code></span></div><div class="ir"><span class="k">Lines</span><span class="v">325</span></div><div class="ir"><span class="k">Language</span><span class="v">TypeScript</span></div><div class="ir"><span class="k">Package</span><span class="v">host</span></div><div class="ir"><span class="k">Phase</span><span class="v">v5</span></div><div class="ir"><span class="k">Implements</span><span class="v">v5 Phase D</span></div><div class="ir"><span class="k">See also</span><span class="v"><a href="skills.html">electron/skills.ts</a><br><a href="host-runner.html">electron/runner.ts</a><br><a href="agent-mcp.html">electron/agent/mcp.ts</a></span></div><div class="ir"><span class="k">Canonical data</span><span class="v"><a href="../data/plugins.json">plugins.json</a></span></div></aside>
+</div>
+<div class="wrap"><div class="tabs">
+<div class="tab on" data-tab="article">&#9635; ARTICLE</div>
+<div class="tab" data-tab="data">&#123;&#125; DATA / JSON</div>
+<div class="tab" data-tab="index">&#9776; MASTER INDEX</div>
+</div><p style="font-family:var(--mono);font-size:.66rem;color:var(--faint);padding-bottom:2rem">
+THE EMBEDDED PAYLOAD IN THIS FILE'S SOURCE IS MACHINE-READABLE (script#leet-doc).</p></div>
+<footer class="bottom"><div class="wrap foot">
+<span><b>NODE 001 / ACTIVE</b></span>
+<span>GENERATED 2026-11-01 15:13 UTC</span>
+</div></footer>
+<script>
+document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
+ document.querySelectorAll('.tab').forEach(function(x){x.classList.toggle('on',x===t)});
+ document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.id==='p-'+t.dataset.tab)});
+ window.scrollTo({top:0});
+});});
+</script>
+<script type="application/json" id="leet-doc">{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "92cd10e6b8b068a931196d1d73a03254",
+  "type": "doc",
+  "slug": "plugins",
+  "title": "electron/plugins.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:57Z",
+  "tags": [
+    "host",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_65b08501fc",
+      "type": "heading",
+      "content": "electron/plugins.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_ebabf5a63a",
+      "type": "paragraph",
+      "content": "Local plugins v1 (v5 Phase D): an app-managed manifest/configuration for a LOCAL stdio tool process, riding the existing MCP transport. A plugin is NOT code injected into Electron: import copies only plugin.json into <root>/plugins/<id>/ and records the original source folder. Test and runtime use that same resolved folder and source-bound consent."
+    },
+    {
+      "id": "blk_5d5a1b19e2",
+      "type": "paragraph",
+      "content": "Plugins import DISABLED and unreviewed. Enabling/testing requires native-dialog consent tied to launch details and a bounded source-tree hash; changed source requires review again. Test and runtime use the same resolved source cwd. Review rejects links/special files and caps entries/depth/bytes. External runtimes/environment/dependencies and final-check-to-spawn races remain unpinned. Enabled in-scope configs join project MCP configs; these are ordinary unsandboxed processes and tool approvals do not gate startup side effects."
+    },
+    {
+      "id": "blk_f4a0cfa4d3",
+      "type": "heading",
+      "content": "Validation",
+      "level": 2
+    },
+    {
+      "id": "blk_7472f0bbdb",
+      "type": "paragraph",
+      "content": "Strict manifest rules: id pattern, name/description required, entry.command must be local (no URLs, no .. climbs), args capped at 32, declared tools/capabilities capped. Import never executes anything; remote-source and malformed manifests are rejected with actionable errors."
+    },
+    {
+      "id": "blk_4c4054d8de",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_4eefabdf71",
+      "type": "field",
+      "content": "The safe lifecycle: import inert \u2192 review \u2192 enable \u2192 scoped contribution.",
+      "meta": {
+        "name": "PluginStore.importFrom / setEnabled(reviewed) / mcpConfigsFor"
+      }
+    },
+    {
+      "id": "blk_8b55f22418",
+      "type": "field",
+      "content": "Test connection uses sourcePath, falling back to data root. Real turns currently discard this directory and use chat.cwd: unresolved publication blocker.",
+      "meta": {
+        "name": "cwdFor(rec)"
+      }
+    }
+  ],
+  "properties": {
+    "category": "host",
+    "path": "electron/plugins.ts",
+    "lines": 325,
+    "lang": "TypeScript",
+    "phase": "v5",
+    "status": "CORE",
+    "spec_refs": [
+      "v5 Phase D"
+    ],
+    "related": [
+      "skills",
+      "host-runner",
+      "agent-mcp"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}</script>
+</body></html>

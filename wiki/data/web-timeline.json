@@ -1,0 +1,65 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "25576c2da5a889f278bc77c5ec4eaedf",
+  "type": "doc",
+  "slug": "web-timeline",
+  "title": "web/src/components/timeline/*",
+  "version": 1,
+  "updated": "2026-11-01T15:13:59Z",
+  "tags": [
+    "renderer",
+    "CLIENT",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_badf238a4c",
+      "type": "heading",
+      "content": "web/src/components/timeline/*",
+      "level": 1
+    },
+    {
+      "id": "blk_081c23c08a",
+      "type": "paragraph",
+      "content": "The row renderers. TimelineRow dispatches on item kind: user bubbles (with \ud83d\udcce image counts and hover-copy), assistant bubbles (markdown via renderMarkdown with hover-copy), ThoughtBlock (live-expanding thinking), ToolCard (icon, status tone, args summary, live output tail, unified diff for writes/edits), and system/error notices. TimelineRow is memoized and assistant bodies cap rendering at 50k characters with a truncation notice, so a per-delta streaming update re-parses only the changed row (2026-10 hardening)."
+    },
+    {
+      "id": "blk_b1fb531632",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_51e0bc9a35",
+      "type": "field",
+      "content": "Auto-expands while a run_command streams; diffs render with patch-add/patch-del coloring.",
+      "meta": {
+        "name": "ToolCard"
+      }
+    },
+    {
+      "id": "blk_f76e6c7e26",
+      "type": "field",
+      "content": "Clipboard write with a \u2713 confirmation flicker.",
+      "meta": {
+        "name": "CopyBtn"
+      }
+    }
+  ],
+  "properties": {
+    "category": "renderer",
+    "path": "web/src/components/timeline/",
+    "lines": 210,
+    "lang": "TypeScript",
+    "phase": "v1\u2013v4",
+    "status": "CLIENT",
+    "spec_refs": "",
+    "related": [
+      "timeline-model"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

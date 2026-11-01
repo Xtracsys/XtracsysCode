@@ -1,0 +1,9 @@
+{
+  "id": "doc-text",
+  "name": "Document Kit: Text",
+  "version": "1.0.0",
+  "description": "First-party local plugin: writes Markdown, plain text, and standalone HTML documents into the project folder. No network, no dependencies — the agent composes content, the tool formats and saves it.",
+  "entry": { "command": "node", "args": ["server.mjs"] },
+  "tools": ["write_markdown", "write_text", "write_html"],
+  "capabilities": ["writes files inside the project folder only"]
+}

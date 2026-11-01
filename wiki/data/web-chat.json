@@ -1,0 +1,108 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "aa473f7abf64fde175f165539f8d9cc3",
+  "type": "doc",
+  "slug": "web-chat",
+  "title": "web/src/components/Chat.tsx",
+  "version": 1,
+  "updated": "2026-11-01T15:13:58Z",
+  "tags": [
+    "renderer",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_8bf6522a50",
+      "type": "heading",
+      "content": "web/src/components/Chat.tsx",
+      "level": 1
+    },
+    {
+      "id": "blk_fc6864048d",
+      "type": "paragraph",
+      "content": "The conversation surface: scroll-anchored timeline, status strip (approvals toggle, per-chat model picker, plan progress, context meter, turn count), the composer with image attachments and focus mode, and retry/cancel affordances."
+    },
+    {
+      "id": "blk_c03220f8cd",
+      "type": "heading",
+      "content": "Status strip",
+      "level": 2
+    },
+    {
+      "id": "blk_1b036babf4",
+      "type": "paragraph",
+      "content": "Approvals: ask/auto switch; model <select> per chat (disabled while streaming); \u2611 plan N/M; the ContextMeter (amber \u226570%, red \u226590% of numCtx or the char-budget estimate); instruction-count pill when project instructions load."
+    },
+    {
+      "id": "blk_5efe9df214",
+      "type": "heading",
+      "content": "Composer, attachments, focus",
+      "level": 2
+    },
+    {
+      "id": "blk_1d3ba77d94",
+      "type": "paragraph",
+      "content": "Textarea plus \ud83d\uddbc file picker and clipboard paste (\u22644 images, \u22645 MB each, previewed as removable chips). Enter sends (or queues while streaming \u2014 the button becomes Queue and Cancel sits beside it); \u21e7Enter newlines. \u2922 Focus opens the 90% modal with char/image counts. The composer height is drag-resizable and persisted (M2)."
+    },
+    {
+      "id": "blk_82055d0720",
+      "type": "heading",
+      "content": "Retry",
+      "level": 2
+    },
+    {
+      "id": "blk_f2498f3b42",
+      "type": "paragraph",
+      "content": "When the last timeline item is an error, \u21bb Retry appears; it triggers retryLast, which rewinds cleanly and re-runs."
+    },
+    {
+      "id": "blk_0d85783bc7",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_bf6c9b1342",
+      "type": "field",
+      "content": "used/total with numCtx denominator or chars/4 estimate; tone classes ok/warn/crit.",
+      "meta": {
+        "name": "ContextMeter"
+      }
+    },
+    {
+      "id": "blk_3bad29047c",
+      "type": "field",
+      "content": "FileList/paste ingestion with type+size validation and base64 conversion.",
+      "meta": {
+        "name": "addImageFiles"
+      }
+    },
+    {
+      "id": "blk_a750c46edc",
+      "type": "field",
+      "content": "One path for send and queue \u2014 the queue decision happens main-side.",
+      "meta": {
+        "name": "submit()"
+      }
+    }
+  ],
+  "properties": {
+    "category": "renderer",
+    "path": "web/src/components/Chat.tsx",
+    "lines": 404,
+    "lang": "TypeScript",
+    "phase": "v1\u2013v4",
+    "status": "CORE",
+    "spec_refs": "",
+    "related": [
+      "web-app",
+      "timeline-model",
+      "use-xtrac"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

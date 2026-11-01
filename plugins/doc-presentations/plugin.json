@@ -1,0 +1,9 @@
+{
+  "id": "doc-presentations",
+  "name": "Document Kit: Presentations",
+  "version": "1.0.0",
+  "description": "First-party local plugin: creates real PowerPoint decks (.pptx — Office Open XML, hand-rolled ZIP writer in pure Node) with title+bullet slides into the project folder. No dependencies, no network. Structure validated by tests; open the result in PowerPoint/Keynote/LibreOffice.",
+  "entry": { "command": "node", "args": ["server.mjs"] },
+  "tools": ["create_pptx"],
+  "capabilities": ["writes files inside the project folder only"]
+}

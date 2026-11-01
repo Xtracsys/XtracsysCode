@@ -1,0 +1,73 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "23fa37cd1a9a72cd53a6231459a54c84",
+  "type": "doc",
+  "slug": "web-modals-wizard",
+  "title": "web/src/components/Modals.tsx + WelcomeWizard.tsx",
+  "version": 1,
+  "updated": "2026-11-01T15:13:59Z",
+  "tags": [
+    "renderer",
+    "CLIENT",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_4aceb61500",
+      "type": "heading",
+      "content": "web/src/components/Modals.tsx + WelcomeWizard.tsx",
+      "level": 1
+    },
+    {
+      "id": "blk_ba547de373",
+      "type": "paragraph",
+      "content": "Two modal families. Modals.tsx holds NewProjectModal (folder browse/up/Choose\u2026/new-folder creation, optional project name \u2014 M4 scaffolds AGENTS.md/.xtracsys.md into new projects) and PermissionCard (the approval dialog with Deny/Allow/Always allow, where Always allow captures the command pattern or write scope). WelcomeWizard.tsx is the P8 first-run flow: backend probe with model counts, folder pick, and a create-project finish that writes provider/model settings and boots the first chat."
+    },
+    {
+      "id": "blk_c59363749f",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_edc373a1ef",
+      "type": "field",
+      "content": "Browse + create folder inline; scaffolds config files on create when scaffoldOnCreate is on.",
+      "meta": {
+        "name": "NewProjectModal"
+      }
+    },
+    {
+      "id": "blk_16a1911135",
+      "type": "field",
+      "content": "three-way approval including the Always-allow rule capture (N2).",
+      "meta": {
+        "name": "PermissionCard"
+      }
+    },
+    {
+      "id": "blk_6b5571ac3f",
+      "type": "field",
+      "content": "Skippable 2-step wizard shown only when no projects exist.",
+      "meta": {
+        "name": "WelcomeWizard"
+      }
+    }
+  ],
+  "properties": {
+    "category": "renderer",
+    "path": "web/src/components/",
+    "lines": 365,
+    "lang": "TypeScript",
+    "phase": "v2/v4",
+    "status": "CLIENT",
+    "spec_refs": "",
+    "related": [
+      "web-app"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

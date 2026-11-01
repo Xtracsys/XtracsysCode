@@ -1,0 +1,65 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "91d614e379f7db0ae3bd5bebe895c498",
+  "type": "doc",
+  "slug": "cfg-package",
+  "title": "package.json + electron-builder.yml",
+  "version": 1,
+  "updated": "2026-11-01T15:13:55Z",
+  "tags": [
+    "config",
+    "META",
+    "JSON/YAML"
+  ],
+  "blocks": [
+    {
+      "id": "blk_abdba83132",
+      "type": "heading",
+      "content": "package.json + electron-builder.yml",
+      "level": 1
+    },
+    {
+      "id": "blk_87762dc574",
+      "type": "paragraph",
+      "content": "Build and dependency plumbing. Runtime dependency is marked only (for transcript rendering) \u2014 everything else is dev tooling. Scripts: dev (vite + electron concurrently), build:main/build:web, typecheck, start, smoke, and dist / dist:dir / dist:win / dist:linux. electron 45 + electron-builder 26 (upgraded 2026-10; npm audit fully clean) targets mac dmg+zip (arm64, unsigned) plus nsis (win.icon = dependency-free build/icon.ico) and AppImage, asar-packed with only dist-electron/dist-web shipped; v5 adds extraResources so bundled-skills/ ships inside the app and scaffolds into the data root on launch. Cross-builds: `npm run dist:win` / `dist:linux` (R12) with CI matrix in .github/workflows/build.yml. 2026-10 hardening: scripts/afterPack.js flips the Electron security fuses on every packaged binary (RunAsNode/NodeOptions/node-inspect off, cookie encryption on, app loads only from ASAR) and then re-seals the bundle's ad-hoc signature \u2014 flipFuses rewrites the main executable, and Apple Silicon SIGKILLs an executable whose signature no longer matches (silent). ASAR integrity computation stays disabled (`disableAsarIntegrity`) until the build is code-signed, because builder 26 hashes every *.asar in Resources including exFAT AppleDouble shadows. CI workflow pins all three actions to full commit SHAs."
+    },
+    {
+      "id": "blk_6f62d2df2a",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_50285007dd",
+      "type": "field",
+      "content": "v3 path fix \u2014 the compile layout keeps electron/ + shared/ under one rootDir.",
+      "meta": {
+        "name": "main: dist-electron/electron/main.js"
+      }
+    },
+    {
+      "id": "blk_ede91fe68c",
+      "type": "field",
+      "content": "Bumped at each release's final commit.",
+      "meta": {
+        "name": "version \u2014 0.5.0"
+      }
+    }
+  ],
+  "properties": {
+    "category": "config",
+    "path": "package.json",
+    "lines": 47,
+    "lang": "JSON/YAML",
+    "phase": "v1\u2013v4",
+    "status": "META",
+    "spec_refs": "",
+    "related": [
+      "doc-readme"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

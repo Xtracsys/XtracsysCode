@@ -1,0 +1,134 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "8fee74074d76fcc8cbc7ec9a8334a8f4",
+  "type": "doc",
+  "slug": "agent-tools",
+  "title": "electron/agent/tools.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:53Z",
+  "tags": [
+    "agent",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_63f7e8de44",
+      "type": "heading",
+      "content": "electron/agent/tools.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_99425a28f1",
+      "type": "paragraph",
+      "content": "The agent's hands. Seven tools are registered by defaultTools(): list_dir, read_file, write_file, edit_file, run_command, grep, and set_plan. Built-in file tools resolve paths through resolveWithin(root, target), rejecting lexical traversal and detected symlink escapes. This is not an operating-system sandbox: approved shell commands and local MCP/plugin processes retain the user's filesystem and network access, and path checks retain a TOCTOU race."
+    },
+    {
+      "id": "blk_84c7c9495b",
+      "type": "heading",
+      "content": "File tools",
+      "level": 2
+    },
+    {
+      "id": "blk_d732523e53",
+      "type": "paragraph",
+      "content": "write_file creates parent directories and returns a before/after diff for the UI (old content is read first when the file exists). edit_file demands that oldText occur exactly once \u2014 zero matches returns 'not found, read the file again', multiple matches reports the count and asks for more context \u2014 then replaces once. Both cap diffs at 20 KB per side so transcripts stay small."
+    },
+    {
+      "id": "blk_621f0068c2",
+      "type": "paragraph",
+      "content": "read_file refuses anything over 4 MB or containing NUL bytes (binary sniff on the first 8 KB); list_dir caps at 500 entries and skips .DS_Store."
+    },
+    {
+      "id": "blk_30e2cd8871",
+      "type": "heading",
+      "content": "run_command with live output",
+      "level": 2
+    },
+    {
+      "id": "blk_2fce345c7c",
+      "type": "paragraph",
+      "content": "Uses platform.shellInvocation(): zsh on macOS, bash on Linux, cmd on Windows. Output accumulation is capped at 256 KiB and live streaming at 64 KiB, throttled at 150 ms; tool-result text is further truncated. Timeouts (1\u2013120 s) call killTree and report exit code 124. Commands are capped at 32 000 chars (long input belongs in a file) and inherit the minimal platform.childEnv() allowlist (PATH/HOME/SHELL/locale/tmp \u2014 no inherited cloud or CI tokens) (2026-10 hardening). Cancellation behavior requires separate verification; cwd is not confinement."
+    },
+    {
+      "id": "blk_5255c32a94",
+      "type": "heading",
+      "content": "grep and set_plan",
+      "level": 2
+    },
+    {
+      "id": "blk_57d59ed318",
+      "type": "paragraph",
+      "content": "grep is a recursive walker skipping node_modules/.git/dist/build/hidden dirs, case-insensitive fixed-string by default (regex:true opts in), 80-hit cap, 1 MB per-file size cap. Model-supplied patterns get three ReDoS bounds (2026-10): the filename glob is matched with a hand-rolled LINEAR wildcard matcher (regex conversion with unbounded stars froze the main process \u2014 90 s per entry, proven), regex:true line tests run in a worker thread with a 250 ms per-line timeout plus a 5 s whole-walk budget (length caps alone cannot bound backtracking: `(a+)+b` vs a 4 KB line ran > 20 s), and fixed-string mode stays in-process on its literal-only pattern. set_plan validates up to 50 entries, normalizes statuses to pending|in_progress|done, and pushes the whole plan through ctx.updatePlan \u2014 which the runner wires to chat.plan plus a broadcast."
+    },
+    {
+      "id": "blk_bbc2e27f53",
+      "type": "heading",
+      "content": "Approvals",
+      "level": 2
+    },
+    {
+      "id": "blk_a334ca70ea",
+      "type": "paragraph",
+      "content": "Each tool carries readOnly: the three read tools run free; write_file/edit_file/run_command/mcp tools consult the caller's approval callback. The runner layers per-project allowlists (command globs like 'git *', write scopes like 'src/**') in front of that callback, and 'Always allow' in the UI writes those rules."
+    },
+    {
+      "id": "blk_50ab1a7a62",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_f55cc95b41",
+      "type": "field",
+      "content": "The registry \u2014 one ToolDefinition per tool with spec (name/description/JSON-schema parameters), readOnly flag, and execute(args, ctx).",
+      "meta": {
+        "name": "defaultTools(): ToolDefinition[]"
+      }
+    },
+    {
+      "id": "blk_0774ee81b9",
+      "type": "field",
+      "content": "Rejects outside targets rather than redirecting them; realpath checks include the nearest existing parent for new files. Residual symlink-swap race is documented in source.",
+      "meta": {
+        "name": "resolveWithin(root, target)"
+      }
+    },
+    {
+      "id": "blk_3cf318c467",
+      "type": "field",
+      "content": "Builds the ToolDiff for the timeline unless either side exceeds 20 KB.",
+      "meta": {
+        "name": "makeDiff(file, oldText, newText)"
+      }
+    },
+    {
+      "id": "blk_faa0b9e815",
+      "type": "field",
+      "content": "Glob-ish matcher shared with approval rules: 'git *' matches any git invocation, '* *' matches everything.",
+      "meta": {
+        "name": "commandMatchesPattern(pattern, command)"
+      }
+    }
+  ],
+  "properties": {
+    "category": "agent",
+    "path": "electron/agent/tools.ts",
+    "lines": 643,
+    "lang": "TypeScript",
+    "phase": "v1 (edit_file/live v2-v4)",
+    "status": "CORE",
+    "spec_refs": [
+      "\u00a74 Tools"
+    ],
+    "related": [
+      "agent-types",
+      "agent-loop",
+      "host-store"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

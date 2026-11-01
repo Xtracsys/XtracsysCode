@@ -1,0 +1,69 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "f4d9431c51d92fac5cc7fa1f65824a1f",
+  "type": "doc",
+  "slug": "agent-tests",
+  "title": "tests/*",
+  "version": 1,
+  "updated": "2026-11-01T15:13:54Z",
+  "tags": [
+    "agent",
+    "TEST",
+    "TypeScript/JS"
+  ],
+  "blocks": [
+    {
+      "id": "blk_60b92235ec",
+      "type": "heading",
+      "content": "tests/*",
+      "level": 1
+    },
+    {
+      "id": "blk_3d22465d31",
+      "type": "paragraph",
+      "content": "Four deterministic plain-Node suites use disposable test roots. Current review execution: skills.test.mjs 36 passed; plugins.test.mjs 21 passed (including real stdio MCP roundtrip); security.test.mjs 45 passed; doc-plugins.test.mjs 57 passed. Zero failures. These checks cover validation, persistence, approvals, path containment, backend URL policy, and generated document structure, not a complete security audit or native Windows/Linux acceptance. generate-doc-samples.mjs writes sample documents."
+    },
+    {
+      "id": "blk_a0b90e88fa",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_70106019d0",
+      "type": "field",
+      "content": "build:main, then all four suites; any failure exits non-zero. See open-source-readiness for the current execution receipt and limitations.",
+      "meta": {
+        "name": "npm test"
+      }
+    },
+    {
+      "id": "blk_08a2cbf297",
+      "type": "field",
+      "content": "The path-containment suite caught resolveWithin rejecting targets spelled via a symlinked project root (e.g. /var vs /private/var) \u2014 fixed to accept both spellings while still refusing escapes.",
+      "meta": {
+        "name": "Found-a-real-bug"
+      }
+    }
+  ],
+  "properties": {
+    "category": "agent",
+    "path": "tests/",
+    "lines": 666,
+    "lang": "TypeScript/JS",
+    "phase": "v5",
+    "status": "TEST",
+    "spec_refs": [
+      "v5 Phase E/F"
+    ],
+    "related": [
+      "skills",
+      "plugins",
+      "local-url"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

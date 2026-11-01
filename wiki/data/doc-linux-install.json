@@ -1,0 +1,69 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "b45bb7021254489f5a04b678e6f913c6",
+  "type": "doc",
+  "slug": "doc-linux-install",
+  "title": "INSTALL_LINUX.md",
+  "version": 1,
+  "updated": "2026-11-01T15:13:56Z",
+  "tags": [
+    "docs",
+    "SPEC",
+    "Markdown"
+  ],
+  "blocks": [
+    {
+      "id": "blk_c6825ae10d",
+      "type": "heading",
+      "content": "INSTALL_LINUX.md",
+      "level": 1
+    },
+    {
+      "id": "blk_aacfa856e7",
+      "type": "paragraph",
+      "content": "Linux install guide (x64 AppImage): chmod + run, the libfuse2 / --appimage-extract-and-run fallback, the ~/XtracsysCode data root, Ollama (install script) and llama.cpp backend setup, terminal-emulator fallback order (x-terminal-emulator \u2192 gnome-terminal \u2192 konsole \u2192 xfce4-terminal \u2192 alacritty), the Electron chrome-sandbox guidance (prefer the unprivileged_userns_clone sysctl over --no-sandbox), bash shell semantics with compound-command approval policy, build-from-source, and the verification checklist. Same honest status note as Windows: cross-compiled and structurally tested, on-hardware verification pending (R12)."
+    },
+    {
+      "id": "blk_eccb19d914",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_0f4c488b96",
+      "type": "field",
+      "content": "libfuse2, or --appimage-extract-and-run on minimal distros.",
+      "meta": {
+        "name": "FUSE"
+      }
+    },
+    {
+      "id": "blk_f7b44e1862",
+      "type": "field",
+      "content": "Do not normalize global sysctl changes or --no-sandbox. Prefer supported sandbox-enabled environments; document any exceptional workaround and its risk.",
+      "meta": {
+        "name": "Sandbox"
+      }
+    }
+  ],
+  "properties": {
+    "category": "docs",
+    "path": "INSTALL_LINUX.md",
+    "lines": 95,
+    "lang": "Markdown",
+    "phase": "v5.1 (R12)",
+    "status": "SPEC",
+    "spec_refs": [
+      "cross-platform"
+    ],
+    "related": [
+      "doc-readme",
+      "platform",
+      "doc-windows-install"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

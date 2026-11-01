@@ -1,0 +1,65 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "8456967b1c4d03b1387f6711ef158ccc",
+  "type": "doc",
+  "slug": "doc-readme",
+  "title": "README.md",
+  "version": 1,
+  "updated": "2026-11-01T15:13:55Z",
+  "tags": [
+    "docs",
+    "META",
+    "Markdown"
+  ],
+  "blocks": [
+    {
+      "id": "blk_ee86a93a01",
+      "type": "heading",
+      "content": "README.md",
+      "level": 1
+    },
+    {
+      "id": "blk_9056c3639b",
+      "type": "paragraph",
+      "content": "The user-facing entry point describes the macOS desktop app, its Ollama/llama.cpp/GMLX/MLX LM server options, project and data behavior, security boundaries, and local development/build workflow. It distinguishes loopback model traffic from unsandboxed command/plugin processes, identifies Apache-2.0 licensing for Xtracsys LLC, and points readers to platform guides. Publication remains on hold pending provenance, security, and native-platform checks; read OPEN_SOURCE_READINESS.md for the current release blockers."
+    },
+    {
+      "id": "blk_5496715df8",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_c3a5fcd095",
+      "type": "field",
+      "content": "Local model inference can operate offline; plugins and approved commands are not network sandboxed.",
+      "meta": {
+        "name": "Offline use"
+      }
+    },
+    {
+      "id": "blk_b6988fde1e",
+      "type": "field",
+      "content": "The README roadmap lists outstanding work only; use OPEN_SOURCE_READINESS.md for current publication blockers and risk scope.",
+      "meta": {
+        "name": "Roadmap"
+      }
+    }
+  ],
+  "properties": {
+    "category": "docs",
+    "path": "README.md",
+    "lines": 195,
+    "lang": "Markdown",
+    "phase": "v1\u2013v4",
+    "status": "META",
+    "spec_refs": "",
+    "related": [
+      "doc-requirements"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}

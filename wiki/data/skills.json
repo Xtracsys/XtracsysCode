@@ -1,0 +1,104 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "32c1cf49a2feee269ed74dd860f72644",
+  "type": "doc",
+  "slug": "skills",
+  "title": "electron/skills.ts",
+  "version": 1,
+  "updated": "2026-11-01T15:13:57Z",
+  "tags": [
+    "host",
+    "CORE",
+    "TypeScript"
+  ],
+  "blocks": [
+    {
+      "id": "blk_c47a91c95d",
+      "type": "heading",
+      "content": "electron/skills.ts",
+      "level": 1
+    },
+    {
+      "id": "blk_cf49921d53",
+      "type": "paragraph",
+      "content": "The local skills system (v5 Phase B). A skill is reusable instructions plus inert reference/template files \u2014 never executable code, never permissions. App-managed copies live under <root>/skills/<id>/ with a skills.json registry; SKILL.md carries strict simple `key: value` frontmatter (name, description, version, scope) validated with actionable SkillError messages."
+    },
+    {
+      "id": "blk_17d5749205",
+      "type": "paragraph",
+      "content": "Hard bounds are enforced everywhere: 100 skills max, 1 MB per file, 25 MB per import (raised in v5.1 for real-world skills like archify), 8 KB of prompt text per skill, 4 KB catalog block, 3 attached skills per chat. Imports copy the folder (skipping ._/.DS_Store junk), refuse symlinks that escape the source tree, and reject duplicates by id. Removing a skill deletes only the app-managed copy \u2014 the imported source folder is never touched. Every skill id entering the file APIs must match the ID_RE slug grammar AND name a registered skill; folder reads/writes lstat their target and refuse symlinks (2026-10 hardening)."
+    },
+    {
+      "id": "blk_794a7ff661",
+      "type": "heading",
+      "content": "Trust model",
+      "level": 2
+    },
+    {
+      "id": "blk_3343c75d5a",
+      "type": "paragraph",
+      "content": "Skill content is untrusted, lower-priority instructions: the system prompt frames attached skills as guidance that cannot override system rules or the user. The catalog metadata (id + description) rides in context for enabled available skills; full instructions load only for explicitly attached ones \u2014 and only if still enabled and in scope at turn time."
+    },
+    {
+      "id": "blk_ddf1368aa9",
+      "type": "heading",
+      "content": "Adoption",
+      "level": 2
+    },
+    {
+      "id": "blk_e0e7545ca6",
+      "type": "paragraph",
+      "content": "adoptUnregistered() registers folders that appear under skills/ outside the registry \u2014 used by the bundled-skills scaffold on launch (those start enabled) and for user-dropped folders. Folders containing a symlink that escapes the folder are rejected too (2026-10). Invalid folders are reported in the log and left on disk, never auto-deleted."
+    },
+    {
+      "id": "blk_c419ffb926",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_f8f65ef0e9",
+      "type": "field",
+      "content": "Copy-in/copy-out lifecycle; removal and export never touch the original source.",
+      "meta": {
+        "name": "SkillStore.importFrom/create/remove/exportTo"
+      }
+    },
+    {
+      "id": "blk_f0cd7606f5",
+      "type": "field",
+      "content": "Strict, simple frontmatter with actionable rejections (nested YAML, oversized, missing fields).",
+      "meta": {
+        "name": "parseFrontmatter / validateSkillMd"
+      }
+    },
+    {
+      "id": "blk_a6ec602b79",
+      "type": "field",
+      "content": "The prompt-integration surface used by AgentRunner each turn.",
+      "meta": {
+        "name": "availableFor(projectId) / catalogBlock / loadInstructions"
+      }
+    }
+  ],
+  "properties": {
+    "category": "host",
+    "path": "electron/skills.ts",
+    "lines": 506,
+    "lang": "TypeScript",
+    "phase": "v5",
+    "status": "CORE",
+    "spec_refs": [
+      "v5 Phase B"
+    ],
+    "related": [
+      "plugins",
+      "host-runner",
+      "host-storage"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "85e2a30ae9ac"
+  }
+}
