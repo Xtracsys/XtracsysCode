@@ -154,7 +154,7 @@ test("MCP stopAll includes in-progress startup and cannot resurrect it", { timeo
   } finally { caller.abort(); await starting; await manager.stopAll(); if (conn && isAlive(conn.child)) conn.child.kill("SIGKILL"); }
 });
 
-test("MCP reports bounded termination failure rather than claiming success", { timeout: 6000 }, async () => {
+test("MCP reports bounded POSIX termination failure rather than claiming success", { timeout: 6000, skip: process.platform === "win32" }, async () => {
   const manager = new McpManager();
   let conn;
   const originalKill = process.kill;
@@ -242,7 +242,10 @@ test("MCP process exit settles pending calls and removes owned listeners", { tim
     const timers = [...conn.pending.values()].map((p) => p.timer);
     assert.equal((await manager.callTool("fixture", "exit", {})).ok, false);
     assert.equal((await pending).ok, false);
-    assert.deepEqual(await manager.stopAll(), []);
+    const shutdownIssues = await manager.stopAll();
+    assert.deepEqual(shutdownIssues, process.platform === "win32"
+      ? ["fixture: Windows direct child already exited; descendant termination is unconfirmed"]
+      : []);
     assert.equal(conn.pending.size, 0);
     assert.ok(timers.every((t) => t._destroyed));
     assert.equal(getEventListeners(caller.signal, "abort").length, 0);

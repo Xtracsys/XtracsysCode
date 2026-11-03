@@ -1,6 +1,6 @@
 # Code Wiki — Master Index
 
-> Generated 2026-11-03 19:25 UTC · 42 articles
+> Generated 2026-11-03 20:03 UTC · 42 articles
 
 
 ## Documents
@@ -33,7 +33,7 @@
 | 07 | [electron/agent/smoke.ts](docs/agent-smoke.html) | [json](data/agent-smoke.json) | `electron/agent/smoke.ts` | 118 | TEST |
 | 08 | [shared/timelineModel.ts](docs/timeline-model.html) | [json](data/timeline-model.json) | `shared/timelineModel.ts` | 246 | CORE |
 | 09 | [electron/agent/providers/localUrl.ts](docs/local-url.html) | [json](data/local-url.json) | `electron/agent/providers/localUrl.ts` | 47 | CORE |
-| 10 | [tests/*](docs/agent-tests.html) | [json](data/agent-tests.json) | `tests/` | 666 | TEST |
+| 10 | [tests/*](docs/agent-tests.html) | [json](data/agent-tests.json) | `tests/` | 2634 | TEST |
 
 ## Electron Host
 *main process*

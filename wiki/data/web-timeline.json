@@ -5,7 +5,7 @@
   "slug": "web-timeline",
   "title": "web/src/components/timeline/*",
   "version": 1,
-  "updated": "2026-11-03T19:25:56Z",
+  "updated": "2026-11-03T20:03:39Z",
   "tags": [
     "renderer",
     "CLIENT",
@@ -60,6 +60,6 @@
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "dafc06f82808"
+    "last_commit": "feee52baba64"
   }
 }
