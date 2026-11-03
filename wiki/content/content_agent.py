@@ -184,10 +184,10 @@ ARTICLES = [
          path="tests/", lines=666, lang="TypeScript/JS", status="TEST",
          pkg="agent", phase="v5", spec_refs=["v5 Phase E/F"], related=["skills", "plugins", "local-url"],
          lead=[
-             "Four deterministic plain-Node suites use disposable test roots. Current review execution: skills.test.mjs 36 passed; plugins.test.mjs 21 passed (including real stdio MCP roundtrip); security.test.mjs 45 passed; doc-plugins.test.mjs 57 passed. Zero failures. These checks cover validation, persistence, approvals, path containment, backend URL policy, and generated document structure, not a complete security audit or native Windows/Linux acceptance. generate-doc-samples.mjs writes sample documents.",
+             "Deterministic plain-Node suites use disposable test roots. Coverage includes skills, plugins, security policy, generated documents, provider/MCP behavior, restore safety, ZIP packaging, and platform-specific afterPack executable paths. The skills import test compares the recorded source with the same async realpath API used by the importer, keeping Windows path behavior consistent. These checks do not replace native Windows/Linux acceptance. generate-doc-samples.mjs writes sample documents.",
          ],
          key_items=[
-             ("npm test", "build:main, then all four suites; any failure exits non-zero. See open-source-readiness for the current execution receipt and limitations."),
+             ("npm test", "Builds the main process, then runs all deterministic suites, including the afterPack platform-path regression check; any failure exits non-zero."),
              ("Found-a-real-bug", "The path-containment suite caught resolveWithin rejecting targets spelled via a symlinked project root (e.g. /var vs /private/var) — fixed to accept both spellings while still refusing escapes."),
          ]),
 ]

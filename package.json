@@ -16,7 +16,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.web.json --noEmit",
     "start": "electron dist-electron/electron/main.js",
     "smoke": "node dist-electron/electron/agent/smoke.js",
-    "test": "npm run build:main && node tests/skills.test.mjs && node tests/plugins.test.mjs && node tests/security.test.mjs && node tests/doc-plugins.test.mjs && node tests/release-provider-mcp.test.mjs && node tests/release-plugin-restore.test.mjs && node tests/release-zip.test.mjs",
+    "test": "npm run build:main && node tests/skills.test.mjs && node tests/plugins.test.mjs && node tests/security.test.mjs && node tests/doc-plugins.test.mjs && node tests/release-provider-mcp.test.mjs && node tests/release-plugin-restore.test.mjs && node tests/release-zip.test.mjs && node tests/after-pack.test.mjs",
     "dist:dir": "npm run build && electron-builder --mac dir",
     "dist": "npm run build && electron-builder --mac dmg zip",
     "dist:win": "npm run build && electron-builder --win nsis --x64",

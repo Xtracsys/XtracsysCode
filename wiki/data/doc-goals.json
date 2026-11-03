@@ -5,7 +5,7 @@
   "slug": "doc-goals",
   "title": "GOAL_PROMPT_V2/V3/V4.md",
   "version": 1,
-  "updated": "2026-11-01T15:13:55Z",
+  "updated": "2026-11-03T19:25:56Z",
   "tags": [
     "docs",
     "SPEC",
@@ -61,6 +61,6 @@
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "85e2a30ae9ac"
+    "last_commit": "dafc06f82808"
   }
 }

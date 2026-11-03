@@ -5,7 +5,7 @@
   "slug": "release-readiness",
   "title": "Release readiness 2026-10-31",
   "version": 1,
-  "updated": "2026-11-01T15:13:58Z",
+  "updated": "2026-11-03T19:25:56Z",
   "tags": [
     "docs",
     "REVIEW",
@@ -67,7 +67,7 @@
   "properties": {
     "category": "docs",
     "path": "RELEASE_READINESS_2026-10-31.md",
-    "lines": 112,
+    "lines": "",
     "lang": "Markdown",
     "phase": "pre-publication",
     "status": "REVIEW",
@@ -80,6 +80,6 @@
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "85e2a30ae9ac"
+    "last_commit": "dafc06f82808"
   }
 }

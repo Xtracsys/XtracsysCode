@@ -5,7 +5,7 @@
   "slug": "agent-tests",
   "title": "tests/*",
   "version": 1,
-  "updated": "2026-11-01T15:13:54Z",
+  "updated": "2026-11-03T19:25:56Z",
   "tags": [
     "agent",
     "TEST",
@@ -21,7 +21,7 @@
     {
       "id": "blk_3d22465d31",
       "type": "paragraph",
-      "content": "Four deterministic plain-Node suites use disposable test roots. Current review execution: skills.test.mjs 36 passed; plugins.test.mjs 21 passed (including real stdio MCP roundtrip); security.test.mjs 45 passed; doc-plugins.test.mjs 57 passed. Zero failures. These checks cover validation, persistence, approvals, path containment, backend URL policy, and generated document structure, not a complete security audit or native Windows/Linux acceptance. generate-doc-samples.mjs writes sample documents."
+      "content": "Deterministic plain-Node suites use disposable test roots. Coverage includes skills, plugins, security policy, generated documents, provider/MCP behavior, restore safety, ZIP packaging, and platform-specific afterPack executable paths. The skills import test compares the recorded source with the same async realpath API used by the importer, keeping Windows path behavior consistent. These checks do not replace native Windows/Linux acceptance. generate-doc-samples.mjs writes sample documents."
     },
     {
       "id": "blk_a0b90e88fa",
@@ -32,7 +32,7 @@
     {
       "id": "blk_70106019d0",
       "type": "field",
-      "content": "build:main, then all four suites; any failure exits non-zero. See open-source-readiness for the current execution receipt and limitations.",
+      "content": "Builds the main process, then runs all deterministic suites, including the afterPack platform-path regression check; any failure exits non-zero.",
       "meta": {
         "name": "npm test"
       }
@@ -64,6 +64,6 @@
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "85e2a30ae9ac"
+    "last_commit": "dafc06f82808"
   }
 }

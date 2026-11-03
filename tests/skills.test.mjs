@@ -97,7 +97,8 @@ fs.mkdirSync(path.join(importSrc, "references"));
 fs.writeFileSync(path.join(importSrc, "references", "notes.md"), "reference material");
 const imported = await store.importFrom(importSrc);
 ok(imported.id === "my-skill", "import: slugified from frontmatter name");
-ok(imported.source === "imported" && imported.sourcePath === fs.realpathSync(importSrc), "import: source recorded (realpath)");
+const importRealPath = await fsp.realpath(importSrc);
+ok(imported.source === "imported" && imported.sourcePath === importRealPath, "import: source recorded (realpath)");
 ok(fs.existsSync(path.join(storage.root, "skills", "my-skill", "references", "notes.md")), "import: reference files copied");
 await throws(() => store.importFrom(importSrc), "import: duplicate id rejected");
 

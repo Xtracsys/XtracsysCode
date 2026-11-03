@@ -1,6 +1,6 @@
 # Code Wiki — Master Index
 
-> Generated 2026-11-01 15:13 UTC · 42 articles
+> Generated 2026-11-03 19:25 UTC · 42 articles
 
 
 ## Documents
@@ -10,14 +10,14 @@
 |---|---------|------|------|-------|--------|
 | 01 | [BUILD_REQUIREMENTS.md](docs/doc-requirements.html) | [json](data/doc-requirements.json) | `BUILD_REQUIREMENTS.md` | 219 | SPEC |
 | 02 | [GOAL_PROMPT_V2/V3/V4.md](docs/doc-goals.html) | [json](data/doc-goals.json) | `GOAL_PROMPT_V2.md (+V3, V4)` | 377 | SPEC |
-| 03 | [README.md](docs/doc-readme.html) | [json](data/doc-readme.json) | `README.md` | 195 | META |
-| 04 | [STATUS.md](docs/doc-status.html) | [json](data/doc-status.json) | `STATUS.md` | 110 | META |
+| 03 | [README.md](docs/doc-readme.html) | [json](data/doc-readme.json) | `README.md` | 201 | META |
+| 04 | [STATUS.md](docs/doc-status.html) | [json](data/doc-status.json) | `STATUS.md` | 106 | META |
 | 05 | [INSTALL_WINDOWS.md](docs/doc-windows-install.html) | [json](data/doc-windows-install.json) | `INSTALL_WINDOWS.md` | 80 | SPEC |
 | 06 | [INSTALL_LINUX.md](docs/doc-linux-install.html) | [json](data/doc-linux-install.json) | `INSTALL_LINUX.md` | 95 | SPEC |
-| 07 | [Open-source readiness](docs/open-source-readiness.html) | [json](data/open-source-readiness.json) | `OPEN_SOURCE_READINESS.md` | 106 | REVIEW |
+| 07 | [Open-source readiness](docs/open-source-readiness.html) | [json](data/open-source-readiness.json) | `OPEN_SOURCE_READINESS.md` | — | REVIEW |
 | 08 | [Security audit & remediation](docs/sec-audit-2026-10.html) | [json](data/sec-audit-2026-10.json) | `SECURITY_AUDIT_2026-10-28.md` | 214 | REVIEW |
 | 09 | [Feature proposals](docs/feature-proposals.html) | [json](data/feature-proposals.json) | `FEATURE_PROPOSALS.md` | 53 | META |
-| 10 | [Release readiness 2026-10-31](docs/release-readiness.html) | [json](data/release-readiness.json) | `RELEASE_READINESS_2026-10-31.md` | 112 | REVIEW |
+| 10 | [Release readiness 2026-10-31](docs/release-readiness.html) | [json](data/release-readiness.json) | `RELEASE_READINESS_2026-10-31.md` | — | REVIEW |
 
 ## Agent Core
 *the loop and its tools*

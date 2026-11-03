@@ -5,7 +5,7 @@
   "slug": "cfg-package",
   "title": "package.json + electron-builder.yml",
   "version": 1,
-  "updated": "2026-11-01T15:13:55Z",
+  "updated": "2026-11-03T19:25:56Z",
   "tags": [
     "config",
     "META",
@@ -21,7 +21,7 @@
     {
       "id": "blk_87762dc574",
       "type": "paragraph",
-      "content": "Build and dependency plumbing. Runtime dependency is marked only (for transcript rendering) \u2014 everything else is dev tooling. Scripts: dev (vite + electron concurrently), build:main/build:web, typecheck, start, smoke, and dist / dist:dir / dist:win / dist:linux. electron 45 + electron-builder 26 (upgraded 2026-10; npm audit fully clean) targets mac dmg+zip (arm64, unsigned) plus nsis (win.icon = dependency-free build/icon.ico) and AppImage, asar-packed with only dist-electron/dist-web shipped; v5 adds extraResources so bundled-skills/ ships inside the app and scaffolds into the data root on launch. Cross-builds: `npm run dist:win` / `dist:linux` (R12) with CI matrix in .github/workflows/build.yml. 2026-10 hardening: scripts/afterPack.js flips the Electron security fuses on every packaged binary (RunAsNode/NodeOptions/node-inspect off, cookie encryption on, app loads only from ASAR) and then re-seals the bundle's ad-hoc signature \u2014 flipFuses rewrites the main executable, and Apple Silicon SIGKILLs an executable whose signature no longer matches (silent). ASAR integrity computation stays disabled (`disableAsarIntegrity`) until the build is code-signed, because builder 26 hashes every *.asar in Resources including exFAT AppleDouble shadows. CI workflow pins all three actions to full commit SHAs."
+      "content": "Build and dependency plumbing. Runtime dependency is marked only (for transcript rendering) \u2014 everything else is dev tooling. Scripts: dev (vite + electron concurrently), build:main/build:web, typecheck, start, smoke, and dist / dist:dir / dist:win / dist:linux. electron 45 + electron-builder 26 targets mac dmg+zip (arm64, unsigned), nsis (win.icon = dependency-free build/icon.ico), and AppImage, asar-packed with only dist-electron/dist-web shipped; bundled-skills/ ships inside the app and scaffolds into the data root on launch. Cross-platform CI uses the .github/workflows/build.yml matrix and passes `--publish never`, so CI stores artifacts without attempting a GitHub Release upload. scripts/afterPack.js flips the Electron security fuses on each packaged binary and resolves Linux through electron-builder's `executableName`; macOS bundles are re-sealed ad-hoc after fuses are changed. ASAR integrity computation stays disabled (`disableAsarIntegrity`) until the build is code-signed, because builder 26 hashes every *.asar in Resources including exFAT AppleDouble shadows. CI actions are pinned to full commit SHAs."
     },
     {
       "id": "blk_6f62d2df2a",
@@ -60,6 +60,6 @@
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "85e2a30ae9ac"
+    "last_commit": "dafc06f82808"
   }
 }

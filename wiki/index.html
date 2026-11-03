@@ -77,7 +77,7 @@ table.ki td:first-child{font-family:var(--mono);font-size:.76rem;color:var(--ac)
 <header class="top"><div class="wrap topbar">
 <div class="brand">XTRACSYS<b>WIKI</b></div>
 <nav><a href="index.html#cat-docs">DOCUMENTS</a><a href="index.html#cat-agent">AGENT</a><a href="index.html#cat-host">ELECTRON</a><a href="index.html#cat-renderer">RENDERER</a><a href="index.html#cat-config">CONFIG</a></nav>
-<div class="status"><span class="dot">&#9679;</span> PRE-RELEASE REVIEW &nbsp;/&nbsp; BASE HEAD@85e2a30ae9ac &nbsp;·&nbsp; WORKING TREE MAY DIFFER</div>
+<div class="status"><span class="dot">&#9679;</span> PRE-RELEASE REVIEW &nbsp;/&nbsp; BASE HEAD@dafc06f82808 &nbsp;·&nbsp; WORKING TREE MAY DIFFER</div>
 </div></header>
 <div class="wrap" style="padding-top:1rem"><strong>Publication on hold.</strong> See <a href="docs/open-source-readiness.html">open-source readiness</a> for current verification and unresolved security findings. Generated timestamps do not recertify historical claims.</div>
 <section class="hero"><div class="wrap">
@@ -100,10 +100,10 @@ mirrored as JSON data files, indexed in Markdown.</p>
 <div class="f">FILE / 02 · GOAL_PROMPT_V2.md (+V3, V4) · 377 LN</div>
 <div class="t">GOAL_PROMPT_V2/V3/V4.md <span class="badge spec">SPEC</span></div>
 <div class="d">The self-contained unattended build prompts that drove versions 0.2–0.4. Each is a complete mission brief: hard constraints (local-only, bounded storage, archit</div></a><a class="card" href="docs/doc-readme.html">
-<div class="f">FILE / 03 · README.md · 195 LN</div>
+<div class="f">FILE / 03 · README.md · 201 LN</div>
 <div class="t">README.md <span class="badge ">META</span></div>
 <div class="d">The user-facing entry point describes the macOS desktop app, its Ollama/llama.cpp/GMLX/MLX LM server options, project and data behavior, security boundaries, an</div></a><a class="card" href="docs/doc-status.html">
-<div class="f">FILE / 04 · STATUS.md · 110 LN</div>
+<div class="f">FILE / 04 · STATUS.md · 106 LN</div>
 <div class="t">STATUS.md <span class="badge ">META</span></div>
 <div class="d">The historical mission ledger preserves N/M/P/Q checklists and the v5 R1–R14 registry. R12 native Windows/Linux acceptance remains in progress; later entries co</div></a><a class="card" href="docs/doc-windows-install.html">
 <div class="f">FILE / 05 · INSTALL_WINDOWS.md · 80 LN</div>
@@ -112,7 +112,7 @@ mirrored as JSON data files, indexed in Markdown.</p>
 <div class="f">FILE / 06 · INSTALL_LINUX.md · 95 LN</div>
 <div class="t">INSTALL_LINUX.md <span class="badge spec">SPEC</span></div>
 <div class="d">Linux install guide (x64 AppImage): chmod + run, the libfuse2 / --appimage-extract-and-run fallback, the ~/XtracsysCode data root, Ollama (install script) and l</div></a><a class="card" href="docs/open-source-readiness.html">
-<div class="f">FILE / 07 · OPEN_SOURCE_READINESS.md · 106 LN</div>
+<div class="f">FILE / 07 · OPEN_SOURCE_READINESS.md · — LN</div>
 <div class="t">Open-source readiness <span class="badge ">REVIEW</span></div>
 <div class="d">Apache-2.0 is applied locally for Xtracsys LLC. The release sprint adds source-bound plugin consent, imported-rule removal, native-tar restore tests, provider r</div></a><a class="card" href="docs/sec-audit-2026-10.html">
 <div class="f">FILE / 08 · SECURITY_AUDIT_2026-10-28.md · 214 LN</div>
@@ -121,7 +121,7 @@ mirrored as JSON data files, indexed in Markdown.</p>
 <div class="f">FILE / 09 · FEATURE_PROPOSALS.md · 53 LN</div>
 <div class="t">Feature proposals <span class="badge ">META</span></div>
 <div class="d">Post-audit feature backlog, ordered by value-to-effort within four tracks: Security &amp; robustness (macOS Seatbelt sandbox for run_command, worker-thread tools, a</div></a><a class="card" href="docs/release-readiness.html">
-<div class="f">FILE / 10 · RELEASE_READINESS_2026-10-31.md · 112 LN</div>
+<div class="f">FILE / 10 · RELEASE_READINESS_2026-10-31.md · — LN</div>
 <div class="t">Release readiness 2026-10-31 <span class="badge ">REVIEW</span></div>
 <div class="d">Report-only release-readiness pass (1/1) over the public export artifact (single fresh-history commit, 205 files) using a structured checklist: baseline (secret</div></a></div></section><section id="cat-agent" class="wrap" style="padding-bottom:2rem">
 <h2 class="sec">Agent Core <span style="color:var(--fnt);text-transform:none;letter-spacing:.04em">&nbsp;// the loop and its tools · 10 articles</span></h2>
@@ -155,7 +155,7 @@ mirrored as JSON data files, indexed in Markdown.</p>
 <div class="d">The single validation point for every built-in backend URL. Provider constructors and settings:set IPC enforce http/https only, no URL credentials, and loopback</div></a><a class="card" href="docs/agent-tests.html">
 <div class="f">FILE / 10 · tests/ · 666 LN</div>
 <div class="t">tests/* <span class="badge test">TEST</span></div>
-<div class="d">Four deterministic plain-Node suites use disposable test roots. Current review execution: skills.test.mjs 36 passed; plugins.test.mjs 21 passed (including real </div></a></div></section><section id="cat-host" class="wrap" style="padding-bottom:2rem">
+<div class="d">Deterministic plain-Node suites use disposable test roots. Coverage includes skills, plugins, security policy, generated documents, provider/MCP behavior, resto</div></a></div></section><section id="cat-host" class="wrap" style="padding-bottom:2rem">
 <h2 class="sec">Electron Host <span style="color:var(--fnt);text-transform:none;letter-spacing:.04em">&nbsp;// main process · 9 articles</span></h2>
 <div class="cards"><a class="card" href="docs/host-main.html">
 <div class="f">FILE / 01 · electron/main.ts · 2073 LN</div>
@@ -230,7 +230,7 @@ mirrored as JSON data files, indexed in Markdown.</p>
 <div class="d">bundled-skills/ ships via electron-builder extraResources and contains six starter skills scaffolded without overwriting user copies: skill-builder, project-ori</div></a></div></section>
 <footer class="bottom"><div class="wrap foot">
 <span><b>NODE 001 / ACTIVE</b></span>
-<span>GENERATED 2026-11-01 15:13 UTC</span>
+<span>GENERATED 2026-11-03 19:25 UTC</span>
 </div></footer>
 <script>
 document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){

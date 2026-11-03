@@ -44,8 +44,15 @@ function electronExecutable(context) {
   if (electronPlatformName === "win32") {
     return path.join(appOutDir, `${product}.exe`);
   }
-  return path.join(appOutDir, product);
+  if (electronPlatformName === "linux") {
+    // electron-builder uses LinuxPackager.executableName on Linux, which may be
+    // normalized from productName (for example, XtracsysCode -> xtracsyscode).
+    return path.join(appOutDir, packager.executableName);
+  }
+  throw new Error(`afterPack: unsupported platform for Electron fuses: ${electronPlatformName}`);
 }
+
+exports.electronExecutable = electronExecutable;
 
 exports.default = async function afterPack(context) {
   const project = fs.realpathSync(path.join(__dirname, ".."));
