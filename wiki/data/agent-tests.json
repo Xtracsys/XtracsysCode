@@ -5,7 +5,7 @@
   "slug": "agent-tests",
   "title": "tests/*",
   "version": 1,
-  "updated": "2026-11-03T20:03:39Z",
+  "updated": "2026-11-03T20:13:48Z",
   "tags": [
     "agent",
     "TEST",
@@ -21,7 +21,7 @@
     {
       "id": "blk_3d22465d31",
       "type": "paragraph",
-      "content": "Deterministic plain-Node suites use disposable test roots. Coverage includes skills, plugins, security policy, generated documents, provider/MCP behavior, restore safety, ZIP packaging, and platform-specific afterPack executable paths. The skills import test compares the recorded source with the same async realpath API used by the importer, keeping Windows path behavior consistent. MCP shutdown assertions distinguish POSIX process-group failures from Windows taskkill behavior and its explicit unconfirmed-descendant warning after natural child exit. These checks do not replace native Windows/Linux acceptance. generate-doc-samples.mjs writes sample documents."
+      "content": "Deterministic plain-Node suites use disposable test roots. Coverage includes skills, plugins, security policy, generated documents, provider/MCP behavior, restore safety (including CRLF tar listings from Windows), ZIP packaging, and platform-specific afterPack executable paths. The skills import test compares the recorded source with the same async realpath API used by the importer, keeping Windows path behavior consistent. MCP shutdown assertions distinguish POSIX process-group failures from Windows taskkill behavior and its explicit unconfirmed-descendant warning after natural child exit. These checks do not replace native Windows/Linux acceptance. generate-doc-samples.mjs writes sample documents."
     },
     {
       "id": "blk_a0b90e88fa",
@@ -49,7 +49,7 @@
   "properties": {
     "category": "agent",
     "path": "tests/",
-    "lines": 2634,
+    "lines": 2636,
     "lang": "TypeScript/JS",
     "phase": "v5",
     "status": "TEST",
@@ -64,6 +64,6 @@
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "feee52baba64"
+    "last_commit": "fcbce5c81c6e"
   }
 }

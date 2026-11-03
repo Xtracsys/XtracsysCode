@@ -61,7 +61,7 @@ ARTICLES = [
          ]),
 
     dict(slug="host-storage", title="electron/storage.ts", category="host",
-         path="electron/storage.ts", lines=366, lang="TypeScript", status="CORE",
+         path="electron/storage.ts", lines=867, lang="TypeScript", status="CORE",
          pkg="main", phase="v1–v4", spec_refs=["§4.5 Storage", "§4.6 Data model"], related=["store", "host-main"],
          lead=[
              "The hard-constraint module. Everything user-visible lives in one root — default ~/XtracsysCode — with chats/, archive/, logs/, tmp/, and JSON docs at the top. cleanup() enforces the three bounds (chat total cap with oldest-first pruning, age retention, log rotation); it runs at launch and every 10 minutes, and never touches archive/.",
@@ -72,6 +72,9 @@ ARTICLES = [
              ]),
              ("Durability details", [
                  "writeJsonAtomic writes to a unique temp name (pid + timestamp + random — the v4 fix for a real concurrent-write collision) with mode 0600 and renames; the data root and subdirectories are created 0700 and the root is chmod'ed on launch (2026-10 hardening). Logs rotate at logMaxBytes keeping one .1 file. cleanup() prunes chats by total size (oldest mtime first), deletes past-keepChatDays records, wipes tmp entries older than 24 h or past tmpMaxBytes, and sweeps crash-orphaned .*.tmp files in the root after 24 h. usage() walks the tree for the storage meter.",
+             ]),
+             ("Backup restore validation", [
+                 "parseTarVerboseListing accepts typed BSD/GNU tar output with LF or Windows CRLF line endings. Restore allows only regular files and directories under the expected root, with bounded depth and expanded size; links, duplicate paths, traversal, and unsafe member names fail closed before extraction.",
              ]),
          ],
          key_items=[

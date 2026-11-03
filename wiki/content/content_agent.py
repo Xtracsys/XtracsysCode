@@ -181,10 +181,10 @@ ARTICLES = [
          ]),
 
     dict(slug="agent-tests", title="tests/*", category="agent",
-         path="tests/", lines=2634, lang="TypeScript/JS", status="TEST",
+         path="tests/", lines=2636, lang="TypeScript/JS", status="TEST",
          pkg="agent", phase="v5", spec_refs=["v5 Phase E/F"], related=["skills", "plugins", "local-url"],
          lead=[
-             "Deterministic plain-Node suites use disposable test roots. Coverage includes skills, plugins, security policy, generated documents, provider/MCP behavior, restore safety, ZIP packaging, and platform-specific afterPack executable paths. The skills import test compares the recorded source with the same async realpath API used by the importer, keeping Windows path behavior consistent. MCP shutdown assertions distinguish POSIX process-group failures from Windows taskkill behavior and its explicit unconfirmed-descendant warning after natural child exit. These checks do not replace native Windows/Linux acceptance. generate-doc-samples.mjs writes sample documents.",
+             "Deterministic plain-Node suites use disposable test roots. Coverage includes skills, plugins, security policy, generated documents, provider/MCP behavior, restore safety (including CRLF tar listings from Windows), ZIP packaging, and platform-specific afterPack executable paths. The skills import test compares the recorded source with the same async realpath API used by the importer, keeping Windows path behavior consistent. MCP shutdown assertions distinguish POSIX process-group failures from Windows taskkill behavior and its explicit unconfirmed-descendant warning after natural child exit. These checks do not replace native Windows/Linux acceptance. generate-doc-samples.mjs writes sample documents.",
          ],
          key_items=[
              ("npm test", "Builds the main process, then runs all deterministic suites, including the afterPack platform-path regression check; any failure exits non-zero."),

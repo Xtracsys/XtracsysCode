@@ -116,8 +116,10 @@ const listing = parseTarVerboseListing(
   "drwxr-xr-x 0/0 0 2026-10-18 10:00 XtracsysCode/\n-rw-r--r-- 0/0 14 2026-10-18 10:00 XtracsysCode/chats/chat one.json",
 );
 const bsdListing = parseTarVerboseListing("-rw-r--r--  0 501  20 14 Oct 18 10:00 XtracsysCode/settings.json");
+const crlfListing = parseTarVerboseListing("drwxr-xr-x 0/0 0 2026-10-18 10:00 XtracsysCode/\r\n-rw-r--r-- 0/0 14 2026-10-18 10:00 XtracsysCode/settings.json\r\n");
 ok(listing.length === 2 && listing[1].path === "XtracsysCode/chats/chat one.json", "backup: typed tar listing preserves spaces in member names");
 ok(bsdListing[0].size === 14 && bsdListing[0].path === "XtracsysCode/settings.json", "backup: BSD verbose listing parses typed owner/group fields");
+ok(crlfListing.length === 2 && crlfListing[1].path === "XtracsysCode/settings.json", "backup: Windows CRLF verbose tar listing parses typed members");
 ok(validateBackupMembers(listing, "XtracsysCode").length === 2, "backup: safe typed members accepted");
 await throws(() => validateBackupMembers([{ type: "l", path: "XtracsysCode/chats/link", size: 0 }], "XtracsysCode"), "backup: symlink member rejected by type");
 await throws(() => validateBackupMembers([{ type: "-", path: "XtracsysCode/../outside", size: 0 }], "XtracsysCode"), "backup: traversal member rejected");

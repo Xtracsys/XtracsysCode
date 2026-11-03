@@ -47,7 +47,7 @@ export interface BackupMember {
 
 /** Parse the typed BSD/GNU verbose tar listing; malformed or ambiguous output fails closed. */
 export function parseTarVerboseListing(listing: string): BackupMember[] {
-  const lines = listing.split("\n").filter((line) => line.length > 0);
+  const lines = listing.split(/\r?\n/).filter((line) => line.length > 0);
   if (lines.length > BACKUP_LIMITS.maxEntries) throw new Error(`Archive has too many entries (max ${BACKUP_LIMITS.maxEntries}).`);
   return lines.map((line) => {
     const match = line.match(/^([-dlcbpsh])\S{9}\+?\s+(?:\d+\s+\S+\s+\S+|\S+\/\S+)\s+(\d+)\s+(?:\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}|[A-Za-z]{3}\s+\d{1,2}(?:\s+\d{2}:\d{2}(?:\s+\d{4})?|\s+\d{4}))\s+(.+)$/);

@@ -5,7 +5,7 @@
   "slug": "host-storage",
   "title": "electron/storage.ts",
   "version": 1,
-  "updated": "2026-11-03T20:03:39Z",
+  "updated": "2026-11-03T20:13:48Z",
   "tags": [
     "host",
     "CORE",
@@ -48,11 +48,22 @@
     {
       "id": "blk_ce31783429",
       "type": "heading",
-      "content": "Key items",
+      "content": "Backup restore validation",
       "level": 2
     },
     {
       "id": "blk_6865eab821",
+      "type": "paragraph",
+      "content": "parseTarVerboseListing accepts typed BSD/GNU tar output with LF or Windows CRLF line endings. Restore allows only regular files and directories under the expected root, with bounded depth and expanded size; links, duplicate paths, traversal, and unsafe member names fail closed before extraction."
+    },
+    {
+      "id": "blk_f017975b08",
+      "type": "heading",
+      "content": "Key items",
+      "level": 2
+    },
+    {
+      "id": "blk_65540b9c4d",
       "type": "field",
       "content": "The enforcement arm \u2014 tmp wiped, aged chats deleted, total pruned oldest-first.",
       "meta": {
@@ -60,7 +71,7 @@
       }
     },
     {
-      "id": "blk_f017975b08",
+      "id": "blk_d95feac8a2",
       "type": "field",
       "content": "Per-folder breakdown + chat count for the meter and dashboards.",
       "meta": {
@@ -68,7 +79,7 @@
       }
     },
     {
-      "id": "blk_65540b9c4d",
+      "id": "blk_df484949c1",
       "type": "field",
       "content": "Rotated app log; also receives renderer console errors (did-fail-load included).",
       "meta": {
@@ -94,6 +105,6 @@
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "feee52baba64"
+    "last_commit": "fcbce5c81c6e"
   }
 }
