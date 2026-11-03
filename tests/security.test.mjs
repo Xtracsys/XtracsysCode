@@ -237,7 +237,7 @@ const formatJs = ts.transpileModule(formatSource, {
   compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
 }).outputText;
 const formatModule = { exports: {} };
-new Function("require", "module", "exports", formatJs)(createRequire(new URL(import.meta.url).pathname), formatModule, formatModule.exports);
+new Function("require", "module", "exports", formatJs)(createRequire(fileURLToPath(import.meta.url)), formatModule, formatModule.exports);
 const rendered = formatModule.exports.renderMarkdown('<img src=x onerror=alert(1)>\n\n[x](javascript:alert(1))\n\n[y](https://example.com)');
 ok(!/<img\b/i.test(rendered) && rendered.includes("&lt;img"), "markdown: raw HTML is rendered as text");
 ok(!/href=["']javascript:/i.test(rendered), "markdown: executable URL schemes are not emitted");
