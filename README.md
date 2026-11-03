@@ -1,6 +1,12 @@
 # XtracsysCode
 
-A **local-model, Codex/Claude-Code-style agent app for macOS**. It reads, writes, searches, and runs commands in your project folders — using Ollama, llama.cpp, GMLX, or the MLX LM server. There is no built-in cloud inference, telemetry, or updater; model requests go only to a configured loopback server. Approved shell commands and MCP/plugin processes are ordinary local processes, are not sandboxed, and may use the network.
+A local-model agent app for macOS. It reads, writes, searches, and runs commands in your project folders. There is no built-in cloud inference, telemetry, or updater; model requests go only to a configured loopback server.
+
+File writes and shell commands ask first by default, with per-chat policies and per-project allowlists. Approved shell commands and MCP/plugin processes are ordinary local processes, not sandboxed.
+
+[Read the Xtracsys orchestration playbook](https://github.com/Xtracsys/Xtracsys/blob/main/docs/ORCHESTRATION_GUIDE.md) for the planning and review workflow behind this project.
+
+---
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
