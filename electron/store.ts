@@ -408,7 +408,7 @@ export function pathInWriteScopes(root: string, scopes: string[], absPath: strin
     const s = scope.trim();
     if (!s) continue;
     const abs = path.isAbsolute(s) ? s : path.resolve(root, s);
-    const base = abs.replace(/(\/\*\*)?(\/\*)?$/, "") || path.sep;
+    const base = abs.replace(/([\\/]\*\*)?([\\/]\*)?$/, "") || path.sep;
     if (absPath === base || absPath.startsWith(base + path.sep)) return true;
   }
   return false;
