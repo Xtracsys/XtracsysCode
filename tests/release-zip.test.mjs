@@ -10,6 +10,15 @@ import { extractZip, zipName, linkTarget } from '../scripts/release-zip.mjs';
 
 const SCRATCH = path.join(os.homedir(), '.cache/xtracsyscode-sprint');
 const tick = () => new Promise(resolve => setImmediate(resolve));
+async function removeWithRetries(remove, { attempts = 5, wait = ms => new Promise(resolve => setTimeout(resolve, ms)) } = {}) {
+  for (let attempt = 1; ; attempt++) {
+    try { return await remove(); }
+    catch (error) {
+      if (!['EBUSY', 'ENOTEMPTY', 'EPERM'].includes(error?.code) || attempt >= attempts) throw error;
+      await wait(100);
+    }
+  }
+}
 const entry = (fileName = 'XtracsysCode.app/A', size = 1, mode = 0x8000) => ({
   fileName, uncompressedSize: size, externalFileAttributes: (mode << 16) >>> 0, generalPurposeBitFlag: 0, compressionMethod: 0,
 });
@@ -52,9 +61,11 @@ function fixture(t, entries = [entry()], streams = [Readable.from(['x'])], optio
   });
   // Observe immediately, so intentional rejection cannot become unhandled.
   promise.then(() => { settled = true; }, error => { settled = true; incomplete = Boolean(error.teardownIncomplete); });
-  t.after(() => {
+  t.after(async () => {
     // Never remove a live extraction, even when an assertion failed.
-    if (settled && !incomplete) fs.rmSync(dest, { recursive: true });
+    if (settled && !incomplete) {
+      await removeWithRetries(() => fs.promises.rm(dest, { recursive: true, force: true }));
+    }
   });
   return { archive, dest, promise, settled: () => settled, timer: () => timer,
     expire: () => { assert(timer); timer(); },
@@ -63,6 +74,15 @@ function fixture(t, entries = [entry()], streams = [Readable.from(['x'])], optio
     deliverStream: stream => streamCallback(null, stream),
   };
 }
+
+test('ZIP fixture cleanup retries transient Windows directory removal failures', async () => {
+  let attempts = 0;
+  await removeWithRetries(async () => {
+    attempts++;
+    if (attempts === 1) throw Object.assign(new Error('directory is briefly busy'), { code: 'ENOTEMPTY' });
+  }, { wait: async () => {} });
+  assert.equal(attempts, 2);
+});
 
 for (const cause of ['timeout', 'external cancellation', 'archive error']) {
   test(`ZIP ${cause} waits for active pipeline destruction and prevents later writes/readEntry`, { timeout: 3000 }, async t => {
