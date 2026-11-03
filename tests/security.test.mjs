@@ -8,6 +8,7 @@ import fs from "node:fs";
 import fsp from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 import ts from "typescript";
 import { Store, commandApprovalDecision, commandMatchesPattern, commandHasShellControl, sanitizeRulesPatterns, pathInWriteScopes, isTrustedRendererUrl } from "../dist-electron/electron/store.js";
@@ -48,7 +49,7 @@ ok(!isTrustedRendererUrl(`${trustedFileUrl}?chat=${chatId}&extra=1`, trustedFile
 ok(!isTrustedRendererUrl(`${trustedFileUrl}?chat=../../settings`, trustedFileUrl), "ipc: traversal query rejected");
 ok(isTrustedRendererUrl(`http://127.0.0.1:5173/?chat=${chatId}`, "http://127.0.0.1:5173/"), "ipc: exact dev origin accepted");
 ok(!isTrustedRendererUrl("http://localhost:5173/", "http://127.0.0.1:5173/"), "ipc: alternate dev host rejected");
-const repoPath = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+const repoPath = fileURLToPath(new URL("../", import.meta.url));
 const mainSource = fs.readFileSync(path.join(repoPath, "electron/main.ts"), "utf8");
 const ipcRegistrations = mainSource.match(/ipcMain\.handle\(/g) ?? [];
 ok(ipcRegistrations.length === 1 && /function handleIpc\(/.test(mainSource), "ipc: privileged handlers are registered only through central validation wrapper");
