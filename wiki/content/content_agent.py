@@ -188,6 +188,6 @@ ARTICLES = [
          ],
          key_items=[
              ("npm test", "Builds the main process, then runs all deterministic suites, including the afterPack platform-path regression check; any failure exits non-zero."),
-             ("Found-a-real-bug", "The path-containment suite caught resolveWithin rejecting targets spelled via a symlinked project root (e.g. /var vs /private/var) — fixed to accept both spellings while still refusing escapes."),
+             ("Path handling", "Path-containment regressions cover symlinked project roots (for example /var and /private/var) while refusing paths outside the selected project."),
          ]),
 ]

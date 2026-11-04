@@ -1,49 +1,21 @@
 """Wiki content — documents, configs, and repo meta."""
 
 ARTICLES = [
-    dict(slug="doc-requirements", title="BUILD_REQUIREMENTS.md", category="docs",
+    dict(slug="doc-requirements", title='Product requirements', category="docs",
          path="BUILD_REQUIREMENTS.md", lines=219, lang="Markdown", status="SPEC",
-         pkg="docs", phase="v0", related=["doc-readme", "doc-status"],
-         lead=[
-             "The founding stakeholder document (draft 2026-09-11): a local-only LLM desktop app that looks like Codex/ChatGPT, supports multitasking with projects and tabs, runs exclusively on Ollama/llama.cpp, has no call-home behavior, and — as a hard constraint — never destroys the hard drive. §4 lists the six core requirement groups (chat/workspace, backends, no-call-home, automation, bounded storage, JSON+MD data model); §8 the license posture that drove the MIT/Apache-only dependency audit.",
-         ],
-         key_items=[
-             ("§4.5 Storage — hard requirement", "Bounded logs, bounded sessions, controlled temp, cleanup rules, visible usage, safe defaults, manual override — every release audit re-checks this section."),
-             ("§7 Reference landscape", "OpenCode/Jan/Cline/Continued/LM Studio evaluated; the app-behavior references shaped the v1 UI."),
-         ]),
+         pkg="docs", phase="v0", related=["doc-readme", "usage-and-safety"],
+         lead=['XtracsysCode is a desktop workspace for local-model conversations and tools. Its requirements cover project organization, loopback model providers, visible permissions, bounded storage, and portable JSON/Markdown data.'],
+         key_items=[('Storage', 'Configurable chat, log and temporary-file limits keep local data growth visible and bounded.'), ('Local control', 'Model endpoints use loopback addresses; commands and plugins retain their own OS and network permissions.')]),
 
-    dict(slug="doc-goals", title="GOAL_PROMPT_V2/V3/V4.md", category="docs",
-         path="GOAL_PROMPT_V2.md (+V3, V4)", lines=377, lang="Markdown", status="SPEC",
-         pkg="docs", phase="v2–v4", related=["doc-status", "doc-requirements"],
-         lead=[
-             "The self-contained unattended build prompts that drove versions 0.2–0.4. Each is a complete mission brief: hard constraints (local-only, bounded storage, architecture invariants), the /tmp mirror build workaround, the resume protocol via STATUS.md, ordered features with acceptance criteria, and a definition of done. They are kept verbatim as the authoritative record of what was promised and shipped per version.",
-         ],
-         key_items=[
-             ("Working rules", "STATUS.md resume protocol, per-feature verification gates, smallest-version fallback, revert-and-defer rule."),
-             ("Definition of done", "The release checklist each version's final commit answers to."),
-         ]),
+
 
     dict(slug="doc-readme", title="README.md", category="docs",
          path="README.md", lines=177, lang="Markdown", status="META",
          pkg="docs", phase="v1–v4", related=["doc-requirements"],
-         lead=[
-             "The user-facing entry point describes the macOS desktop app, its Ollama/llama.cpp/GMLX/MLX LM server options, project and data behavior, security boundaries, and local development/build workflow. It distinguishes loopback model traffic from unsandboxed command/plugin processes, identifies Apache-2.0 licensing for Xtracsys LLC, and points readers to platform guides. Publication remains on hold pending provenance, security, and native-platform checks; read OPEN_SOURCE_READINESS.md for the current release blockers.",
-         ],
-         key_items=[
-             ("Offline use", "Local model inference can operate offline; plugins and approved commands are not network sandboxed."),
-             ("Roadmap", "The README roadmap lists outstanding work only; use OPEN_SOURCE_READINESS.md for current publication blockers and risk scope."),
-         ]),
+         lead=['The project entry point covers installation, local-model setup, project conversations, skills, plugins, storage, and development. Download published installers from GitHub Releases or build from source.'],
+         key_items=[('Setup', 'Select an operating-system guide and configure a local model server.'), ('Security', 'Read SECURITY.md for execution boundaries and private reporting contact.')]),
 
-    dict(slug="doc-status", title="STATUS.md", category="docs",
-         path="STATUS.md", lines=106, lang="Markdown", status="META",
-         pkg="docs", phase="v2–v4", related=["doc-goals"],
-         lead=[
-             "The historical mission ledger preserves N/M/P/Q checklists and the v5 R1–R14 registry. R12 native Windows/Linux acceptance remains in progress; later entries cover Document Kit and skill import. Historical verified labels are not a current security certification: OPEN_SOURCE_READINESS.md records newly identified gaps and current test results without rewriting old receipts.",
-         ],
-         key_items=[
-             ("Resume protocol", "A fresh session reads STATUS.md, skips done items, continues at the first pending one."),
-             ("Decisions log", "The why behind non-obvious implementations — required by the unattended working rules."),
-         ]),
+
 
     dict(slug="cfg-package", title="package.json + electron-builder.yml", category="config",
          path="package.json", lines=104, lang="JSON/YAML", status="META",
@@ -62,9 +34,7 @@ ARTICLES = [
          lead=[
              "Two TypeScript programs: tsconfig.json compiles electron/ + shared/ to CommonJS in dist-electron (Node types, no Electron at type level in shared/); tsconfig.web.json typechecks web/src as a DOM/ESNext program with no emit (vite handles the build). vite.config.ts sets base './' — REQUIRED, absolute asset URLs blank-screen the packaged app — root web/, outDir dist-web, target chrome130, strictPort 5173 for dev.",
          ],
-         key_items=[
-             ("base: './'", "The blank-screen invariant; never revert (recorded in every goal prompt since v2)."),
-         ]),
+         key_items=[('Relative assets', "The './' Vite base keeps renderer assets resolvable inside packaged apps.")]),
 
     dict(slug="cfg-icon", title="scripts/icon.js + build/icon.icns", category="config",
          path="scripts/icon.js", lines=145, lang="JavaScript", status="META",

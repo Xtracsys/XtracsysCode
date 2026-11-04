@@ -5,7 +5,7 @@
   "slug": "web-chat",
   "title": "web/src/components/Chat.tsx",
   "version": 1,
-  "updated": "2026-11-03T20:13:48Z",
+  "updated": "2026-11-04T03:12:56Z",
   "tags": [
     "renderer",
     "CORE",
@@ -103,6 +103,6 @@
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "fcbce5c81c6e"
+    "last_commit": "960427eefa75"
   }
 }

@@ -1,6 +1,6 @@
 # Code Wiki — Master Index
 
-> Generated 2026-11-03 20:13 UTC · 42 articles
+> Generated 2026-11-04 03:12 UTC · 37 articles
 
 
 ## Documents
@@ -8,16 +8,11 @@
 
 | # | article | file | path | lines | status |
 |---|---------|------|------|-------|--------|
-| 01 | [BUILD_REQUIREMENTS.md](docs/doc-requirements.html) | [json](data/doc-requirements.json) | `BUILD_REQUIREMENTS.md` | 219 | SPEC |
-| 02 | [GOAL_PROMPT_V2/V3/V4.md](docs/doc-goals.html) | [json](data/doc-goals.json) | `GOAL_PROMPT_V2.md (+V3, V4)` | 377 | SPEC |
-| 03 | [README.md](docs/doc-readme.html) | [json](data/doc-readme.json) | `README.md` | 201 | META |
-| 04 | [STATUS.md](docs/doc-status.html) | [json](data/doc-status.json) | `STATUS.md` | 106 | META |
-| 05 | [INSTALL_WINDOWS.md](docs/doc-windows-install.html) | [json](data/doc-windows-install.json) | `INSTALL_WINDOWS.md` | 80 | SPEC |
-| 06 | [INSTALL_LINUX.md](docs/doc-linux-install.html) | [json](data/doc-linux-install.json) | `INSTALL_LINUX.md` | 95 | SPEC |
-| 07 | [Open-source readiness](docs/open-source-readiness.html) | [json](data/open-source-readiness.json) | `OPEN_SOURCE_READINESS.md` | — | REVIEW |
-| 08 | [Security audit & remediation](docs/sec-audit-2026-10.html) | [json](data/sec-audit-2026-10.json) | `SECURITY_AUDIT_2026-10-28.md` | 214 | REVIEW |
-| 09 | [Feature proposals](docs/feature-proposals.html) | [json](data/feature-proposals.json) | `FEATURE_PROPOSALS.md` | 53 | META |
-| 10 | [Release readiness 2026-10-31](docs/release-readiness.html) | [json](data/release-readiness.json) | `RELEASE_READINESS_2026-10-31.md` | — | REVIEW |
+| 01 | [Product requirements](docs/doc-requirements.html) | [json](data/doc-requirements.json) | `BUILD_REQUIREMENTS.md` | 219 | SPEC |
+| 02 | [README.md](docs/doc-readme.html) | [json](data/doc-readme.json) | `README.md` | 201 | META |
+| 03 | [INSTALL_WINDOWS.md](docs/doc-windows-install.html) | [json](data/doc-windows-install.json) | `INSTALL_WINDOWS.md` | 80 | SPEC |
+| 04 | [INSTALL_LINUX.md](docs/doc-linux-install.html) | [json](data/doc-linux-install.json) | `INSTALL_LINUX.md` | 95 | SPEC |
+| 05 | [Using XtracsysCode](docs/usage-and-safety.html) | [json](data/usage-and-safety.json) | `USER_GUIDE.md` | 151 | GUIDE |
 
 ## Agent Core
 *the loop and its tools*
@@ -90,9 +85,7 @@ Article paths below are the declared coverage map; folder/group articles cover m
 - `electron/agent/providers/localUrl.ts` → [ local-url ](docs/local-url.html)
 - `tests/` → [ agent-tests ](docs/agent-tests.html)
 - `BUILD_REQUIREMENTS.md` → [ doc-requirements ](docs/doc-requirements.html)
-- `GOAL_PROMPT_V2.md (+V3, V4)` → [ doc-goals ](docs/doc-goals.html)
 - `README.md` → [ doc-readme ](docs/doc-readme.html)
-- `STATUS.md` → [ doc-status ](docs/doc-status.html)
 - `package.json` → [ cfg-package ](docs/cfg-package.html)
 - `vite.config.ts` → [ cfg-tsconfig-vite ](docs/cfg-tsconfig-vite.html)
 - `scripts/icon.js` → [ cfg-icon ](docs/cfg-icon.html)
@@ -109,10 +102,7 @@ Article paths below are the declared coverage map; folder/group articles cover m
 - `electron/plugins.ts` → [ plugins ](docs/plugins.html)
 - `electron/platform.ts` → [ platform ](docs/platform.html)
 - `plugins/` → [ doc-kit ](docs/doc-kit.html)
-- `OPEN_SOURCE_READINESS.md` → [ open-source-readiness ](docs/open-source-readiness.html)
-- `SECURITY_AUDIT_2026-10-28.md` → [ sec-audit-2026-10 ](docs/sec-audit-2026-10.html)
-- `FEATURE_PROPOSALS.md` → [ feature-proposals ](docs/feature-proposals.html)
-- `RELEASE_READINESS_2026-10-31.md` → [ release-readiness ](docs/release-readiness.html)
+- `USER_GUIDE.md` → [ usage-and-safety ](docs/usage-and-safety.html)
 - `web/src/App.tsx` → [ web-app ](docs/web-app.html)
 - `web/src/hooks/useXtrac.ts` → [ use-xtrac ](docs/use-xtrac.html)
 - `web/src/components/Sidebar.tsx` → [ web-sidebar ](docs/web-sidebar.html)

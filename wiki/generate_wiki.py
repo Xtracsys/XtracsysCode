@@ -24,7 +24,7 @@ THEME = {
     "border": "#262626", "border2": "#333333",
     "text": "#E6E6E6", "muted": "#8B8B8B", "faint": "#5C5C5C",
     "accent": "#E0784F", "red": "#FF5252", "amber": "#FFB000", "code": "#101010",
-    "brand": "XTRACSYS WIKI", "node_label": "NODE 001 / ACTIVE",
+    "brand": "XTRACSYSCODE GUIDE", "node_label": "XTRACSYSCODE / APACHE-2.0",
 }
 FONT_MONO = 'ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace'
 FONT_SANS = '-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif'
@@ -38,7 +38,8 @@ CATEGORY_ORDER = [
     ("config", "Config & Meta", "// repo plumbing"),
 ]
 
-GENERATED = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+GENERATION_TIME = datetime.now(timezone.utc)
+GENERATED = GENERATION_TIME.strftime("%Y-%m-%d %H:%M UTC")
 
 
 def load_articles(content_dir):
@@ -87,7 +88,7 @@ def article_payload(a, head):
     return {
         "$schema": "https://code-wiki.local/schema/article.json",
         "id": doc_id(a["slug"]), "type": "doc", "slug": a["slug"], "title": a["title"],
-        "version": 1, "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "version": 1, "updated": GENERATION_TIME.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "tags": [a["category"], a.get("status", "DOC"), a.get("lang", "")],
         "blocks": blocks, "properties": props,
         "audit": {"last_editor": "human:wiki-generator", "last_commit": head},
@@ -191,9 +192,8 @@ def chrome(title, body, head, prefix=""):
 <header class="top"><div class="wrap topbar">
 <div class="brand">{esc(c['brand'].split()[0])}<b>{' '.join(c['brand'].split()[1:]) or ''}</b></div>
 <nav>{navlinks}</nav>
-<div class="status"><span class="dot">&#9679;</span> PRE-RELEASE REVIEW &nbsp;/&nbsp; BASE HEAD@{head} &nbsp;·&nbsp; WORKING TREE MAY DIFFER</div>
+<div class="status"><span class="dot">&#9679;</span> SOURCE {head}</div>
 </div></header>
-<div class="wrap" style="padding-top:1rem"><strong>Publication on hold.</strong> See <a href="{prefix}docs/open-source-readiness.html">open-source readiness</a> for current verification and unresolved security findings. Generated timestamps do not recertify historical claims.</div>
 {body}
 <footer class="bottom"><div class="wrap foot">
 <span><b>{esc(c['node_label'])}</b></span>
@@ -212,13 +212,12 @@ def render_home(articles, head):
     total_loc = sum(a.get("lines", 0) for a in articles if a.get("lang") not in ("", "Markdown", "Text", None))
     n_go = sum(1 for a in articles if a.get("lang"))
     body = [f"""<section class="hero"><div class="wrap">
-<div class="eyebrow">FILE / 00 &nbsp;·&nbsp; INTERNAL WIKI &nbsp;·&nbsp; {len(articles)} ARTICLES</div>
-<h1>{esc(THEME['brand']).title()} — the codebase, documented file by file</h1>
-<p class="sub">Every article documents one file: purpose, key functions, interactions, and the
-decisions it implements. Tabbed HTML with an embedded canonical JSON payload per page,
-mirrored as JSON data files, indexed in Markdown.</p>
-<p style="margin-top:1.2rem"><a class="btn solid" href="#cat-{CATEGORY_ORDER[0][0]}">BEGIN READING</a>
-<a class="btn" href="INDEX.md" style="margin-left:.6rem">INDEX.MD</a></p>
+<div class="eyebrow">FILE / 00 &nbsp;·&nbsp; PROJECT GUIDE &nbsp;·&nbsp; {len(articles)} ARTICLES</div>
+<h1>XtracsysCode — guide and reference</h1>
+<p class="sub">Set up a local model, organize projects, control tool permissions, and explore how
+the desktop app works. Start with the user guide, then browse the source references.</p>
+<p style="margin-top:1.2rem"><a class="btn solid" href="docs/usage-and-safety.html">START HERE</a>
+<a class="btn" href="INDEX.md" style="margin-left:.6rem">SOURCE INDEX</a></p>
 <div class="stats">
 <div class="stat"><div class="n">{len(articles)}</div><div class="l">articles</div></div>
 <div class="stat"><div class="n">{total_loc:,}</div><div class="l">source lines covered</div></div>

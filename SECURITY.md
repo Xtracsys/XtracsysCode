@@ -2,15 +2,11 @@
 
 ## Reporting a vulnerability
 
-**Designated private channel: GitHub's private vulnerability reporting on this
-repository** (repository Security tab → "Report a vulnerability"). Repository
-maintainers: enable it via Settings → Security → Private vulnerability reporting
-when the repository is created — this is part of the release checklist. As a
-fallback contact for arranging private disclosure, write to
-[opensource@xtracsys.com](mailto:opensource@xtracsys.com). Do not
-post exploit details, credentials, private projects or sensitive logs in a
-public issue or pull request; if the private reporting action is ever
-unavailable, ask for a private channel without disclosing the issue.
+Send security reports to [opensource@xtracsys.com](mailto:opensource@xtracsys.com).
+If the repository's Security tab offers “Report a vulnerability”, you may use
+GitHub's private reporting form instead. This optional GitHub feature is separate
+from the email reporting route. Do not post exploit details, credentials, private
+projects or sensitive logs in public issues or pull requests.
 
 A useful private report includes the affected version/commit, OS/architecture,
 minimal reproduction using synthetic data, impact, prerequisites and any

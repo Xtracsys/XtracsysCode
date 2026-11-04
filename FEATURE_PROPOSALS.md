@@ -1,6 +1,6 @@
 # XtracsysCode — Feature Proposals
 
-*Compiled 2026-10-28 from the two security-audit engagements, the codebase deep-dives, and the product's own deferred backlog. Ordered within each category by value-to-effort. Effort: S (<1 day), M (1–3 days), L (3+ days).*
+These proposed improvements are not shipped features or delivery commitments.
 
 ## Security & robustness
 
@@ -20,7 +20,7 @@
 6. **Ollama model manager** — Effort: M · Value: High.
    Pull/delete/list models with download progress via Ollama's `/api/pull` etc., straight from Settings → Backends. Removes the biggest out-of-app step in the local-model workflow.
 7. **Snapshot & rollback for agent edits** — Effort: M · Value: High.
-   Auto-commit (or stash) the project before each turn; per-turn "undo agent changes" button in the timeline. Complements the existing diffs with a real escape hatch — the most-requested pattern in agent tools.
+   Auto-commit (or stash) the project before each turn; per-turn "undo agent changes" button in the timeline. Complements the existing diffs with a real escape hatch — a way to recover a project after reviewing an agent turn.
 8. **Per-server MCP environment variables** — Effort: S · Value: Medium.
    `childEnv()` deliberately withholds inherited credentials; some real MCP servers need tokens. Add an optional per-server env map (consent dialog displays it; values stored locally).
 9. **Project-defined slash commands** — Effort: S · Value: Medium.
@@ -37,16 +37,16 @@
 13. **Chat branching / fork-from-any-message** — Effort: M · Value: Medium.
     Retry already rewinds; expose "fork from here" to keep both branches.
 14. **Export chat to PDF via the bundled doc-pdf plugin** — Effort: S · Value: Low.
-    Dogfooding: the transcript markdown → doc-pdf → one click. Also proves the plugin pipeline with a first-party consumer.
+    Export transcript Markdown through the bundled PDF plugin from the chat interface.
 15. **Menu-bar / global-hotkey quick capture** — Effort: M · Value: Low.
     Send a prompt to the active project's chat without switching windows.
 
 ## Platform
 
-16. **R12 completion: native Windows/Linux verification** — Effort: M · Value: High.
-    Installers are cross-compiled and structurally tested; on-hardware acceptance (NSIS walkthrough, AppImage on real distros, taskkill/bsdtar paths) is the last open release blocker.
+16. **Native Windows/Linux verification** — Effort: M · Value: High.
+    CI builds installers for Windows and Linux. Native acceptance should cover the NSIS installer, AppImage startup, process termination, and archive restore on each target platform.
 17. **Signed auto-update channel** — Effort: L · Value: Medium (later).
-    electron-updater over a static host with signed artifacts; blocked on the signing decision (owner has explicitly deferred code signing).
+    A signed update channel using electron-updater, introduced after release signing is configured.
 
 ## Suggested sequencing
 

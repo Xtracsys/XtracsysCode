@@ -3,9 +3,9 @@
   "id": "345b5b119e56093b52af73dafb704a4f",
   "type": "doc",
   "slug": "doc-requirements",
-  "title": "BUILD_REQUIREMENTS.md",
+  "title": "Product requirements",
   "version": 1,
-  "updated": "2026-11-03T20:13:48Z",
+  "updated": "2026-11-04T03:12:56Z",
   "tags": [
     "docs",
     "SPEC",
@@ -15,13 +15,13 @@
     {
       "id": "blk_b76db7a2a4",
       "type": "heading",
-      "content": "BUILD_REQUIREMENTS.md",
+      "content": "Product requirements",
       "level": 1
     },
     {
       "id": "blk_519f92444c",
       "type": "paragraph",
-      "content": "The founding stakeholder document (draft 2026-09-11): a local-only LLM desktop app that looks like Codex/ChatGPT, supports multitasking with projects and tabs, runs exclusively on Ollama/llama.cpp, has no call-home behavior, and \u2014 as a hard constraint \u2014 never destroys the hard drive. \u00a74 lists the six core requirement groups (chat/workspace, backends, no-call-home, automation, bounded storage, JSON+MD data model); \u00a78 the license posture that drove the MIT/Apache-only dependency audit."
+      "content": "XtracsysCode is a desktop workspace for local-model conversations and tools. Its requirements cover project organization, loopback model providers, visible permissions, bounded storage, and portable JSON/Markdown data."
     },
     {
       "id": "blk_cd4359a70e",
@@ -32,17 +32,17 @@
     {
       "id": "blk_314a659722",
       "type": "field",
-      "content": "Bounded logs, bounded sessions, controlled temp, cleanup rules, visible usage, safe defaults, manual override \u2014 every release audit re-checks this section.",
+      "content": "Configurable chat, log and temporary-file limits keep local data growth visible and bounded.",
       "meta": {
-        "name": "\u00a74.5 Storage \u2014 hard requirement"
+        "name": "Storage"
       }
     },
     {
       "id": "blk_942e5d8612",
       "type": "field",
-      "content": "OpenCode/Jan/Cline/Continued/LM Studio evaluated; the app-behavior references shaped the v1 UI.",
+      "content": "Model endpoints use loopback addresses; commands and plugins retain their own OS and network permissions.",
       "meta": {
-        "name": "\u00a77 Reference landscape"
+        "name": "Local control"
       }
     }
   ],
@@ -56,11 +56,11 @@
     "spec_refs": "",
     "related": [
       "doc-readme",
-      "doc-status"
+      "usage-and-safety"
     ]
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "fcbce5c81c6e"
+    "last_commit": "960427eefa75"
   }
 }

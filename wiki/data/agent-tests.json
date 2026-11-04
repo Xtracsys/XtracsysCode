@@ -5,7 +5,7 @@
   "slug": "agent-tests",
   "title": "tests/*",
   "version": 1,
-  "updated": "2026-11-03T20:13:48Z",
+  "updated": "2026-11-04T03:12:56Z",
   "tags": [
     "agent",
     "TEST",
@@ -40,9 +40,9 @@
     {
       "id": "blk_08a2cbf297",
       "type": "field",
-      "content": "The path-containment suite caught resolveWithin rejecting targets spelled via a symlinked project root (e.g. /var vs /private/var) \u2014 fixed to accept both spellings while still refusing escapes.",
+      "content": "Path-containment regressions cover symlinked project roots (for example /var and /private/var) while refusing paths outside the selected project.",
       "meta": {
-        "name": "Found-a-real-bug"
+        "name": "Path handling"
       }
     }
   ],
@@ -64,6 +64,6 @@
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "fcbce5c81c6e"
+    "last_commit": "960427eefa75"
   }
 }

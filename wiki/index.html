@@ -75,55 +75,38 @@ table.ki td:first-child{font-family:var(--mono);font-size:.76rem;color:var(--ac)
 </style></head>
 <body>
 <header class="top"><div class="wrap topbar">
-<div class="brand">XTRACSYS<b>WIKI</b></div>
+<div class="brand">XTRACSYSCODE<b>GUIDE</b></div>
 <nav><a href="index.html#cat-docs">DOCUMENTS</a><a href="index.html#cat-agent">AGENT</a><a href="index.html#cat-host">ELECTRON</a><a href="index.html#cat-renderer">RENDERER</a><a href="index.html#cat-config">CONFIG</a></nav>
-<div class="status"><span class="dot">&#9679;</span> PRE-RELEASE REVIEW &nbsp;/&nbsp; BASE HEAD@fcbce5c81c6e &nbsp;·&nbsp; WORKING TREE MAY DIFFER</div>
+<div class="status"><span class="dot">&#9679;</span> SOURCE 960427eefa75</div>
 </div></header>
-<div class="wrap" style="padding-top:1rem"><strong>Publication on hold.</strong> See <a href="docs/open-source-readiness.html">open-source readiness</a> for current verification and unresolved security findings. Generated timestamps do not recertify historical claims.</div>
 <section class="hero"><div class="wrap">
-<div class="eyebrow">FILE / 00 &nbsp;·&nbsp; INTERNAL WIKI &nbsp;·&nbsp; 42 ARTICLES</div>
-<h1>Xtracsys Wiki — the codebase, documented file by file</h1>
-<p class="sub">Every article documents one file: purpose, key functions, interactions, and the
-decisions it implements. Tabbed HTML with an embedded canonical JSON payload per page,
-mirrored as JSON data files, indexed in Markdown.</p>
-<p style="margin-top:1.2rem"><a class="btn solid" href="#cat-docs">BEGIN READING</a>
-<a class="btn" href="INDEX.md" style="margin-left:.6rem">INDEX.MD</a></p>
+<div class="eyebrow">FILE / 00 &nbsp;·&nbsp; PROJECT GUIDE &nbsp;·&nbsp; 37 ARTICLES</div>
+<h1>XtracsysCode — guide and reference</h1>
+<p class="sub">Set up a local model, organize projects, control tool permissions, and explore how
+the desktop app works. Start with the user guide, then browse the source references.</p>
+<p style="margin-top:1.2rem"><a class="btn solid" href="docs/usage-and-safety.html">START HERE</a>
+<a class="btn" href="INDEX.md" style="margin-left:.6rem">SOURCE INDEX</a></p>
 <div class="stats">
-<div class="stat"><div class="n">42</div><div class="l">articles</div></div>
+<div class="stat"><div class="n">37</div><div class="l">articles</div></div>
 <div class="stat"><div class="n">16,544</div><div class="l">source lines covered</div></div>
 </div></div></section><section id="cat-docs" class="wrap" style="padding-bottom:2rem">
-<h2 class="sec">Documents <span style="color:var(--fnt);text-transform:none;letter-spacing:.04em">&nbsp;// requirements and goals · 10 articles</span></h2>
+<h2 class="sec">Documents <span style="color:var(--fnt);text-transform:none;letter-spacing:.04em">&nbsp;// requirements and goals · 5 articles</span></h2>
 <div class="cards"><a class="card" href="docs/doc-requirements.html">
 <div class="f">FILE / 01 · BUILD_REQUIREMENTS.md · 219 LN</div>
-<div class="t">BUILD_REQUIREMENTS.md <span class="badge spec">SPEC</span></div>
-<div class="d">The founding stakeholder document (draft 2026-09-11): a local-only LLM desktop app that looks like Codex/ChatGPT, supports multitasking with projects and tabs, </div></a><a class="card" href="docs/doc-goals.html">
-<div class="f">FILE / 02 · GOAL_PROMPT_V2.md (+V3, V4) · 377 LN</div>
-<div class="t">GOAL_PROMPT_V2/V3/V4.md <span class="badge spec">SPEC</span></div>
-<div class="d">The self-contained unattended build prompts that drove versions 0.2–0.4. Each is a complete mission brief: hard constraints (local-only, bounded storage, archit</div></a><a class="card" href="docs/doc-readme.html">
-<div class="f">FILE / 03 · README.md · 201 LN</div>
+<div class="t">Product requirements <span class="badge spec">SPEC</span></div>
+<div class="d">XtracsysCode is a desktop workspace for local-model conversations and tools. Its requirements cover project organization, loopback model providers, visible perm</div></a><a class="card" href="docs/doc-readme.html">
+<div class="f">FILE / 02 · README.md · 201 LN</div>
 <div class="t">README.md <span class="badge ">META</span></div>
-<div class="d">The user-facing entry point describes the macOS desktop app, its Ollama/llama.cpp/GMLX/MLX LM server options, project and data behavior, security boundaries, an</div></a><a class="card" href="docs/doc-status.html">
-<div class="f">FILE / 04 · STATUS.md · 106 LN</div>
-<div class="t">STATUS.md <span class="badge ">META</span></div>
-<div class="d">The historical mission ledger preserves N/M/P/Q checklists and the v5 R1–R14 registry. R12 native Windows/Linux acceptance remains in progress; later entries co</div></a><a class="card" href="docs/doc-windows-install.html">
-<div class="f">FILE / 05 · INSTALL_WINDOWS.md · 80 LN</div>
+<div class="d">The project entry point covers installation, local-model setup, project conversations, skills, plugins, storage, and development. Download published installers </div></a><a class="card" href="docs/doc-windows-install.html">
+<div class="f">FILE / 03 · INSTALL_WINDOWS.md · 80 LN</div>
 <div class="t">INSTALL_WINDOWS.md <span class="badge spec">SPEC</span></div>
 <div class="d">Windows install guide (x64 NSIS build): installer walkthrough including the unsigned-build SmartScreen step, the %USERPROFILE%\XtracsysCode data root, Ollama/ll</div></a><a class="card" href="docs/doc-linux-install.html">
-<div class="f">FILE / 06 · INSTALL_LINUX.md · 95 LN</div>
+<div class="f">FILE / 04 · INSTALL_LINUX.md · 95 LN</div>
 <div class="t">INSTALL_LINUX.md <span class="badge spec">SPEC</span></div>
-<div class="d">Linux install guide (x64 AppImage): chmod + run, the libfuse2 / --appimage-extract-and-run fallback, the ~/XtracsysCode data root, Ollama (install script) and l</div></a><a class="card" href="docs/open-source-readiness.html">
-<div class="f">FILE / 07 · OPEN_SOURCE_READINESS.md · — LN</div>
-<div class="t">Open-source readiness <span class="badge ">REVIEW</span></div>
-<div class="d">Apache-2.0 is applied locally for Xtracsys LLC. The release sprint adds source-bound plugin consent, imported-rule removal, native-tar restore tests, provider r</div></a><a class="card" href="docs/sec-audit-2026-10.html">
-<div class="f">FILE / 08 · SECURITY_AUDIT_2026-10-28.md · 214 LN</div>
-<div class="t">Security audit &amp; remediation <span class="badge ">REVIEW</span></div>
-<div class="d">Two full adversarial audits of the v5 tree (same day, 2026-10-28): an initial five-track audit (Electron core, agent runtime, plugin/supply chain, renderer, bui</div></a><a class="card" href="docs/feature-proposals.html">
-<div class="f">FILE / 09 · FEATURE_PROPOSALS.md · 53 LN</div>
-<div class="t">Feature proposals <span class="badge ">META</span></div>
-<div class="d">Post-audit feature backlog, ordered by value-to-effort within four tracks: Security &amp; robustness (macOS Seatbelt sandbox for run_command, worker-thread tools, a</div></a><a class="card" href="docs/release-readiness.html">
-<div class="f">FILE / 10 · RELEASE_READINESS_2026-10-31.md · — LN</div>
-<div class="t">Release readiness 2026-10-31 <span class="badge ">REVIEW</span></div>
-<div class="d">Report-only release-readiness pass (1/1) over the public export artifact (single fresh-history commit, 205 files) using a structured checklist: baseline (secret</div></a></div></section><section id="cat-agent" class="wrap" style="padding-bottom:2rem">
+<div class="d">Linux install guide (x64 AppImage): chmod + run, the libfuse2 / --appimage-extract-and-run fallback, the ~/XtracsysCode data root, Ollama (install script) and l</div></a><a class="card" href="docs/usage-and-safety.html">
+<div class="f">FILE / 05 · USER_GUIDE.md · 151 LN</div>
+<div class="t">Using XtracsysCode <span class="badge ">GUIDE</span></div>
+<div class="d">XtracsysCode connects project conversations to local models and visible tools. Choose a project folder, configure a loopback model server, and keep approvals se</div></a></div></section><section id="cat-agent" class="wrap" style="padding-bottom:2rem">
 <h2 class="sec">Agent Core <span style="color:var(--fnt);text-transform:none;letter-spacing:.04em">&nbsp;// the loop and its tools · 10 articles</span></h2>
 <div class="cards"><a class="card" href="docs/agent-loop.html">
 <div class="f">FILE / 01 · electron/agent/loop.ts · 265 LN</div>
@@ -229,8 +212,8 @@ mirrored as JSON data files, indexed in Markdown.</p>
 <div class="t">bundled-skills/ + plugins/example-text-formatter <span class="badge spec">SPEC</span></div>
 <div class="d">bundled-skills/ ships via electron-builder extraResources and contains six starter skills scaffolded without overwriting user copies: skill-builder, project-ori</div></a></div></section>
 <footer class="bottom"><div class="wrap foot">
-<span><b>NODE 001 / ACTIVE</b></span>
-<span>GENERATED 2026-11-03 20:13 UTC</span>
+<span><b>XTRACSYSCODE / APACHE-2.0</b></span>
+<span>GENERATED 2026-11-04 03:12 UTC</span>
 </div></footer>
 <script>
 document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){

@@ -1,0 +1,102 @@
+{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "23fbf354d26ef3bb80dfb28a2f519f03",
+  "type": "doc",
+  "slug": "usage-and-safety",
+  "title": "Using XtracsysCode",
+  "version": 1,
+  "updated": "2026-11-04T03:12:56Z",
+  "tags": [
+    "docs",
+    "GUIDE",
+    "Markdown"
+  ],
+  "blocks": [
+    {
+      "id": "blk_a793d06927",
+      "type": "heading",
+      "content": "Using XtracsysCode",
+      "level": 1
+    },
+    {
+      "id": "blk_c40c83acd0",
+      "type": "paragraph",
+      "content": "XtracsysCode connects project conversations to local models and visible tools. Choose a project folder, configure a loopback model server, and keep approvals set to Ask while learning the tool workflow."
+    },
+    {
+      "id": "blk_33dc2f5473",
+      "type": "heading",
+      "content": "Start a project",
+      "level": 2
+    },
+    {
+      "id": "blk_476a35826f",
+      "type": "paragraph",
+      "content": "Install the release for your operating system or build from source. Start Ollama, llama.cpp, GMLX, or MLX LM server on localhost. In Settings \u2192 Backends, select the provider, URL and model, then create a project using its existing folder."
+    },
+    {
+      "id": "blk_0e1c3e2188",
+      "type": "heading",
+      "content": "Review actions",
+      "level": 2
+    },
+    {
+      "id": "blk_3924f81911",
+      "type": "paragraph",
+      "content": "Review file writes, shell commands and MCP tools before approving them. Shell commands, plugins and MCP servers run with your OS user permissions. They are not confined by the file tools' project-path checks and may use the network. Auto mode reduces approval prompts; use it only for tasks and sources you trust."
+    },
+    {
+      "id": "blk_c23673e76a",
+      "type": "heading",
+      "content": "Add skills and plugins",
+      "level": 2
+    },
+    {
+      "id": "blk_3ae94193ce",
+      "type": "paragraph",
+      "content": "Skills supply instructions and reference files. Plugins run a local tool process. Inspect imported source and requested commands before enabling a plugin. Imported plugins start disabled; changed plugin source requires a new review."
+    },
+    {
+      "id": "blk_b3df124a22",
+      "type": "heading",
+      "content": "Keep your data",
+      "level": 2
+    },
+    {
+      "id": "blk_f44b4814db",
+      "type": "paragraph",
+      "content": "Chats, settings, logs, skills and plugins live under the user-visible data root, normally ~/XtracsysCode. Configure storage limits in Settings. Export a backup before changing machines or restoring data. A restore resets approval rules, pauses schedules and disables imported plugins for review."
+    },
+    {
+      "id": "blk_a9adb86678",
+      "type": "heading",
+      "content": "Get help",
+      "level": 2
+    },
+    {
+      "id": "blk_5c2b00083a",
+      "type": "paragraph",
+      "content": "Use the platform installation guides and USER_GUIDE.md for detailed steps. Report reproducible problems with the app version, platform and synthetic reproduction. Send security reports to opensource@xtracsys.com. Remove personal paths, tokens and chat content from shared logs."
+    }
+  ],
+  "properties": {
+    "category": "docs",
+    "path": "USER_GUIDE.md",
+    "lines": 151,
+    "lang": "Markdown",
+    "phase": "0.5.0",
+    "status": "GUIDE",
+    "spec_refs": "",
+    "related": [
+      "doc-readme",
+      "agent-tools",
+      "skills",
+      "plugins",
+      "host-storage"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "960427eefa75"
+  }
+}

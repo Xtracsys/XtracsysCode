@@ -5,7 +5,7 @@
   "slug": "doc-readme",
   "title": "README.md",
   "version": 1,
-  "updated": "2026-11-03T20:13:48Z",
+  "updated": "2026-11-04T03:12:56Z",
   "tags": [
     "docs",
     "META",
@@ -21,7 +21,7 @@
     {
       "id": "blk_9056c3639b",
       "type": "paragraph",
-      "content": "The user-facing entry point describes the macOS desktop app, its Ollama/llama.cpp/GMLX/MLX LM server options, project and data behavior, security boundaries, and local development/build workflow. It distinguishes loopback model traffic from unsandboxed command/plugin processes, identifies Apache-2.0 licensing for Xtracsys LLC, and points readers to platform guides. Publication remains on hold pending provenance, security, and native-platform checks; read OPEN_SOURCE_READINESS.md for the current release blockers."
+      "content": "The project entry point covers installation, local-model setup, project conversations, skills, plugins, storage, and development. Download published installers from GitHub Releases or build from source."
     },
     {
       "id": "blk_5496715df8",
@@ -32,17 +32,17 @@
     {
       "id": "blk_c3a5fcd095",
       "type": "field",
-      "content": "Local model inference can operate offline; plugins and approved commands are not network sandboxed.",
+      "content": "Select an operating-system guide and configure a local model server.",
       "meta": {
-        "name": "Offline use"
+        "name": "Setup"
       }
     },
     {
       "id": "blk_b6988fde1e",
       "type": "field",
-      "content": "The README roadmap lists outstanding work only; use OPEN_SOURCE_READINESS.md for current publication blockers and risk scope.",
+      "content": "Read SECURITY.md for execution boundaries and private reporting contact.",
       "meta": {
-        "name": "Roadmap"
+        "name": "Security"
       }
     }
   ],
@@ -60,6 +60,6 @@
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "fcbce5c81c6e"
+    "last_commit": "960427eefa75"
   }
 }

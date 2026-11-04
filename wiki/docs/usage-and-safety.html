@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Using XtracsysCode</title>
+<style>
+:root{--bg:#0A0A0A;--panel:#131313;--panel2:#1A1A1A;--bd:#262626;
+--bd2:#333333;--tx:#E6E6E6;--mut:#8B8B8B;--fnt:#5C5C5C;
+--ac:#E0784F;--red:#FF5252;--amb:#FFB000;--code:#101010;--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--ac);text-decoration:none} a:hover{text-decoration:underline}
+code{font-family:var(--mono);font-size:.86em;background:var(--code);border:1px solid var(--bd);padding:.08em .35em;border-radius:3px;color:#d7f7e4}
+pre{font-family:var(--mono);font-size:.8rem;background:var(--code);border:1px solid var(--bd);border-radius:4px;padding:.9rem 1rem;overflow-x:auto;line-height:1.5;color:#cfe9d8}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+header.top{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.93);backdrop-filter:blur(6px);border-bottom:1px solid var(--bd)}
+.topbar{display:flex;align-items:center;gap:1.4rem;height:56px}
+.brand{font-family:var(--mono);font-weight:700;letter-spacing:.12em;color:var(--tx);font-size:.95rem}
+.brand b{color:var(--ac)}
+.topbar nav{display:flex;gap:1.1rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em}
+.topbar nav a{color:var(--mut)} .topbar nav a:hover{color:var(--ac);text-decoration:none}
+.status{margin-left:auto;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--mut)}
+.status .dot{color:var(--ac)}
+.eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:var(--mut);text-transform:uppercase;margin-bottom:.6rem}
+h1{font-size:1.9rem;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+h2.sec{font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;margin:2.6rem 0 1rem;border-bottom:1px solid var(--bd);padding-bottom:.5rem}
+.hero{padding:3.4rem 0 2.6rem}
+.hero p.sub{color:var(--mut);max-width:62ch;margin-top:.9rem}
+.btn{display:inline-block;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;padding:.6rem 1.1rem;border:1px solid var(--ac);border-radius:3px;color:var(--ac);text-transform:uppercase}
+.btn.solid{background:var(--ac);color:#06130b;font-weight:700}
+.btn:hover{text-decoration:none;filter:brightness(1.1)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:6px;overflow:hidden;margin:2rem 0}
+.stat{background:var(--panel);padding:1rem 1.1rem}
+.stat .n{font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--ac)}
+.stat .l{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:6px;overflow:hidden}
+.card{background:var(--panel);padding:1rem 1.1rem;display:block;color:var(--tx)}
+.card:hover{background:var(--panel2);text-decoration:none}
+.card .f{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--fnt);text-transform:uppercase}
+.card .t{font-weight:600;font-size:.92rem;margin:.3rem 0 .25rem}
+.card .d{color:var(--mut);font-size:.8rem;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+footer.bottom{border-top:1px solid var(--bd);margin-top:4rem;padding:1.6rem 0 2.4rem}
+footer .foot{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;color:var(--faint);display:flex;gap:1.6rem;flex-wrap:wrap}
+footer .foot b{color:var(--mut);font-weight:500}
+.artgrid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:2.4rem;padding:2.2rem 0}
+@media(max-width:880px){.artgrid{grid-template-columns:1fr}.infobox{order:-1}}
+.article h1{font-size:1.75rem}
+.lede{font-size:1.05rem}
+.article p{margin:.8rem 0;color:#cfcfcf}
+.article h3{font-size:1.05rem;margin:1.6rem 0 .2rem}
+.infobox{background:var(--panel);border:1px solid var(--bd);border-radius:6px;font-family:var(--mono);font-size:.72rem;align-self:start;position:sticky;top:76px}
+.infobox .ih{padding:.7rem .9rem;border-bottom:1px solid var(--bd);letter-spacing:.16em;color:var(--ac);text-transform:uppercase;font-size:.64rem}
+.infobox .ir{display:flex;justify-content:space-between;gap:1rem;padding:.42rem .9rem;border-bottom:1px solid var(--bd)}
+.infobox .ir:last-child{border-bottom:0}
+.infobox .k{color:var(--fnt);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.infobox .v{color:var(--tx);text-align:right;word-break:break-all}
+.infobox .v a{display:block}
+table.ki{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.84rem}
+table.ki th{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--bd2)}
+table.ki td{padding:.5rem .6rem;border-bottom:1px solid var(--bd);vertical-align:top;color:#cfcfcf}
+table.ki td:first-child{font-family:var(--mono);font-size:.76rem;color:var(--ac);white-space:nowrap}
+.badge{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--bd2);border-radius:3px;padding:.14rem .45rem;color:var(--mut)}
+.badge.core{border-color:var(--ac);color:var(--ac)}
+.badge.test{border-color:var(--amb);color:var(--amb)}
+.badge.spec{border-color:#6da9ff;color:#6da9ff}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--bd2);margin:1.8rem 0 1.4rem}
+.tab{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);padding:.6rem 1.1rem;cursor:pointer;border:1px solid transparent;border-bottom:0;position:relative;top:1px;user-select:none}
+.tab.on{color:var(--ac);border-color:var(--bd2);background:var(--panel);border-top:2px solid var(--ac)}
+.panel{display:none} .panel.on{display:block}
+.master-index h4{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--mut);text-transform:uppercase;margin:1.2rem 0 .4rem}
+.master-index ul{list-style:none}
+.master-index li{padding:.22rem 0;border-bottom:1px dashed var(--bd)}
+.master-index li a{font-size:.86rem}
+.master-index li span{font-family:var(--mono);font-size:.68rem;color:var(--fnt)}
+</style></head>
+<body>
+<header class="top"><div class="wrap topbar">
+<div class="brand">XTRACSYSCODE<b>GUIDE</b></div>
+<nav><a href="../index.html#cat-docs">DOCUMENTS</a><a href="../index.html#cat-agent">AGENT</a><a href="../index.html#cat-host">ELECTRON</a><a href="../index.html#cat-renderer">RENDERER</a><a href="../index.html#cat-config">CONFIG</a></nav>
+<div class="status"><span class="dot">&#9679;</span> SOURCE 960427eefa75</div>
+</div></header>
+<div class="wrap artgrid">
+<article class="article panel on" id="p-article">
+<div class="eyebrow">FILE / 05 &nbsp;·&nbsp; USER_GUIDE.md &nbsp;·&nbsp; 151 LINES</div>
+<h1>Using XtracsysCode</h1>
+<p class="lede">XtracsysCode connects project conversations to local models and visible tools. Choose a project folder, configure a loopback model server, and keep approvals set to Ask while learning the tool workflow.</p><h3>Start a project</h3><p>Install the release for your operating system or build from source. Start Ollama, llama.cpp, GMLX, or MLX LM server on localhost. In Settings → Backends, select the provider, URL and model, then create a project using its existing folder.</p><h3>Review actions</h3><p>Review file writes, shell commands and MCP tools before approving them. Shell commands, plugins and MCP servers run with your OS user permissions. They are not confined by the file tools&#x27; project-path checks and may use the network. Auto mode reduces approval prompts; use it only for tasks and sources you trust.</p><h3>Add skills and plugins</h3><p>Skills supply instructions and reference files. Plugins run a local tool process. Inspect imported source and requested commands before enabling a plugin. Imported plugins start disabled; changed plugin source requires a new review.</p><h3>Keep your data</h3><p>Chats, settings, logs, skills and plugins live under the user-visible data root, normally ~/XtracsysCode. Configure storage limits in Settings. Export a backup before changing machines or restoring data. A restore resets approval rules, pauses schedules and disables imported plugins for review.</p><h3>Get help</h3><p>Use the platform installation guides and USER_GUIDE.md for detailed steps. Report reproducible problems with the app version, platform and synthetic reproduction. Send security reports to opensource@xtracsys.com. Remove personal paths, tokens and chat content from shared logs.</p>
+</article>
+<aside class="panel" id="p-data"><div style="width:100%">
+<div class="eyebrow">// CANONICAL PAYLOAD — EMBEDDED JSON</div>
+<pre>{
+  &quot;$schema&quot;: &quot;https://code-wiki.local/schema/article.json&quot;,
+  &quot;id&quot;: &quot;23fbf354d26ef3bb80dfb28a2f519f03&quot;,
+  &quot;type&quot;: &quot;doc&quot;,
+  &quot;slug&quot;: &quot;usage-and-safety&quot;,
+  &quot;title&quot;: &quot;Using XtracsysCode&quot;,
+  &quot;version&quot;: 1,
+  &quot;updated&quot;: &quot;2026-11-04T03:12:56Z&quot;,
+  &quot;tags&quot;: [
+    &quot;docs&quot;,
+    &quot;GUIDE&quot;,
+    &quot;Markdown&quot;
+  ],
+  &quot;blocks&quot;: [
+    {
+      &quot;id&quot;: &quot;blk_a793d06927&quot;,
+      &quot;type&quot;: &quot;heading&quot;,
+      &quot;content&quot;: &quot;Using XtracsysCode&quot;,
+      &quot;level&quot;: 1
+    },
+    {
+      &quot;id&quot;: &quot;blk_c40c83acd0&quot;,
+      &quot;type&quot;: &quot;paragraph&quot;,
+      &quot;content&quot;: &quot;XtracsysCode connects project conversations to local models and visible tools. Choose a project folder, configure a loopback model server, and keep approvals set to Ask while learning the tool workflow.&quot;
+    },
+    {
+      &quot;id&quot;: &quot;blk_33dc2f5473&quot;,
+      &quot;type&quot;: &quot;heading&quot;,
+      &quot;content&quot;: &quot;Start a project&quot;,
+      &quot;level&quot;: 2
+    },
+    {
+      &quot;id&quot;: &quot;blk_476a35826f&quot;,
+      &quot;type&quot;: &quot;paragraph&quot;,
+      &quot;content&quot;: &quot;Install the release for your operating system or build from source. Start Ollama, llama.cpp, GMLX, or MLX LM server on localhost. In Settings \u2192 Backends, select the provider, URL and model, then create a project using its existing folder.&quot;
+    },
+    {
+      &quot;id&quot;: &quot;blk_0e1c3e2188&quot;,
+      &quot;type&quot;: &quot;heading&quot;,
+      &quot;content&quot;: &quot;Review actions&quot;,
+      &quot;level&quot;: 2
+    },
+    {
+      &quot;id&quot;: &quot;blk_3924f81911&quot;,
+      &quot;type&quot;: &quot;paragraph&quot;,
+      &quot;content&quot;: &quot;Review file writes, shell commands and MCP tools before approving them. Shell commands, plugins and MCP servers run with your OS user permissions. They are not confined by the file tools&#x27; project-path checks and may use the network. Auto mode reduces approval prompts; use it only for tasks and sources you trust.&quot;
+    },
+    {
+      &quot;id&quot;: &quot;blk_c23673e76a&quot;,
+      &quot;type&quot;: &quot;heading&quot;,
+      &quot;content&quot;: &quot;Add skills and plugins&quot;,
+      &quot;level&quot;: 2
+    },
+    {
+      &quot;id&quot;: &quot;blk_3ae94193ce&quot;,
+      &quot;type&quot;: &quot;paragraph&quot;,
+      &quot;content&quot;: &quot;Skills supply instructions and reference files. Plugins run a local tool process. Inspect imported source and requested commands before enabling a plugin. Imported plugins start disabled; changed plugin source requires a new review.&quot;
+    },
+    {
+      &quot;id&quot;: &quot;blk_b3df124a22&quot;,
+      &quot;type&quot;: &quot;heading&quot;,
+      &quot;content&quot;: &quot;Keep your data&quot;,
+      &quot;level&quot;: 2
+    },
+    {
+      &quot;id&quot;: &quot;blk_f44b4814db&quot;,
+      &quot;type&quot;: &quot;paragraph&quot;,
+      &quot;content&quot;: &quot;Chats, settings, logs, skills and plugins live under the user-visible data root, normally ~/XtracsysCode. Configure storage limits in Settings. Export a backup before changing machines or restoring data. A restore resets approval rules, pauses schedules and disables imported plugins for review.&quot;
+    },
+    {
+      &quot;id&quot;: &quot;blk_a9adb86678&quot;,
+      &quot;type&quot;: &quot;heading&quot;,
+      &quot;content&quot;: &quot;Get help&quot;,
+      &quot;level&quot;: 2
+    },
+    {
+      &quot;id&quot;: &quot;blk_5c2b00083a&quot;,
+      &quot;type&quot;: &quot;paragraph&quot;,
+      &quot;content&quot;: &quot;Use the platform installation guides and USER_GUIDE.md for detailed steps. Report reproducible problems with the app version, platform and synthetic reproduction. Send security reports to opensource@xtracsys.com. Remove personal paths, tokens and chat content from shared logs.&quot;
+    }
+  ],
+  &quot;properties&quot;: {
+    &quot;category&quot;: &quot;docs&quot;,
+    &quot;path&quot;: &quot;USER_GUIDE.md&quot;,
+    &quot;lines&quot;: 151,
+    &quot;lang&quot;: &quot;Markdown&quot;,
+    &quot;phase&quot;: &quot;0.5.0&quot;,
+    &quot;status&quot;: &quot;GUIDE&quot;,
+    &quot;spec_refs&quot;: &quot;&quot;,
+    &quot;related&quot;: [
+      &quot;doc-readme&quot;,
+      &quot;agent-tools&quot;,
+      &quot;skills&quot;,
+      &quot;plugins&quot;,
+      &quot;host-storage&quot;
+    ]
+  },
+  &quot;audit&quot;: {
+    &quot;last_editor&quot;: &quot;human:wiki-generator&quot;,
+    &quot;last_commit&quot;: &quot;960427eefa75&quot;
+  }
+}</pre></div></aside>
+<aside class="panel master-index" id="p-index"><div class="master-index"><h4>// Documents</h4><ul><li><a href="doc-requirements.html">Product requirements</a><span> BUILD_REQUIREMENTS.md</span></li><li><a href="doc-readme.html">README.md</a><span> README.md</span></li><li><a href="doc-windows-install.html">INSTALL_WINDOWS.md</a><span> INSTALL_WINDOWS.md</span></li><li><a href="doc-linux-install.html">INSTALL_LINUX.md</a><span> INSTALL_LINUX.md</span></li><li><a href="usage-and-safety.html">Using XtracsysCode</a><span> USER_GUIDE.md <span>&#9656; CURRENT</span></span></li></ul><h4>// Agent Core</h4><ul><li><a href="agent-loop.html">electron/agent/loop.ts</a><span> electron/agent/loop.ts</span></li><li><a href="agent-tools.html">electron/agent/tools.ts</a><span> electron/agent/tools.ts</span></li><li><a href="agent-providers.html">electron/agent/providers/*</a><span> electron/agent/providers/</span></li><li><a href="agent-mcp.html">electron/agent/mcp.ts</a><span> electron/agent/mcp.ts</span></li><li><a href="agent-types.html">electron/agent/types.ts</a><span> electron/agent/types.ts</span></li><li><a href="agent-prompt.html">electron/agent/prompt.ts</a><span> electron/agent/prompt.ts</span></li><li><a href="agent-smoke.html">electron/agent/smoke.ts</a><span> electron/agent/smoke.ts</span></li><li><a href="timeline-model.html">shared/timelineModel.ts</a><span> shared/timelineModel.ts</span></li><li><a href="local-url.html">electron/agent/providers/localUrl.ts</a><span> electron/agent/providers/localUrl.ts</span></li><li><a href="agent-tests.html">tests/*</a><span> tests/</span></li></ul><h4>// Electron Host</h4><ul><li><a href="host-main.html">electron/main.ts</a><span> electron/main.ts</span></li><li><a href="host-preload.html">electron/preload.ts</a><span> electron/preload.ts</span></li><li><a href="host-runner.html">electron/runner.ts</a><span> electron/runner.ts</span></li><li><a href="host-storage.html">electron/storage.ts</a><span> electron/storage.ts</span></li><li><a href="host-store.html">electron/store.ts</a><span> electron/store.ts</span></li><li><a href="skills.html">electron/skills.ts</a><span> electron/skills.ts</span></li><li><a href="plugins.html">electron/plugins.ts</a><span> electron/plugins.ts</span></li><li><a href="platform.html">electron/platform.ts</a><span> electron/platform.ts</span></li><li><a href="doc-kit.html">plugins/doc-*</a><span> plugins/</span></li></ul><h4>// Renderer</h4><ul><li><a href="web-app.html">web/src/App.tsx</a><span> web/src/App.tsx</span></li><li><a href="use-xtrac.html">web/src/hooks/useXtrac.ts</a><span> web/src/hooks/useXtrac.ts</span></li><li><a href="web-sidebar.html">web/src/components/Sidebar.tsx</a><span> web/src/components/Sidebar.tsx</span></li><li><a href="web-chat.html">web/src/components/Chat.tsx</a><span> web/src/components/Chat.tsx</span></li><li><a href="web-settings.html">web/src/components/Settings.tsx</a><span> web/src/components/Settings.tsx</span></li><li><a href="web-modals-wizard.html">web/src/components/Modals.tsx + WelcomeWizard.tsx</a><span> web/src/components/</span></li><li><a href="web-timeline.html">web/src/components/timeline/*</a><span> web/src/components/timeline/</span></li><li><a href="web-support.html">web/src/{api.ts, hooks, lib, types, main.tsx}</a><span> web/src/</span></li></ul><h4>// Config &amp; Meta</h4><ul><li><a href="cfg-package.html">package.json + electron-builder.yml</a><span> package.json</span></li><li><a href="cfg-tsconfig-vite.html">tsconfig*.json + vite.config.ts</a><span> vite.config.ts</span></li><li><a href="cfg-icon.html">scripts/icon.js + build/icon.icns</a><span> scripts/icon.js</span></li><li><a href="cfg-web-shell.html">web/index.html + .gitignore</a><span> web/index.html</span></li><li><a href="bundled-skills.html">bundled-skills/ + plugins/example-text-formatter</a><span> bundled-skills/</span></li></ul></div><p style="margin-top:1rem"><a class="btn" href="../index.html">&#8592; WIKI HOME</a></p></aside>
+<aside class="infobox"><div class="ih">&#9635; DOSSIER — GUIDE</div><div class="ir"><span class="k">Path</span><span class="v"><code>USER_GUIDE.md</code></span></div><div class="ir"><span class="k">Lines</span><span class="v">151</span></div><div class="ir"><span class="k">Language</span><span class="v">Markdown</span></div><div class="ir"><span class="k">Package</span><span class="v">docs</span></div><div class="ir"><span class="k">Phase</span><span class="v">0.5.0</span></div><div class="ir"><span class="k">See also</span><span class="v"><a href="doc-readme.html">README.md</a><br><a href="agent-tools.html">electron/agent/tools.ts</a><br><a href="skills.html">electron/skills.ts</a><br><a href="plugins.html">electron/plugins.ts</a><br><a href="host-storage.html">electron/storage.ts</a></span></div><div class="ir"><span class="k">Canonical data</span><span class="v"><a href="../data/usage-and-safety.json">usage-and-safety.json</a></span></div></aside>
+</div>
+<div class="wrap"><div class="tabs">
+<div class="tab on" data-tab="article">&#9635; ARTICLE</div>
+<div class="tab" data-tab="data">&#123;&#125; DATA / JSON</div>
+<div class="tab" data-tab="index">&#9776; MASTER INDEX</div>
+</div><p style="font-family:var(--mono);font-size:.66rem;color:var(--faint);padding-bottom:2rem">
+THE EMBEDDED PAYLOAD IN THIS FILE'S SOURCE IS MACHINE-READABLE (script#leet-doc).</p></div>
+<footer class="bottom"><div class="wrap foot">
+<span><b>XTRACSYSCODE / APACHE-2.0</b></span>
+<span>GENERATED 2026-11-04 03:12 UTC</span>
+</div></footer>
+<script>
+document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
+ document.querySelectorAll('.tab').forEach(function(x){x.classList.toggle('on',x===t)});
+ document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.id==='p-'+t.dataset.tab)});
+ window.scrollTo({top:0});
+});});
+</script>
+<script type="application/json" id="leet-doc">{
+  "$schema": "https://code-wiki.local/schema/article.json",
+  "id": "23fbf354d26ef3bb80dfb28a2f519f03",
+  "type": "doc",
+  "slug": "usage-and-safety",
+  "title": "Using XtracsysCode",
+  "version": 1,
+  "updated": "2026-11-04T03:12:56Z",
+  "tags": [
+    "docs",
+    "GUIDE",
+    "Markdown"
+  ],
+  "blocks": [
+    {
+      "id": "blk_a793d06927",
+      "type": "heading",
+      "content": "Using XtracsysCode",
+      "level": 1
+    },
+    {
+      "id": "blk_c40c83acd0",
+      "type": "paragraph",
+      "content": "XtracsysCode connects project conversations to local models and visible tools. Choose a project folder, configure a loopback model server, and keep approvals set to Ask while learning the tool workflow."
+    },
+    {
+      "id": "blk_33dc2f5473",
+      "type": "heading",
+      "content": "Start a project",
+      "level": 2
+    },
+    {
+      "id": "blk_476a35826f",
+      "type": "paragraph",
+      "content": "Install the release for your operating system or build from source. Start Ollama, llama.cpp, GMLX, or MLX LM server on localhost. In Settings \u2192 Backends, select the provider, URL and model, then create a project using its existing folder."
+    },
+    {
+      "id": "blk_0e1c3e2188",
+      "type": "heading",
+      "content": "Review actions",
+      "level": 2
+    },
+    {
+      "id": "blk_3924f81911",
+      "type": "paragraph",
+      "content": "Review file writes, shell commands and MCP tools before approving them. Shell commands, plugins and MCP servers run with your OS user permissions. They are not confined by the file tools' project-path checks and may use the network. Auto mode reduces approval prompts; use it only for tasks and sources you trust."
+    },
+    {
+      "id": "blk_c23673e76a",
+      "type": "heading",
+      "content": "Add skills and plugins",
+      "level": 2
+    },
+    {
+      "id": "blk_3ae94193ce",
+      "type": "paragraph",
+      "content": "Skills supply instructions and reference files. Plugins run a local tool process. Inspect imported source and requested commands before enabling a plugin. Imported plugins start disabled; changed plugin source requires a new review."
+    },
+    {
+      "id": "blk_b3df124a22",
+      "type": "heading",
+      "content": "Keep your data",
+      "level": 2
+    },
+    {
+      "id": "blk_f44b4814db",
+      "type": "paragraph",
+      "content": "Chats, settings, logs, skills and plugins live under the user-visible data root, normally ~/XtracsysCode. Configure storage limits in Settings. Export a backup before changing machines or restoring data. A restore resets approval rules, pauses schedules and disables imported plugins for review."
+    },
+    {
+      "id": "blk_a9adb86678",
+      "type": "heading",
+      "content": "Get help",
+      "level": 2
+    },
+    {
+      "id": "blk_5c2b00083a",
+      "type": "paragraph",
+      "content": "Use the platform installation guides and USER_GUIDE.md for detailed steps. Report reproducible problems with the app version, platform and synthetic reproduction. Send security reports to opensource@xtracsys.com. Remove personal paths, tokens and chat content from shared logs."
+    }
+  ],
+  "properties": {
+    "category": "docs",
+    "path": "USER_GUIDE.md",
+    "lines": 151,
+    "lang": "Markdown",
+    "phase": "0.5.0",
+    "status": "GUIDE",
+    "spec_refs": "",
+    "related": [
+      "doc-readme",
+      "agent-tools",
+      "skills",
+      "plugins",
+      "host-storage"
+    ]
+  },
+  "audit": {
+    "last_editor": "human:wiki-generator",
+    "last_commit": "960427eefa75"
+  }
+}</script>
+</body></html>

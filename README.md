@@ -134,9 +134,9 @@ npm run dist:linux # Linux AppImage
 
 ## Roadmap (not yet shipped)
 
-Full-screen composer mode · git stage/discard from the panel · scheduled-task summaries as chat messages.
+Planned work is tracked in [FEATURE_PROPOSALS.md](FEATURE_PROPOSALS.md). Roadmap items are proposals, not delivery commitments.
 
-The build is unsigned and not notarized. Gatekeeper may block it; do not remove quarantine attributes or bypass warnings unless you have independently verified the artifact and accept the risk under your security policy. A public release should be signed and notarized.
+The macOS build is ad-hoc signed and not notarized. Gatekeeper may flag downloaded builds. See [MAC_RELEASE.md](MAC_RELEASE.md) for verification and signing limitations.
 
 ## Air-gapped / offline machines
 

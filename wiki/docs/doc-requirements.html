@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BUILD_REQUIREMENTS.md</title>
+<title>Product requirements</title>
 <style>
 :root{--bg:#0A0A0A;--panel:#131313;--panel2:#1A1A1A;--bd:#262626;
 --bd2:#333333;--tx:#E6E6E6;--mut:#8B8B8B;--fnt:#5C5C5C;
@@ -75,16 +75,15 @@ table.ki td:first-child{font-family:var(--mono);font-size:.76rem;color:var(--ac)
 </style></head>
 <body>
 <header class="top"><div class="wrap topbar">
-<div class="brand">XTRACSYS<b>WIKI</b></div>
+<div class="brand">XTRACSYSCODE<b>GUIDE</b></div>
 <nav><a href="../index.html#cat-docs">DOCUMENTS</a><a href="../index.html#cat-agent">AGENT</a><a href="../index.html#cat-host">ELECTRON</a><a href="../index.html#cat-renderer">RENDERER</a><a href="../index.html#cat-config">CONFIG</a></nav>
-<div class="status"><span class="dot">&#9679;</span> PRE-RELEASE REVIEW &nbsp;/&nbsp; BASE HEAD@fcbce5c81c6e &nbsp;·&nbsp; WORKING TREE MAY DIFFER</div>
+<div class="status"><span class="dot">&#9679;</span> SOURCE 960427eefa75</div>
 </div></header>
-<div class="wrap" style="padding-top:1rem"><strong>Publication on hold.</strong> See <a href="../docs/open-source-readiness.html">open-source readiness</a> for current verification and unresolved security findings. Generated timestamps do not recertify historical claims.</div>
 <div class="wrap artgrid">
 <article class="article panel on" id="p-article">
 <div class="eyebrow">FILE / 01 &nbsp;·&nbsp; BUILD_REQUIREMENTS.md &nbsp;·&nbsp; 219 LINES</div>
-<h1>BUILD_REQUIREMENTS.md</h1>
-<p class="lede">The founding stakeholder document (draft 2026-09-11): a local-only LLM desktop app that looks like Codex/ChatGPT, supports multitasking with projects and tabs, runs exclusively on Ollama/llama.cpp, has no call-home behavior, and — as a hard constraint — never destroys the hard drive. §4 lists the six core requirement groups (chat/workspace, backends, no-call-home, automation, bounded storage, JSON+MD data model); §8 the license posture that drove the MIT/Apache-only dependency audit.</p><h3>Key items</h3><table class='ki'><tr><th>item</th><th>what it does</th></tr><tr><td>§4.5 Storage — hard requirement</td><td>Bounded logs, bounded sessions, controlled temp, cleanup rules, visible usage, safe defaults, manual override — every release audit re-checks this section.</td></tr><tr><td>§7 Reference landscape</td><td>OpenCode/Jan/Cline/Continued/LM Studio evaluated; the app-behavior references shaped the v1 UI.</td></tr></table>
+<h1>Product requirements</h1>
+<p class="lede">XtracsysCode is a desktop workspace for local-model conversations and tools. Its requirements cover project organization, loopback model providers, visible permissions, bounded storage, and portable JSON/Markdown data.</p><h3>Key items</h3><table class='ki'><tr><th>item</th><th>what it does</th></tr><tr><td>Storage</td><td>Configurable chat, log and temporary-file limits keep local data growth visible and bounded.</td></tr><tr><td>Local control</td><td>Model endpoints use loopback addresses; commands and plugins retain their own OS and network permissions.</td></tr></table>
 </article>
 <aside class="panel" id="p-data"><div style="width:100%">
 <div class="eyebrow">// CANONICAL PAYLOAD — EMBEDDED JSON</div>
@@ -93,9 +92,9 @@ table.ki td:first-child{font-family:var(--mono);font-size:.76rem;color:var(--ac)
   &quot;id&quot;: &quot;345b5b119e56093b52af73dafb704a4f&quot;,
   &quot;type&quot;: &quot;doc&quot;,
   &quot;slug&quot;: &quot;doc-requirements&quot;,
-  &quot;title&quot;: &quot;BUILD_REQUIREMENTS.md&quot;,
+  &quot;title&quot;: &quot;Product requirements&quot;,
   &quot;version&quot;: 1,
-  &quot;updated&quot;: &quot;2026-11-03T20:13:48Z&quot;,
+  &quot;updated&quot;: &quot;2026-11-04T03:12:56Z&quot;,
   &quot;tags&quot;: [
     &quot;docs&quot;,
     &quot;SPEC&quot;,
@@ -105,13 +104,13 @@ table.ki td:first-child{font-family:var(--mono);font-size:.76rem;color:var(--ac)
     {
       &quot;id&quot;: &quot;blk_b76db7a2a4&quot;,
       &quot;type&quot;: &quot;heading&quot;,
-      &quot;content&quot;: &quot;BUILD_REQUIREMENTS.md&quot;,
+      &quot;content&quot;: &quot;Product requirements&quot;,
       &quot;level&quot;: 1
     },
     {
       &quot;id&quot;: &quot;blk_519f92444c&quot;,
       &quot;type&quot;: &quot;paragraph&quot;,
-      &quot;content&quot;: &quot;The founding stakeholder document (draft 2026-09-11): a local-only LLM desktop app that looks like Codex/ChatGPT, supports multitasking with projects and tabs, runs exclusively on Ollama/llama.cpp, has no call-home behavior, and \u2014 as a hard constraint \u2014 never destroys the hard drive. \u00a74 lists the six core requirement groups (chat/workspace, backends, no-call-home, automation, bounded storage, JSON+MD data model); \u00a78 the license posture that drove the MIT/Apache-only dependency audit.&quot;
+      &quot;content&quot;: &quot;XtracsysCode is a desktop workspace for local-model conversations and tools. Its requirements cover project organization, loopback model providers, visible permissions, bounded storage, and portable JSON/Markdown data.&quot;
     },
     {
       &quot;id&quot;: &quot;blk_cd4359a70e&quot;,
@@ -122,17 +121,17 @@ table.ki td:first-child{font-family:var(--mono);font-size:.76rem;color:var(--ac)
     {
       &quot;id&quot;: &quot;blk_314a659722&quot;,
       &quot;type&quot;: &quot;field&quot;,
-      &quot;content&quot;: &quot;Bounded logs, bounded sessions, controlled temp, cleanup rules, visible usage, safe defaults, manual override \u2014 every release audit re-checks this section.&quot;,
+      &quot;content&quot;: &quot;Configurable chat, log and temporary-file limits keep local data growth visible and bounded.&quot;,
       &quot;meta&quot;: {
-        &quot;name&quot;: &quot;\u00a74.5 Storage \u2014 hard requirement&quot;
+        &quot;name&quot;: &quot;Storage&quot;
       }
     },
     {
       &quot;id&quot;: &quot;blk_942e5d8612&quot;,
       &quot;type&quot;: &quot;field&quot;,
-      &quot;content&quot;: &quot;OpenCode/Jan/Cline/Continued/LM Studio evaluated; the app-behavior references shaped the v1 UI.&quot;,
+      &quot;content&quot;: &quot;Model endpoints use loopback addresses; commands and plugins retain their own OS and network permissions.&quot;,
       &quot;meta&quot;: {
-        &quot;name&quot;: &quot;\u00a77 Reference landscape&quot;
+        &quot;name&quot;: &quot;Local control&quot;
       }
     }
   ],
@@ -146,16 +145,16 @@ table.ki td:first-child{font-family:var(--mono);font-size:.76rem;color:var(--ac)
     &quot;spec_refs&quot;: &quot;&quot;,
     &quot;related&quot;: [
       &quot;doc-readme&quot;,
-      &quot;doc-status&quot;
+      &quot;usage-and-safety&quot;
     ]
   },
   &quot;audit&quot;: {
     &quot;last_editor&quot;: &quot;human:wiki-generator&quot;,
-    &quot;last_commit&quot;: &quot;fcbce5c81c6e&quot;
+    &quot;last_commit&quot;: &quot;960427eefa75&quot;
   }
 }</pre></div></aside>
-<aside class="panel master-index" id="p-index"><div class="master-index"><h4>// Documents</h4><ul><li><a href="doc-requirements.html">BUILD_REQUIREMENTS.md</a><span> BUILD_REQUIREMENTS.md <span>&#9656; CURRENT</span></span></li><li><a href="doc-goals.html">GOAL_PROMPT_V2/V3/V4.md</a><span> GOAL_PROMPT_V2.md (+V3, V4)</span></li><li><a href="doc-readme.html">README.md</a><span> README.md</span></li><li><a href="doc-status.html">STATUS.md</a><span> STATUS.md</span></li><li><a href="doc-windows-install.html">INSTALL_WINDOWS.md</a><span> INSTALL_WINDOWS.md</span></li><li><a href="doc-linux-install.html">INSTALL_LINUX.md</a><span> INSTALL_LINUX.md</span></li><li><a href="open-source-readiness.html">Open-source readiness</a><span> OPEN_SOURCE_READINESS.md</span></li><li><a href="sec-audit-2026-10.html">Security audit &amp; remediation</a><span> SECURITY_AUDIT_2026-10-28.md</span></li><li><a href="feature-proposals.html">Feature proposals</a><span> FEATURE_PROPOSALS.md</span></li><li><a href="release-readiness.html">Release readiness 2026-10-31</a><span> RELEASE_READINESS_2026-10-31.md</span></li></ul><h4>// Agent Core</h4><ul><li><a href="agent-loop.html">electron/agent/loop.ts</a><span> electron/agent/loop.ts</span></li><li><a href="agent-tools.html">electron/agent/tools.ts</a><span> electron/agent/tools.ts</span></li><li><a href="agent-providers.html">electron/agent/providers/*</a><span> electron/agent/providers/</span></li><li><a href="agent-mcp.html">electron/agent/mcp.ts</a><span> electron/agent/mcp.ts</span></li><li><a href="agent-types.html">electron/agent/types.ts</a><span> electron/agent/types.ts</span></li><li><a href="agent-prompt.html">electron/agent/prompt.ts</a><span> electron/agent/prompt.ts</span></li><li><a href="agent-smoke.html">electron/agent/smoke.ts</a><span> electron/agent/smoke.ts</span></li><li><a href="timeline-model.html">shared/timelineModel.ts</a><span> shared/timelineModel.ts</span></li><li><a href="local-url.html">electron/agent/providers/localUrl.ts</a><span> electron/agent/providers/localUrl.ts</span></li><li><a href="agent-tests.html">tests/*</a><span> tests/</span></li></ul><h4>// Electron Host</h4><ul><li><a href="host-main.html">electron/main.ts</a><span> electron/main.ts</span></li><li><a href="host-preload.html">electron/preload.ts</a><span> electron/preload.ts</span></li><li><a href="host-runner.html">electron/runner.ts</a><span> electron/runner.ts</span></li><li><a href="host-storage.html">electron/storage.ts</a><span> electron/storage.ts</span></li><li><a href="host-store.html">electron/store.ts</a><span> electron/store.ts</span></li><li><a href="skills.html">electron/skills.ts</a><span> electron/skills.ts</span></li><li><a href="plugins.html">electron/plugins.ts</a><span> electron/plugins.ts</span></li><li><a href="platform.html">electron/platform.ts</a><span> electron/platform.ts</span></li><li><a href="doc-kit.html">plugins/doc-*</a><span> plugins/</span></li></ul><h4>// Renderer</h4><ul><li><a href="web-app.html">web/src/App.tsx</a><span> web/src/App.tsx</span></li><li><a href="use-xtrac.html">web/src/hooks/useXtrac.ts</a><span> web/src/hooks/useXtrac.ts</span></li><li><a href="web-sidebar.html">web/src/components/Sidebar.tsx</a><span> web/src/components/Sidebar.tsx</span></li><li><a href="web-chat.html">web/src/components/Chat.tsx</a><span> web/src/components/Chat.tsx</span></li><li><a href="web-settings.html">web/src/components/Settings.tsx</a><span> web/src/components/Settings.tsx</span></li><li><a href="web-modals-wizard.html">web/src/components/Modals.tsx + WelcomeWizard.tsx</a><span> web/src/components/</span></li><li><a href="web-timeline.html">web/src/components/timeline/*</a><span> web/src/components/timeline/</span></li><li><a href="web-support.html">web/src/{api.ts, hooks, lib, types, main.tsx}</a><span> web/src/</span></li></ul><h4>// Config &amp; Meta</h4><ul><li><a href="cfg-package.html">package.json + electron-builder.yml</a><span> package.json</span></li><li><a href="cfg-tsconfig-vite.html">tsconfig*.json + vite.config.ts</a><span> vite.config.ts</span></li><li><a href="cfg-icon.html">scripts/icon.js + build/icon.icns</a><span> scripts/icon.js</span></li><li><a href="cfg-web-shell.html">web/index.html + .gitignore</a><span> web/index.html</span></li><li><a href="bundled-skills.html">bundled-skills/ + plugins/example-text-formatter</a><span> bundled-skills/</span></li></ul></div><p style="margin-top:1rem"><a class="btn" href="../index.html">&#8592; WIKI HOME</a></p></aside>
-<aside class="infobox"><div class="ih">&#9635; DOSSIER — SPEC</div><div class="ir"><span class="k">Path</span><span class="v"><code>BUILD_REQUIREMENTS.md</code></span></div><div class="ir"><span class="k">Lines</span><span class="v">219</span></div><div class="ir"><span class="k">Language</span><span class="v">Markdown</span></div><div class="ir"><span class="k">Package</span><span class="v">docs</span></div><div class="ir"><span class="k">Phase</span><span class="v">v0</span></div><div class="ir"><span class="k">See also</span><span class="v"><a href="doc-readme.html">README.md</a><br><a href="doc-status.html">STATUS.md</a></span></div><div class="ir"><span class="k">Canonical data</span><span class="v"><a href="../data/doc-requirements.json">doc-requirements.json</a></span></div></aside>
+<aside class="panel master-index" id="p-index"><div class="master-index"><h4>// Documents</h4><ul><li><a href="doc-requirements.html">Product requirements</a><span> BUILD_REQUIREMENTS.md <span>&#9656; CURRENT</span></span></li><li><a href="doc-readme.html">README.md</a><span> README.md</span></li><li><a href="doc-windows-install.html">INSTALL_WINDOWS.md</a><span> INSTALL_WINDOWS.md</span></li><li><a href="doc-linux-install.html">INSTALL_LINUX.md</a><span> INSTALL_LINUX.md</span></li><li><a href="usage-and-safety.html">Using XtracsysCode</a><span> USER_GUIDE.md</span></li></ul><h4>// Agent Core</h4><ul><li><a href="agent-loop.html">electron/agent/loop.ts</a><span> electron/agent/loop.ts</span></li><li><a href="agent-tools.html">electron/agent/tools.ts</a><span> electron/agent/tools.ts</span></li><li><a href="agent-providers.html">electron/agent/providers/*</a><span> electron/agent/providers/</span></li><li><a href="agent-mcp.html">electron/agent/mcp.ts</a><span> electron/agent/mcp.ts</span></li><li><a href="agent-types.html">electron/agent/types.ts</a><span> electron/agent/types.ts</span></li><li><a href="agent-prompt.html">electron/agent/prompt.ts</a><span> electron/agent/prompt.ts</span></li><li><a href="agent-smoke.html">electron/agent/smoke.ts</a><span> electron/agent/smoke.ts</span></li><li><a href="timeline-model.html">shared/timelineModel.ts</a><span> shared/timelineModel.ts</span></li><li><a href="local-url.html">electron/agent/providers/localUrl.ts</a><span> electron/agent/providers/localUrl.ts</span></li><li><a href="agent-tests.html">tests/*</a><span> tests/</span></li></ul><h4>// Electron Host</h4><ul><li><a href="host-main.html">electron/main.ts</a><span> electron/main.ts</span></li><li><a href="host-preload.html">electron/preload.ts</a><span> electron/preload.ts</span></li><li><a href="host-runner.html">electron/runner.ts</a><span> electron/runner.ts</span></li><li><a href="host-storage.html">electron/storage.ts</a><span> electron/storage.ts</span></li><li><a href="host-store.html">electron/store.ts</a><span> electron/store.ts</span></li><li><a href="skills.html">electron/skills.ts</a><span> electron/skills.ts</span></li><li><a href="plugins.html">electron/plugins.ts</a><span> electron/plugins.ts</span></li><li><a href="platform.html">electron/platform.ts</a><span> electron/platform.ts</span></li><li><a href="doc-kit.html">plugins/doc-*</a><span> plugins/</span></li></ul><h4>// Renderer</h4><ul><li><a href="web-app.html">web/src/App.tsx</a><span> web/src/App.tsx</span></li><li><a href="use-xtrac.html">web/src/hooks/useXtrac.ts</a><span> web/src/hooks/useXtrac.ts</span></li><li><a href="web-sidebar.html">web/src/components/Sidebar.tsx</a><span> web/src/components/Sidebar.tsx</span></li><li><a href="web-chat.html">web/src/components/Chat.tsx</a><span> web/src/components/Chat.tsx</span></li><li><a href="web-settings.html">web/src/components/Settings.tsx</a><span> web/src/components/Settings.tsx</span></li><li><a href="web-modals-wizard.html">web/src/components/Modals.tsx + WelcomeWizard.tsx</a><span> web/src/components/</span></li><li><a href="web-timeline.html">web/src/components/timeline/*</a><span> web/src/components/timeline/</span></li><li><a href="web-support.html">web/src/{api.ts, hooks, lib, types, main.tsx}</a><span> web/src/</span></li></ul><h4>// Config &amp; Meta</h4><ul><li><a href="cfg-package.html">package.json + electron-builder.yml</a><span> package.json</span></li><li><a href="cfg-tsconfig-vite.html">tsconfig*.json + vite.config.ts</a><span> vite.config.ts</span></li><li><a href="cfg-icon.html">scripts/icon.js + build/icon.icns</a><span> scripts/icon.js</span></li><li><a href="cfg-web-shell.html">web/index.html + .gitignore</a><span> web/index.html</span></li><li><a href="bundled-skills.html">bundled-skills/ + plugins/example-text-formatter</a><span> bundled-skills/</span></li></ul></div><p style="margin-top:1rem"><a class="btn" href="../index.html">&#8592; WIKI HOME</a></p></aside>
+<aside class="infobox"><div class="ih">&#9635; DOSSIER — SPEC</div><div class="ir"><span class="k">Path</span><span class="v"><code>BUILD_REQUIREMENTS.md</code></span></div><div class="ir"><span class="k">Lines</span><span class="v">219</span></div><div class="ir"><span class="k">Language</span><span class="v">Markdown</span></div><div class="ir"><span class="k">Package</span><span class="v">docs</span></div><div class="ir"><span class="k">Phase</span><span class="v">v0</span></div><div class="ir"><span class="k">See also</span><span class="v"><a href="doc-readme.html">README.md</a><br><a href="usage-and-safety.html">Using XtracsysCode</a></span></div><div class="ir"><span class="k">Canonical data</span><span class="v"><a href="../data/doc-requirements.json">doc-requirements.json</a></span></div></aside>
 </div>
 <div class="wrap"><div class="tabs">
 <div class="tab on" data-tab="article">&#9635; ARTICLE</div>
@@ -164,8 +163,8 @@ table.ki td:first-child{font-family:var(--mono);font-size:.76rem;color:var(--ac)
 </div><p style="font-family:var(--mono);font-size:.66rem;color:var(--faint);padding-bottom:2rem">
 THE EMBEDDED PAYLOAD IN THIS FILE'S SOURCE IS MACHINE-READABLE (script#leet-doc).</p></div>
 <footer class="bottom"><div class="wrap foot">
-<span><b>NODE 001 / ACTIVE</b></span>
-<span>GENERATED 2026-11-03 20:13 UTC</span>
+<span><b>XTRACSYSCODE / APACHE-2.0</b></span>
+<span>GENERATED 2026-11-04 03:12 UTC</span>
 </div></footer>
 <script>
 document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
@@ -179,9 +178,9 @@ document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click'
   "id": "345b5b119e56093b52af73dafb704a4f",
   "type": "doc",
   "slug": "doc-requirements",
-  "title": "BUILD_REQUIREMENTS.md",
+  "title": "Product requirements",
   "version": 1,
-  "updated": "2026-11-03T20:13:48Z",
+  "updated": "2026-11-04T03:12:56Z",
   "tags": [
     "docs",
     "SPEC",
@@ -191,13 +190,13 @@ document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click'
     {
       "id": "blk_b76db7a2a4",
       "type": "heading",
-      "content": "BUILD_REQUIREMENTS.md",
+      "content": "Product requirements",
       "level": 1
     },
     {
       "id": "blk_519f92444c",
       "type": "paragraph",
-      "content": "The founding stakeholder document (draft 2026-09-11): a local-only LLM desktop app that looks like Codex/ChatGPT, supports multitasking with projects and tabs, runs exclusively on Ollama/llama.cpp, has no call-home behavior, and \u2014 as a hard constraint \u2014 never destroys the hard drive. \u00a74 lists the six core requirement groups (chat/workspace, backends, no-call-home, automation, bounded storage, JSON+MD data model); \u00a78 the license posture that drove the MIT/Apache-only dependency audit."
+      "content": "XtracsysCode is a desktop workspace for local-model conversations and tools. Its requirements cover project organization, loopback model providers, visible permissions, bounded storage, and portable JSON/Markdown data."
     },
     {
       "id": "blk_cd4359a70e",
@@ -208,17 +207,17 @@ document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click'
     {
       "id": "blk_314a659722",
       "type": "field",
-      "content": "Bounded logs, bounded sessions, controlled temp, cleanup rules, visible usage, safe defaults, manual override \u2014 every release audit re-checks this section.",
+      "content": "Configurable chat, log and temporary-file limits keep local data growth visible and bounded.",
       "meta": {
-        "name": "\u00a74.5 Storage \u2014 hard requirement"
+        "name": "Storage"
       }
     },
     {
       "id": "blk_942e5d8612",
       "type": "field",
-      "content": "OpenCode/Jan/Cline/Continued/LM Studio evaluated; the app-behavior references shaped the v1 UI.",
+      "content": "Model endpoints use loopback addresses; commands and plugins retain their own OS and network permissions.",
       "meta": {
-        "name": "\u00a77 Reference landscape"
+        "name": "Local control"
       }
     }
   ],
@@ -232,12 +231,12 @@ document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click'
     "spec_refs": "",
     "related": [
       "doc-readme",
-      "doc-status"
+      "usage-and-safety"
     ]
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "fcbce5c81c6e"
+    "last_commit": "960427eefa75"
   }
 }</script>
 </body></html>
