@@ -5,7 +5,7 @@
   "slug": "doc-kit",
   "title": "plugins/doc-*",
   "version": 1,
-  "updated": "2026-11-04T03:12:56Z",
+  "updated": "2026-11-05T04:24:55Z",
   "tags": [
     "host",
     "CORE",
@@ -76,6 +76,6 @@
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "960427eefa75"
+    "last_commit": "379f191613ed"
   }
 }

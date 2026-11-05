@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-Send security reports to [opensource@xtracsys.com](mailto:opensource@xtracsys.com).
+Send security reports to [josh@xtracsys.com](mailto:josh@xtracsys.com).
 If the repository's Security tab offers “Report a vulnerability”, you may use
 GitHub's private reporting form instead. This optional GitHub feature is separate
 from the email reporting route. Do not post exploit details, credentials, private

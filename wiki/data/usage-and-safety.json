@@ -5,7 +5,7 @@
   "slug": "usage-and-safety",
   "title": "Using XtracsysCode",
   "version": 1,
-  "updated": "2026-11-04T03:12:56Z",
+  "updated": "2026-11-05T04:24:55Z",
   "tags": [
     "docs",
     "GUIDE",
@@ -76,7 +76,7 @@
     {
       "id": "blk_5c2b00083a",
       "type": "paragraph",
-      "content": "Use the platform installation guides and USER_GUIDE.md for detailed steps. Report reproducible problems with the app version, platform and synthetic reproduction. Send security reports to opensource@xtracsys.com. Remove personal paths, tokens and chat content from shared logs."
+      "content": "Use the platform installation guides and USER_GUIDE.md for detailed steps. Report reproducible problems with the app version, platform and synthetic reproduction. Send security reports to josh@xtracsys.com. Remove personal paths, tokens and chat content from shared logs."
     }
   ],
   "properties": {
@@ -97,6 +97,6 @@
   },
   "audit": {
     "last_editor": "human:wiki-generator",
-    "last_commit": "960427eefa75"
+    "last_commit": "379f191613ed"
   }
 }
